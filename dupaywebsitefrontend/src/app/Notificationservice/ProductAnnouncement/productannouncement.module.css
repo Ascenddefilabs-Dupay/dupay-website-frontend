@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  border-radius: 0px;
+}
+ 
+.button {
+  position: relative;
+  /* left: 38%; */
+  top: 30px;
+  background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  height: 36px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.centeredBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.messagetext {
+  position: relative;
+  top: 40px;
+  /* left: 32.5%; */
+}
+
+.button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15);
+}
