@@ -79,7 +79,7 @@ const PriceAlerts: React.FC = () => {
     <div className={styles.container}>
       <div className="main">
         <header className={styles.header}>
-          <Link href="/Notificationservice/AdminNotificationScreen">
+          <Link href="/Admin/Notificationservice/AdminNotificationScreen">
             <FaArrowLeft  style={{position: 'relative' ,right:'10px', color: 'white'}} />
           </Link>
           <center>
