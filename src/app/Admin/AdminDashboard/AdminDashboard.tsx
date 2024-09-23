@@ -208,18 +208,18 @@ const AdminDashboard: React.FC = () => {
             </li>
             <li>
               <FontAwesomeIcon icon={faChartLine} className={styles.navIcon} />
-              <Link href="/report-analysis">Report Analysis</Link>
+              <Link href="/Admin/UserManagement/ReportAnalysis">Report Analysis</Link>
             </li>
             <li>
               <FontAwesomeIcon icon={faUserCog} className={styles.navIcon} />
-              <Link href="/account-management">Account Management</Link>
+              <Link href="/Admin/UserManagement/AccountManage">Account Management</Link>
             </li>
             <li>
               <FontAwesomeIcon
                 icon={faExchangeAlt}
                 className={styles.navIcon}
               />
-              <Link href="/transaction-monitoring">Transaction Monitoring</Link>
+              <Link href="/Admin/UserManagement/TransactionHistory">Transaction Monitoring</Link>
             </li>
             <li>
               <FontAwesomeIcon
@@ -233,7 +233,7 @@ const AdminDashboard: React.FC = () => {
                 icon={faUserFriends}
                 className={styles.navIcon}
               />
-              <Link href="/user-management">User Management</Link>
+              <Link href="/Admin/UserManagement/Adduser">User Management</Link>
             </li>
             <li>
               <FontAwesomeIcon
@@ -247,11 +247,11 @@ const AdminDashboard: React.FC = () => {
                 icon={faClipboardList}
                 className={styles.navIcon}
               />
-              <Link href="/audit-trail">Audit Trail</Link>
+              <Link href="/Admin/UserManagement/AuditLogs">Audit Trail</Link>
             </li>
             <li>
               <FontAwesomeIcon icon={faUserPlus} className={styles.navIcon} />
-              <Link href="/create-admin">Create Admin</Link>
+              <Link href="/Admin/UserManagement/CreateAdmin">Create Admin</Link>
             </li>
             <li>
               <FontAwesomeIcon icon={faLifeRing} className={styles.navIcon} />
