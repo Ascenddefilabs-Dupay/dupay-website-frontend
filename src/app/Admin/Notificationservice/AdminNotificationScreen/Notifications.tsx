@@ -10,37 +10,37 @@ const ButtonsComponent: React.FC = () => {
 
     const goToMessages = () => {
         // router.push('/Notificationservice/Messages');
-        window.location.href = '/Notificationservice/Messages';
+        window.location.href = '/Admin/Notificationservice/Messages';
     };
 
     const goToProductAnnouncement = () => {
         // router.push('/Notificationservice/ProductAnnouncement');
-        window.location.href = '/Notificationservice/ProductAnnouncement';
+        window.location.href = '/Admin/Notificationservice/ProductAnnouncement';
     };
 
     const goToSpecialOffers = () => {
         // router.push('/Notificationservice/SpecialOffers');
-        window.location.href = '/Notificationservice/SpecialOffers';
+        window.location.href = '/Admin/Notificationservice/SpecialOffers';
     };
 
     const goToInsightsTips = () => {
         // router.push('/Notificationservice/InsightsTips');
-        window.location.href = '/Notificationservice/InsightsTips';
+        window.location.href = '/Admin/Notificationservice/InsightsTips';
     };
 
     const goToPriceAlerts = () => {
         // router.push('/Notificationservice/PriceAlerts');
-        window.location.href = '/Notificationservice/PriceAlerts';
+        window.location.href = '/Admin/Notificationservice/PriceAlerts';
     };
 
     const goToAccountActivity = () => {
         // router.push('/Notificationservice/AccountActivity');
-        window.location.href = '/Notificationservice/AccountActivity';
+        window.location.href = '/Admin/Notificationservice/AccountActivity';
     };
 
     return (
         <div className="container">
-            <Link className="link" href="/Userauthorization/AdminDashboard">
+            <Link className="link" href="/Admin/AdminDashboard">
             <FaArrowLeft  style={{position: 'relative' ,right:'10px', color: 'white'}} />
             </Link>
             <h1 className="heading">Notifications</h1>

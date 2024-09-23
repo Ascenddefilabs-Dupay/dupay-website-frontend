@@ -81,7 +81,7 @@ const Messages: React.FC = () => {
       <div className="main">
         {/* <h1 className='text-4xl font-bold'>Messages Notification</h1> */}
         <header className={styles.header}>
-          <Link href="/Notificationservice/AdminNotificationScreen">
+          <Link href="/Admin/Notificationservice/AdminNotificationScreen">
           <FaArrowLeft  style={{position: 'relative' ,right:'10px', color: 'white'}} />
           </Link>
             <center>
