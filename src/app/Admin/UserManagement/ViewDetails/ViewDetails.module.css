@@ -1,0 +1,166 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 1rem;
+    height: 100vh;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    color: white;
+  
+  }
+
+  .detailLabel {
+    flex-basis: 40%; /* Adjust label width */
+    text-align: left;
+    color: white;
+    font-weight: bold; /* Make the text bold */
+    width:200px;
+  }
+  .customTextField input {
+    display: flex;
+    padding: 8px; /* Adjust padding to control height */
+    font-size: 14px; /* Adjust font size */
+    text-align: left;
+  }
+  
+  .detailtext {
+    flex-basis: 80%; /* Adjust value width */
+    text-align: left;
+    /* color: white;  */
+    height: 5px;
+  }
+  .detailValue {
+    flex-basis: 60%; /* Adjust value width */
+    text-align: left;
+    /* color: white;  */
+  }
+  .button {
+    /* background: linear-gradient(90deg, #007bff9f, #301c30); */
+    background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    width: 150px;
+  }
+  .profileCard {
+    /* display: flex;
+    margin-top: 20px;
+    width: 80%; */
+    display: flex;
+    margin-top: 20px;
+    width: 70%;
+    background-color: rgba(128, 128, 128, 0.253);
+    border-radius: 8px;
+    color:white;
+  }
+  .statusCircle {
+    position: absolute;
+    bottom: 13px; /* Adjust to position the circle at the edge */
+    right: 13px;  /* Adjust to position the circle at the edge */
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid white; /* To create a border around the circle */
+    /* background-color: green;  */
+  }
+  .imageSection {
+    width: 40%;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center; /* Center the content horizontally */
+    background-color: rgba(128, 128, 128, 0.253);
+  }
+  
+  .detailsSection {
+    /* width: 100%;
+    background-color: darkgray; */
+    width: 70%;
+    padding: 20px;
+    background-color:  rgba(128, 128, 128, 0.253);
+    display: grid;
+    grid-template-columns: 1fr ; /* Two columns with different widths */
+    gap: 10px; /* Space between columns */
+
+  }
+  
+  .detailRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    
+  }
+   
+
+
+/* ViewDetails.module.css*/
+/* 
+.page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    background-color: black;
+  }
+  
+  .heading {
+    margin-bottom: 20px;
+    color: white;
+    
+    
+  }
+  
+  .detailsContainer {
+    padding: 20px;
+    background-color: darkgray;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .detailsContainer Typography {
+    margin-bottom: 10px;
+  } */
+  .profileImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1px;
+  }
+  .profilePlaceholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ccc; /* Gray background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .initial {
+    color: white; /* Text color */
+    font-weight: bold;
+  }
+  

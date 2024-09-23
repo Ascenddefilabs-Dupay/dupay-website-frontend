@@ -1,0 +1,172 @@
+/* .container {
+    padding: 16px;
+    background-color: black;
+    margin: '0 auto';
+  } */
+  
+  .statisticsContainer {
+    margin-bottom: 16px;
+  }
+  .page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 1rem;
+    margin:'0 auto';
+    height: 100vh;
+  }
+  .statisticBox {
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color:  rgba(128, 128, 128, 0.253);
+    border-radius: 8px;
+    color:white;
+  }
+  
+  .filterButtons {
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .button {
+    /* background: linear-gradient(90deg, #007bff9f, #800080); */
+    background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+  }
+  .filterButton {
+    /* display: flex; */
+    justify-content: center;
+    /* align-items: center; */
+    margin-right: 8px;
+    /* background: linear-gradient(90deg, #007bff9f, #800080); */
+    background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    
+  }
+
+  .tableContainer {
+    background-color:  rgba(128, 128, 128, 0.253);
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    color:white;
+    /* width:1200px; */
+  }
+  .heading {
+    color: white;
+    margin-bottom: 1rem;
+  }
+  /* AccountManage.module.css */
+.tableCell {
+    max-width: 150px; /* Set your desired width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color:white;
+  }
+  
+  .tableRow {
+    background-color:  rgba(128, 128, 128, 0.253);
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    color:white;
+  }
+  
+  .profileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .userInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .statusActive {
+    color: green;
+  }
+  
+  .statusHold {
+    color: red;
+  }
+  
+  .actionButton {
+    /* background-color: #1976d2; */
+    /* background: linear-gradient(90deg, #007bff9f, #800080); */
+    background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-transform: none;
+    font-size: 14px;
+  }
+  
+  .actionButton:hover {
+    /* background-color: #1565c0; */
+    /* background: linear-gradient(90deg, #007bff9f, #800080); */
+    background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  /* Add this CSS for the View Details link */
+.viewDetailsLink {
+    /* color: rgb(12, 12, 129); Set the link color to blue */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Optional: make it bold */
+    transition: color 0.3s; /* Add a smooth transition for hover effect */
+  }
+  
+  .viewDetailsLink:hover {
+    color: rgb(19, 19, 167); /*Change color on hover*/
+  }
+  .tableHeaderCell {
+    font-weight: bold; /* Make the text bold */
+  }
+  .statusActive {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .statusInactive {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .statusHold {
+    color: orange;
+    font-weight: bold;
+  }
+  /* Filter dropdown */
+.filterDropdown {
+    width: 140px;
+    height: 40px;
+    /* background: linear-gradient(90deg, #007bff9f, #800080); */
+    background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 5px;
+    /* height:10px; */
+
+  }
+  .profilePlaceholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: darkgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .initial {
+    color: white;
+    font-weight: bold;
+  }

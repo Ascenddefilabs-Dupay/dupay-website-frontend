@@ -1,0 +1,276 @@
+.container {
+    padding: 16px;
+    background-color: black;
+    margin: 0 auto; /* Remove quotes */
+  }
+  
+  .statisticsContainer {
+    margin-bottom: 16px;
+  }
+  
+  .label {
+    background-color: #800080;
+    color: white;
+    margin-bottom: 0.25rem; /* Slight margin below label */
+    font-size: 0.9rem;
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 1rem;
+    margin: 0 auto; /* Remove quotes */
+  }
+  
+  .statisticBox {
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(128, 128, 128, 0.253);
+    color: white;
+  }
+  
+  .filterButtons {
+    margin-bottom: 16px;
+    align-items: flex-start;
+    color: white;
+  }
+  
+  .mainFilters {
+    padding: 5px;
+    flex-basis: calc(50% - 1rem);
+    text-align: center;
+    display: flex;
+    color:white;
+    margin-bottom: 5px;
+    background-color: rgba(128, 128, 128, 0.253);
+    flex-direction: row;
+    align-items: center; /* Align items vertically */
+    gap: 10px; /* Space between the currency select and date fields */
+  }
+  
+  .currencySelect {
+    flex: 1; /* Adjust as needed to control the width */
+    max-width: 200px;
+    height: 40px;
+  }
+  .initialCircle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0; /* Use a light background color */
+    overflow: hidden; /* Ensures image doesn't overflow the circle */
+  }
+  
+  .profileImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  /* Hides the default calendar icon in most browsers */
+.dateField input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.dateField input[type="date"]::-moz-calendar-picker-indicator {
+  display: none;
+}
+
+.dateField input[type="date"] {
+  appearance: none; /* Removes default browser styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+}
+
+  .initial {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase; /* Ensures the letter is in uppercase */
+    background-color: rgba(128, 128, 128, 0.253);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  .box {
+    align-items: flex-end;
+    color: white;
+  }
+  .dateFilters {
+    
+    padding: 7px;
+    text-align: end;
+    gap: 10px;
+    display: flex;
+    /* box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); */
+    margin-bottom: 5px;
+    background-color: rgba(128, 128, 128, 0.253);
+    color:white;
+    flex-direction: row; 
+  }
+  
+  .dateField {
+    /* Adjust to set date field width proportionately */
+    max-width: 170px; /* Set maximum width for smaller date fields */
+    min-width: 100px; 
+    text-align: end;
+    color:white;
+    display: flex;
+    position: relative;
+    left: 450px;
+    justify-content: flex-end;
+    /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:  rgba(128, 128, 128, 0.253);
+
+  }
+
+  .button {
+    background: linear-gradient(90deg, #007bff9f, #800080);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+  }
+  
+  .filterButton {
+    justify-content: center;
+    margin-right: 8px;
+    color: white;
+    background: linear-gradient(90deg, #007bff9f, #800080);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .filter {
+    justify-content: center;
+    margin-right: 8px;
+    color: white;
+    background: linear-gradient(90deg, #007bff9f, #800080);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .tableContainer {
+    background-color: rgba(128, 128, 128, 0.253);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    /* width:1200px; */
+  }
+  
+  .heading {
+    color: white;
+    margin-bottom: 1rem;
+  }
+  .header {
+    color: white;
+    margin-bottom: 1rem;
+    text-align: right;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    left: 550px;
+  }
+  .head {
+    color: white;
+    margin-bottom: 1rem;
+    text-align: right;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    left: 450px;
+  }
+  .tableCell {
+    max-width: 150px; /* Set your desired width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color:white;
+    
+  }
+
+  .tableCel {
+    max-width: 150px; /* Set your desired width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color:white;
+  }
+  
+  .tableRow {
+    background-color: rgba(128, 128, 128, 0.253);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profileImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .userInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .statusActive {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .statusInactive {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .statusHold {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .actionButton {
+    background: linear-gradient(90deg, #007bff9f, #800080);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-transform: none;
+    font-size: 14px;
+  }
+  
+  .actionButton:hover {
+    background: linear-gradient(90deg, #007bff9f, #800080);
+  }
+  
+  .viewDetailsLink {
+    color: rgb(12, 12, 129); /* Set the link color to blue */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Optional: make it bold */
+    transition: color 0.3s; /* Add a smooth transition for hover effect */
+  }
+  
+  .viewDetailsLink:hover {
+    color: rgb(19, 19, 167); /* Change color on hover */
+  }
+  
+  .tableHeaderCell {
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  .filterDropdown {
+    width: 150px;
+    background-color: white;
+  }
