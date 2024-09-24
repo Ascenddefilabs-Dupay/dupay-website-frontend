@@ -34,9 +34,10 @@
 .mainFilters {
   padding: 5px;
   flex-basis: calc(50% - 1rem);
-  text-align: center;
+  text-align: right;
   display: flex;
-  
+  margin-left: 600px;
+  left: 200px;
   margin-bottom: 5px;
   background-color: rgba(128, 128, 128, 0.253);    flex-direction: row;
   align-items: center; /* Align items vertically */
@@ -48,26 +49,35 @@
   max-width: 200px;
   height: 40px;
   color: white;
+  background-color: rgba(128, 128, 128, 0.253);
 }
 
 .dateFilters {
-  
+    
   padding: 7px;
-  text-align: center;
-  color: white;
+  text-align: end;
   gap: 10px;
   display: flex;
   /* box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); */
   margin-bottom: 5px;
   background-color: rgba(128, 128, 128, 0.253);
+  color:white;
   flex-direction: row; 
 }
 
 .dateField {
   /* Adjust to set date field width proportionately */
-  max-width: 150px; /* Set maximum width for smaller date fields */
+  max-width: 170px; /* Set maximum width for smaller date fields */
   min-width: 100px; 
-  color: white;
+  text-align: end;
+  color:white;
+  display: flex;
+  position: relative;
+  left: 80px;
+  justify-content: flex-end;
+  /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:  rgba(128, 128, 128, 0.253);
 
 }
 
@@ -92,7 +102,37 @@
   background: linear-gradient(90deg, #007bff9f, #800080);
   font-family: Arial, Helvetica, sans-serif;
 }
-
+.box {
+  align-items: flex-end;
+  color: white;
+}
+.head {
+  color: white;
+  margin-bottom: 1rem;
+  text-align: right;
+  display: flex;
+  justify-content: end;
+  position: relative;
+  left: 80px;
+}
+.header {
+  color: white;
+  margin-bottom: 1rem;
+  text-align: right;
+  display: flex;
+  justify-content: end;
+  position: relative;
+  left: 400px;
+}
+.currency{
+  color: white;
+  margin-bottom: 1rem;
+  text-align: right;
+  display: flex;
+  justify-content: end;
+  position: relative;
+  left: 300px;
+}
 .tableContainer {
   background-color: rgba(128, 128, 128, 0.253);
   border-radius: 8px;
@@ -181,4 +221,27 @@
 .filterDropdown {
   width: 150px;
   background-color: white;
+}
+.profilePlaceholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: darkgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dateField input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.dateField input[type="date"]::-moz-calendar-picker-indicator {
+  display: none;
+}
+
+.dateField input[type="date"] {
+  appearance: none; /* Removes default browser styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
 }

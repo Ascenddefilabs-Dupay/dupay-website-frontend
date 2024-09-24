@@ -4,6 +4,8 @@ import { TextField, Button, Typography, Box } from '@mui/material';
 import axios from 'axios';
 import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 import styles from './CreateAdmin.module.css'; // Importing CSS module
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 
 const RegisterForm: React.FC = () => {
@@ -188,8 +190,11 @@ const RegisterForm: React.FC = () => {
   
   return (
     <div className={styles.page}>
+             <Link href="/Admin/AdminDashboard">
+          <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
+          </Link>
       <Typography variant="h4" className={styles.heading} gutterBottom>
-        Add Users
+        Add Admin
       </Typography>
       <Box component="form" onSubmit={handleSubmit} className={styles.form}>
 	      {/* Date */}

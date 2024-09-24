@@ -16,19 +16,26 @@ import {
   TableRow,
   Paper,
   TextField,
+  InputAdornment,
+  IconButton,
 } from '@mui/material';
 import axios from 'axios';
 import styles from './TransactionHistory.module.css'; // Import the CSS module
 import { SelectChangeEvent } from '@mui/material';
-import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'; // Import additional icons
+import { RiUserReceived2Fill } from "react-icons/ri";
 import { MdDateRange, MdOutlineAddCircle } from 'react-icons/md'; // Import icons
-import { FaExchangeAlt } from 'react-icons/fa'; // Exchange icon
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoneyBillWave } from '@fortawesome/free-solid-svg-icons'; //
+import { PiHandWithdrawFill } from "react-icons/pi";
+import { BiTransfer } from "react-icons/bi";
+import { GiWallet } from "react-icons/gi";
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
+import { FaRegCalendar } from "react-icons/fa";
 // User and Transaction interfaces
 interface Users {
   user_id: string;
   user_first_name: string;
+  user_middle_name:string;
+  user_last_name:string;
   role: string;
   user_phone_number: string;
   user_email: string;
@@ -79,7 +86,15 @@ const Dashboard = () => {
 
     fetchData();
     }, []);
-
+    const openStartDatePicker = () => {
+      const startDateInput = document.getElementById('start-date-input') as HTMLInputElement;
+      startDateInput?.showPicker(); // Opens the Start Date picker
+    };
+  
+    const openEndDatePicker = () => {
+      const endDateInput = document.getElementById('end-date-input') as HTMLInputElement;
+      endDateInput?.showPicker(); // Opens the End Date picker
+    };
   // Format the transaction date to a readable format
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -183,9 +198,26 @@ const Dashboard = () => {
 
   return (
     <div className={styles.page}>
+                <Link href="/Admin/AdminDashboard">
+          <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
+          </Link>
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
       <Typography variant="h4" className={styles.heading} gutterBottom>
         Transaction Monitoring
       </Typography>
+      <IconButton
+          onClick={toggleDateFilters}
+          className={styles.header}
+        >
+          {showDateFilters ? <MdDateRange /> : <MdDateRange />}
+        </IconButton>
+        <IconButton
+          onClick={toggleDate}
+          className={styles.currency}
+        >
+          <GiWallet />
+        </IconButton>
+        </Box>
 
       {/* Filter Buttons */}
       <Box className={styles.filterButtons}>
@@ -201,21 +233,21 @@ const Dashboard = () => {
           variant={selectedTransactionType === 'received' ? 'contained' : 'outlined'}
           onClick={() => handleFilter('received')}
         >
-          <AiOutlineArrowUp /> Received
+          <RiUserReceived2Fill /> Received
         </Button>
         <Button
           className={styles.filterButton}
           variant={selectedTransactionType === 'Transfer' ? 'contained' : 'outlined'}
           onClick={() => handleFilter('Transfer')}
         >
-          <FaExchangeAlt /> Transfer
+          <BiTransfer /> Transfer
         </Button>
         <Button
           className={styles.filterButton}
           variant={selectedTransactionType === 'withdrawn' ? 'contained' : 'outlined'}
           onClick={() => handleFilter('withdrawn')}
         >
-          <AiOutlineArrowDown /> Withdraw
+          <PiHandWithdrawFill /> Withdraw
         </Button>
         <Button
           className={styles.filterButton}
@@ -224,28 +256,9 @@ const Dashboard = () => {
         >
           <MdOutlineAddCircle /> TopUp
         </Button>
-        <Button>
-        </Button>
-        <Button>
-        </Button>
-        <Button
-          variant="contained"
-          onClick={toggleDate}
-          className={styles.filter}
-        >
-          {showDate ? <FontAwesomeIcon icon={faMoneyBillWave} /> : <FontAwesomeIcon icon={faMoneyBillWave} />}
-        </Button>
-        {/* Toggle Button for Date Filters */}
-        <Button
-          variant="contained"
-          onClick={toggleDateFilters}
-          className={styles.filter}
-        >
-          {showDateFilters ? <MdDateRange /> : <MdDateRange />}
-        </Button>
         
       </Box>
-      
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
         {/* Main Container for Currency and Date Fields */}
         {(showDate || showDateFilters) && (
         <Box className={styles.mainFilters}>
@@ -265,30 +278,68 @@ const Dashboard = () => {
                 ))}
             </Select>
             )}
-
-            {showDateFilters && (
-            <Box className={styles.dateFilters}>
+        </Box>
+        
+        )}
+      {showDateFilters && (
+            <Box  mb={2} display="flex" className={styles.box}>
+              <Typography className={styles.head} sx={{ mr: 2 }}>
+                From:
+              </Typography>
                 <TextField
                 type="date"
-                label="Start Date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
                 InputLabelProps={{ shrink: true }}
                 className={styles.dateField}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                      onClick={openStartDatePicker}
+                      >
+                        <FaRegCalendar style={{ color: 'white', fontSize: '16px' }} />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                id="start-date-input"
+                sx={{
+                  input: {
+                    color: 'white',
+                    backgroundColor: 'rgba(128, 128, 128, 0.253)',
+                  },
+                }}
                 />
+                <Typography className={styles.head} sx={{ mr: 2 }}>
+                  To:
+                </Typography>
                 <TextField
                 type="date"
-                label="End Date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 InputLabelProps={{ shrink: true }}
                 className={styles.dateField}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={openEndDatePicker}>
+                        <FaRegCalendar style={{ color: 'white', fontSize: '16px' }} />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                id="end-date-input"
+                sx={{
+                  input: {
+                    color: 'white',
+                    backgroundColor: 'rgba(128, 128, 128, 0.253)',
+                  },
+                }}
                 />
             </Box>
             )}
-        </Box>
-        )}
-
+      </Box>
       {/* Combined Table */}
       <TableContainer component={Paper} className={styles.tableContainer}>
         <Table>
@@ -305,11 +356,19 @@ const Dashboard = () => {
               <TableRow key={`${data.transaction_id}-${index}`} className={styles.tableRow}>
                 <TableCell className={styles.tableCell}>
                   <Box display="flex" alignItems="center">
-                    <img
-                      src={data.user_profile_photo}
-                      alt={data.user_first_name}
-                      className={styles.profileImage}
-                    />
+                  {data.user_profile_photo ? (
+                        <img
+                          src={data.user_profile_photo}
+                          alt={data.user_first_name}
+                          className={styles.profileImage}
+                        />
+                      ) : (
+                        <Box className={styles.profilePlaceholder}>
+                          <Typography variant="h4" className={styles.initial}>
+                            {`${data.user_first_name} ${data.user_middle_name || ''} ${data.user_last_name || ''}`.trim().charAt(0)}
+                          </Typography>
+                        </Box>
+                      )}
                     <Box ml={2}>
                       <Typography variant="body1">{data.user_first_name}</Typography>
                     </Box>

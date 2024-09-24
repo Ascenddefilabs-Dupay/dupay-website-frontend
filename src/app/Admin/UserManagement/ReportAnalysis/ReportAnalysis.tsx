@@ -4,6 +4,8 @@ import { PieChart, Pie, Cell, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid
 import { Box, Typography, IconButton, Menu, MenuItem, Grid } from '@mui/material';
 import styles from './ReportAnalysis.module.css'; // Import the CSS module
 import { FaFilter } from "react-icons/fa";
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 
 
@@ -156,6 +158,9 @@ const ReportAnalysis = () => {
   };
   return (
     <div className={styles.page}>
+       <Link href="/Admin/AdminDashboard">
+          <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
+          </Link>
       <Box className={styles.header}>
         <Typography variant="h4">Report Analysis</Typography>
       </Box>

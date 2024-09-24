@@ -8,6 +8,7 @@ import axios, { AxiosError } from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './AccountManage.module.css';
 import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface Users {
   user_id: string;
@@ -120,10 +121,18 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      <Typography variant="h4" className={styles.heading} gutterBottom>
-        Account Management
-      </Typography>
-
+      <header className={styles.header}>
+          <Link href="/Admin/AdminDashboard">
+          <FaArrowLeft  style={{position: 'relative' ,right:'500px', color: 'white'}} />
+          </Link>
+            <center>
+              <div className="centeredBox">
+              <Typography variant="h4" className={styles.heading} gutterBottom>
+                Account Management
+              </Typography>
+              </div>
+            </center>
+          </header>
       <Grid container spacing={2} className={styles.statisticsContainer}>
         <Grid item xs={4}>
           <Paper className={styles.statisticBox}>

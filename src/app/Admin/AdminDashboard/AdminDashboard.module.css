@@ -371,3 +371,246 @@ left: 0;
     margin-right: 5px; 
   }
 }
+/* components/ReportAnalysis.module.css */
+
+/* Styling for the AppBar */
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  padding: 1rem;
+  height: 160vh;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.chartRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.pieChart {
+  flex: 1;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pie{
+  color: #fff;
+  /* text-align: center; */
+  right:500px;
+  /* align-items: center; */
+  /* background-color: white; */
+  width:150px;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: 0 auto;
+  text-align: center;
+  background-color: black;
+  right:100px;
+  color: white;
+  margin-bottom: 50px;
+  height: 1px;
+}
+/* Styling for the title in the AppBar */
+.title {
+  flex-grow: 1;
+  font-size: 1.5rem;
+  color: white;
+}
+/* components/ReportAnalysis.module.css */
+
+/* ... existing styles ... */
+.date{
+text-align: center;
+font-weight: bold;
+font-size: 1rem;
+color: white;
+background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+font-family: Arial, Helvetica, sans-serif;
+/* background-color: black; */
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.userList {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.userList ul {
+  list-style: none;
+  padding: 0;
+}
+
+.userList li {
+  margin: 0.5rem 0;
+}
+
+/* Box containing user avatar and name */
+.profileBox {
+  display: flex;
+  align-items: center;
+}
+
+/* Avatar styling */
+.avatar {
+  background-color: white;
+  margin-right: 0.5rem;
+}
+
+/* User name styling */
+.userName {
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* Grid layout for the sections */
+.sectionGrid {
+  margin-top: 2rem;
+  padding: 2rem;
+  color:white;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-weight: bold;
+  height: 30px;
+  width: 300px;
+  font-size: 1.25rem;
+  background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+  -webkit-background-clip: text; /* For Safari and Chrome */
+  -moz-background-clip: text;    /* For Firefox (historically) */
+  background-clip: text;         /* Standard property */
+  -webkit-text-fill-color: transparent; 
+  /* color:linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
+  /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
+  /* font-family: Arial, Helvetica, sans-serif; */
+  background-color: black;
+}
+
+/* Pie chart container */
+.chartContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+
+}
+.chartContained {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  color: white;
+
+}
+
+/* Styling for the title in the AppBar */
+.title {
+  flex-grow: 1;
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* Button container styling */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* User list styling */
+.userList {
+  margin-top: 2rem;
+  text-align: center;
+  color: white; /* Ensure text color is visible on black background */
+}
+
+.userList ul {
+  list-style: none;
+  padding: 0;
+}
+
+.userList li {
+  margin: 0.5rem 0;
+}
+
+/* Profile box styling */
+.profileBox {
+  display: flex;
+  align-items: center;
+}
+
+/* Avatar styling */
+.avatar {
+  background-color: white;
+  margin-right: 0.5rem;
+}
+
+/* User name styling */
+.userName {
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* Grid layout for sections */
+.sectionGrid {
+  margin-top: 2rem;
+  padding: 2rem;
+  color: white;
+}
+
+/* Section title styling */
+.sectionTitle {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+/* Pie chart container styling */
+.chartContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.buttonContainer {
+  margin-bottom: 20px;
+}
+
+.buttonActive {
+  background-color: #0088FE; /* Primary color */
+}
+
+.buttonInactive {
+  background-color: #00C49F; /* Green color */
+}
+
+.buttonHold {
+  background-color: #FF8042; /* Orange color */
+}
+
+.button {
+  color: white;
+  margin-left: 10px;
+}
