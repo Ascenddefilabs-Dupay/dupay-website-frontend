@@ -233,7 +233,7 @@ const AdminDashboard: React.FC = () => {
                 icon={faUserFriends}
                 className={styles.navIcon}
               />
-              <Link href="/Admin/UserManagement/Adduser">User Management</Link>
+              <Link href="/Admin/UserManagement/AddUser">User Management</Link>
             </li>
             <li>
               <FontAwesomeIcon

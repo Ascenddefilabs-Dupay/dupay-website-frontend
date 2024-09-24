@@ -19,6 +19,8 @@ import {
 import axios from 'axios';
 import styles from './AuditLogs.module.css'; 
 import { FaRegCalendar } from "react-icons/fa";
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface WalletAdminActions {
   id: string;
@@ -87,7 +89,11 @@ const Dashboard = () => {
 
   return (
     <div className={styles.page}>
+             <Link href="/Admin/AdminDashboard">
+          <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
+          </Link>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+        
         <Typography variant="h4" className={styles.heading} gutterBottom style={{ flexGrow: 1 }}>
           Audit Logs
         </Typography>
