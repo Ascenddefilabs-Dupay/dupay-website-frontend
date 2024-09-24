@@ -57,7 +57,7 @@ const PriceAlerts: React.FC = () => {
       const message = response.data.price_alerts_content;  // Dynamic content from the backend
       if (message) {
         setPriceAlertMessage(message);
-        sendNotification('Price Alerts', message, 'https://res.cloudinary.com/dgfv6j82t/image/upload/v1725254311/logo3_ln9n43.png', 'https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages');
+        sendNotification('Price Alerts', message, 'https://res.cloudinary.com/dgfv6j82t/image/upload/v1727074312/DupayAnimation_iyxfli.png', 'https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages');
       }
     } catch (error) {
       console.error('Error triggering price alerts:', error);

@@ -48,7 +48,7 @@ const InsightsTips: React.FC = () => {
     })
       .then((response) => {
         const message = response.data.insights_tips_content;  // Use the dynamic content from the backend
-        sendNotification('Insights Tips', message, 'https://res.cloudinary.com/dgfv6j82t/image/upload/v1725254311/logo3_ln9n43.png', 'https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages');
+        sendNotification('Insights Tips', message, 'https://res.cloudinary.com/dgfv6j82t/image/upload/v1727074312/DupayAnimation_iyxfli.png', 'https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages');
       })
       .catch(error => {
         console.error('Error:', error);
