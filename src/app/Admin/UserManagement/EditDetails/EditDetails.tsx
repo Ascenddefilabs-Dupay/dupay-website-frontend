@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react';
 import { Box, Typography, Button, Card, CardContent, TextField } from '@mui/material';
 import axios, { AxiosError } from 'axios';
 import styles from './EditDetails.module.css';
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface User {
   user_id: string;
@@ -70,19 +72,19 @@ const UserProfile: React.FC = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
-  const getStatusDisplay = (user_hold?: boolean, user_status?: string | boolean) => {
-    if (user_hold === true) {
-      return { text: 'Hold', color: 'orange' };
-    }
+  // const getStatusDisplay = (user_hold?: boolean, user_status?: string | boolean) => {
+  //   if (user_hold === true) {
+  //     return { text: 'Hold', color: 'orange' };
+  //   }
 
-    if (user_status === 'true' || user_status === true) {
-      return { text: 'Active', color: 'green' };
-    } else if (user_status === 'false' || user_status === false) {
-      return { text: 'Inactive', color: 'red' };
-    }
+  //   if (user_status === 'true' || user_status === true) {
+  //     return { text: 'Active', color: 'green' };
+  //   } else if (user_status === 'false' || user_status === false) {
+  //     return { text: 'Inactive', color: 'red' };
+  //   }
 
-    return { text: 'Inactive', color: 'red' }; // Default to 'Inactive'
-  };
+  //   return { text: 'Inactive', color: 'red' }; // Default to 'Inactive'
+  // };
   const getStatusColor = (user_hold?: boolean, user_status?: string | boolean) => {
     if (user_hold === true) {
       return 'gray'; // Return white if user_hold is true
@@ -147,10 +149,13 @@ const UserProfile: React.FC = () => {
   // if (!user) {
   //   return <Typography>Loading...</Typography>;
   // }
-  const { text: statusText, color: statusColor } = getStatusDisplay(user?.user_hold, user?.user_status);
+  // const { text: statusText, color: statusColor } = getStatusDisplay(user?.user_hold, user?.user_status);
 
   return (
     <div className={styles.page}>
+      <Link onClick={handleBack} href={`/Admin/UserManagement/ViewDetails?user_id=${user?.user_id}`}>
+          <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
+      </Link>
       <Box className={styles.header}>
         <Typography variant="h5">Profile Details</Typography>
       </Box>
@@ -180,70 +185,11 @@ const UserProfile: React.FC = () => {
           <Typography variant="h6">
             {`${user?.user_first_name} ${user?.user_middle_name || ''} ${user?.user_last_name || ''}`.trim()}
           </Typography>
-          <Typography style={{ color: statusColor }}>{statusText}</Typography>
+          <Typography variant="h6" className={styles.detailValue}>{user?.user_dob}</Typography>
+          <Typography  variant="h6" className={styles.detailValue}>{user?.user_phone_number}</Typography>
+          <Typography  variant="h6" className={styles.detailValue}>{user?.user_email}</Typography>
         </Box>
         <CardContent className={styles.detailsSection}>
-          <Box className={styles.detailRow}>
-            <Typography className={styles.detailLabel}>Email:</Typography>
-            {/* <TextField
-              value={editableUser?.user_email || ''}
-              onChange={(e) => setEditableUser(prev => prev ? { ...prev, user_email: e.target.value } : prev)}
-              fullWidth
-              size="small"
-              InputProps={{
-                className: styles.detailInput,
-                readOnly: !isInitialEdit, // Disable editing after the first save
-              }}
-            /> */}
-            <TextField
-              value={editableUser?.user_email || ''}
-              onChange={(e) => setEditableUser(prev => prev ? { ...prev, user_email: e.target.value } : prev)}
-              fullWidth
-              size="small"
-              InputProps={{
-                className: styles.detailInput,
-              }}
-              disabled // This makes the field non-editable
-            />
-          </Box>
-          <Box className={styles.detailRow}>
-            <Typography className={styles.detailLabel}>Phone Number:</Typography>
-            <TextField
-              value={editableUser?.user_phone_number || ''}
-              onChange={(e) => setEditableUser(prev => prev ? { ...prev, user_phone_number: e.target.value } : prev)}
-              fullWidth
-              size="small"
-              InputProps={{
-                className: `${styles.detailInput} ${styles.disabledInput}`, // Apply custom class
-                disableUnderline: true,
-              }}
-              disabled // Disable the phone number field
-            />
-
-          </Box>
-          <Box className={styles.detailRow}>
-            <Typography className={styles.detailLabel}>Date of Birth:</Typography>
-            {/* <TextField
-              value={editableUser?.user_dob || ''}
-              onChange={(e) => setEditableUser(prev => prev ? { ...prev, user_dob: e.target.value } : prev)}
-              fullWidth
-              size="small"
-              InputProps={{
-                className: styles.detailInput,
-                readOnly: !isInitialEdit, // Disable editing after the first save
-              }}
-            /> */}
-            <TextField
-              value={editableUser?.user_dob || ''}
-              onChange={(e) => setEditableUser(prev => prev ? { ...prev, user_dob: e.target.value } : prev)}
-              fullWidth
-              size="small"
-              InputProps={{
-                className: styles.detailInput,
-              }}
-              disabled // Disable the date of birth field
-            />
-          </Box>
           <Box className={styles.detailRow}>
             <Typography className={styles.detailLabel}>State:</Typography>
             <TextField
@@ -304,17 +250,13 @@ const UserProfile: React.FC = () => {
               }}
             />
           </Box>
+          <Box className={styles.actions}>
+          <Button variant="contained" className={styles.button} onClick={handleSaveChanges}>
+            Save Changes
+          </Button>
+          </Box>
         </CardContent>
       </Card>
-
-      <Box className={styles.actions}>
-        <Button variant="outlined" className={styles.button} onClick={handleBack} href={`/Admin/UserManagement/ViewDetails?user_id=${user?.user_id}`}>
-          Back
-        </Button>
-        <Button variant="contained" className={styles.button} onClick={handleSaveChanges}>
-          Save Changes
-        </Button>
-      </Box>
     </div>
   );
 };

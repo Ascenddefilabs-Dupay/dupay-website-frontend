@@ -1,7 +1,7 @@
 .page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     background-color: black;
     padding: 1rem;
@@ -33,6 +33,7 @@
     border-radius: 50%;
     border: none;
     cursor: default;
+    font-family: Poppins;
   }
   .header {
     display: flex;
@@ -42,6 +43,7 @@
     color: #fff;
     padding: 10px;
     margin-bottom: 20px;
+    font-family: Poppins;
   }
   
   .profileCard {
@@ -51,6 +53,7 @@
     background-color:  rgba(128, 128, 128, 0.253);
     border-radius: 8px;
     color: white;
+    font-family: Poppins;
   }
   
   .imageSection {
@@ -62,6 +65,7 @@
     flex-direction: column;
     position: relative;
     align-items: center;
+    font-family: Poppins;
   }
   .statusCircle {
     position: absolute;
@@ -71,6 +75,7 @@
     height: 25px;
     border-radius: 50%;
     border: 2px solid white; /* To create a border around the circle */
+    font-family: Poppins;
     /* background-color: green;  */
   }
   .profileImage {
@@ -79,6 +84,7 @@
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
+    font-family: Poppins;
   }
   
   .detailsSection {
@@ -88,6 +94,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr; /* Two columns with different widths */
     gap: 10px; /* Space between columns */
+    font-family: Poppins;
   }
   
   .detailLabel {
@@ -95,16 +102,24 @@
     text-align: left;
     color: white;
     font-weight: bold; /* Make the text bold */
+    height: 64px;
+    font-family: Poppins;
   }
   
   .detailInput {
     display: flex;
     align-items: center;
-    height: 40px; /* Control the height of the text field */
+    height: 54px; /* Control the height of the text field */
     color:white;
+    background-color: #2A2D3C;
+    width:366px;
+    border-radius: 8px;
+    border: 1px;
+    font-family: Poppins;
   }
   .detailInput {
     color: white; /* Set default text color to white */
+    font-family: Poppins;
   }
   
   /* Additional styling for disabled inputs */
@@ -112,6 +127,7 @@
     color: white; /* Ensure white text when disabled */
     opacity: 0.7; /* Optional: slightly dim the color for disabled effect */
     background-color: transparent; /* Ensure background remains clear */
+    font-family: Poppins;
   }
   
   .disabledInput .MuiOutlinedInput-notchedOutline {
@@ -126,14 +142,22 @@
     justify-content: flex-end;
     margin-top: 20px;
     gap: 10px; /* Space between buttons */
+    font-family: Poppins;
   }
   
   .button {
     /* background: linear-gradient(90deg, #007bff9f, #301c30); */
-    background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
-    font-family: Arial, Helvetica, sans-serif;
+    /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
     color: white;
     width: 150px;
+    /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
+  -webkit-background-clip: text; /* For webkit browsers like Chrome, Safari */
+  -webkit-text-fill-color: transparent; /* For webkit browsers to make the text transparent */
+  background-clip: text; /* For Firefox */
+  color: transparent; 
+  font-weight: bold;
+  font-family: Poppins;
   }
   .profilePlaceholder {
     width: 150px;
@@ -144,10 +168,12 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+    font-family: Poppins;
   }
   
   .initial {
     color: white; /* Text color */
     font-weight: bold;
+    font-family: Poppins;
   }
   

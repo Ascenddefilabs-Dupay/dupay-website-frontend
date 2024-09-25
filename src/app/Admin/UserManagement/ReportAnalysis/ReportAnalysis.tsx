@@ -3,7 +3,7 @@ import axios from 'axios';
 import { PieChart, Pie, Cell, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { Box, Typography, IconButton, Menu, MenuItem, Grid } from '@mui/material';
 import styles from './ReportAnalysis.module.css'; // Import the CSS module
-import { FaFilter } from "react-icons/fa";
+import { IoFilter } from "react-icons/io5";
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 
@@ -20,6 +20,7 @@ interface TransactionData {
   transaction_amount: number | string;
   transaction_status: string;
 }
+
 interface CustomizedLabelProps {
   cx: number;
   cy: number;
@@ -105,6 +106,7 @@ const ReportAnalysis = () => {
   const { categories, RecievedValues, transferValues, withdrawalValues, TopupValues } = processTransactionData();
 
   // Render labels for the Pie Chart
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const renderCustomizedLabel = (props: CustomizedLabelProps) => {
     const { cx, cy, midAngle, outerRadius, value, name } = props;
     const radius = outerRadius - 10;
@@ -144,9 +146,9 @@ const ReportAnalysis = () => {
   }, [transactionData]);
 
   const userActivityData: PieChartData[] = [
-    { name: 'Active Users', value: activeUsersCount, color: '#1569C7' },
-    { name: 'Hold Users', value: holdUsersCount, color: '#FF8042' },
-    { name: 'Inactive Users', value: inactiveUsersCount, color: '#64E986' },
+    { name: 'Active', value: activeUsersCount, color: '#1569C7' },
+    { name: 'Hold', value: holdUsersCount, color: '#FF8042' },
+    { name: 'Inactive', value: inactiveUsersCount, color: '#64E986' },
   ];
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -177,16 +179,11 @@ const ReportAnalysis = () => {
           },
         }}
       >
-        <MenuItem onClick={() => handleClose('day')}>Day Wise</MenuItem>
-        <MenuItem onClick={() => handleClose('month')}>Month Wise</MenuItem>
-        <MenuItem onClick={() => handleClose('year')}>Year Wise</MenuItem>
+        <MenuItem onClick={() => handleClose('day')}>Daily</MenuItem>
+        <MenuItem onClick={() => handleClose('month')}>Monthly</MenuItem>
+        <MenuItem onClick={() => handleClose('year')}>Yearly</MenuItem>
       </Menu>
 
-      {/* <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-        <MenuItem onClick={() => handleClose('day')}>Day Wise</MenuItem>
-        <MenuItem onClick={() => handleClose('month')}>Month Wise</MenuItem>
-        <MenuItem onClick={() => handleClose('year')}>Year Wise</MenuItem>
-      </Menu> */}
       <Grid container spacing={4} className={styles.chartGrid}>
         {/* User Activity Chart */}
         <Grid item xs={12} md={6}>
@@ -195,12 +192,15 @@ const ReportAnalysis = () => {
               User Activity
             </Typography>
             <PieChart width={400} height={300}>
-              <Pie data={userActivityData} dataKey="value" cx="50%" cy="50%" outerRadius={100} labelLine={false} label={renderCustomizedLabel}>
+              <Pie data={userActivityData} dataKey="value" cx="50%" cy="50%" outerRadius={100} labelLine={false} >
                 {userActivityData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Legend />
+              <Tooltip contentStyle={{ backgroundColor: '#333', color: 'white' }}   labelStyle={{ color: 'white' }} 
+              itemStyle={{ color: 'white' }}
+              formatter={(value, name) => [`${value} users`, name]} />
+              <Legend/>
             </PieChart>
           </Box>
         </Grid>
@@ -211,14 +211,6 @@ const ReportAnalysis = () => {
             <Typography variant="h6" align="center" className={styles.head}>
               System Performance
             </Typography>
-            {/* <PieChart width={400} height={300}>
-              <Pie data={systemPerformanceData} dataKey="value" cx="50%" cy="50%" outerRadius={100} labelLine={false} label={({ name, value }) => `${name}: ${value.toFixed(2)}%`}>
-                {systemPerformanceData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-              <Legend />
-            </PieChart> */}
             <PieChart width={700} height={300}>
               <Pie
                 data={systemPerformanceData}
@@ -227,30 +219,20 @@ const ReportAnalysis = () => {
                 cy="50%"
                 outerRadius={100}
                 labelLine={false}
-                label={({ cx, cy, midAngle, innerRadius, outerRadius, value, name }) => {
-                  const RADIAN = Math.PI / 180;
-                  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-                  return (
-                    <text
-                      x={x}
-                      y={y}
-                      fill="white"
-                      textAnchor={x > cx ? 'start' : 'end'}
-                      dominantBaseline="central"
-                      fontSize="14px"
-                    >
-                      {`${name}: ${value.toFixed(2)}%`}
-                    </text>
-                  );
-                }}
               >
                 {systemPerformanceData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
+              {/* <Tooltip formatter={(value, name) => [`${value.toFixed(2)}%`, name]} /> */}
+              <Tooltip contentStyle={{ backgroundColor: '#333', color: 'white' }}   labelStyle={{ color: 'white' }} 
+              itemStyle={{ color: 'white' }}
+                formatter={(value, name) => {
+                  // Convert value to a number if possible, otherwise default to 0
+                  const numericValue = !isNaN(Number(value)) ? Number(value) : 0;
+                  return [`${numericValue.toFixed(2)}%`, name];
+                }}
+              />
               <Legend />
             </PieChart>
           </Box>
@@ -261,10 +243,10 @@ const ReportAnalysis = () => {
       <Box className={styles.chartContainer}>
         <Box mb={2} display="flex" alignItems="center" justifyContent="center">
         <Typography variant="h6" align="center" className={styles.head}>
-          Transaction Trends :
+          Transaction Trends   
         </Typography>
-        <IconButton onClick={handleClick} sx={{ color: 'white', ml: 1 }} >
-          <FaFilter />
+        <IconButton className={styles.icon} onClick={handleClick} sx={{ color: 'white', ml: 1 }} >
+        <IoFilter />
         </IconButton>
         </Box>
         {/* <Box marginBottom={2}>
