@@ -218,6 +218,9 @@ const RegisterForm: React.FC = () => {
             value={formData.user_first_name}
             onChange={handleInputChange}
             className={styles.textField}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -233,6 +236,9 @@ const RegisterForm: React.FC = () => {
             value={formData.user_last_name}
             onChange={handleInputChange}
             className={styles.textField}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -250,6 +256,9 @@ const RegisterForm: React.FC = () => {
             className={styles.textField}
             error={errors.emailInvalid}
             helperText={errors.emailInvalid ? 'Invalid email format.' : ''}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -267,6 +276,9 @@ const RegisterForm: React.FC = () => {
             className={styles.textField}
             error={errors.phoneInvalid}
             helperText={errors.phoneInvalid ? 'Invalid phone number. Must be 10 digits.' : ''}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -288,6 +300,9 @@ const RegisterForm: React.FC = () => {
             className={styles.textField}
             error={errors.dobInvalid}
             helperText={errors.dobInvalid ? 'You must be at least 18 years old.' : ''}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -323,6 +338,9 @@ const RegisterForm: React.FC = () => {
             value={formData.password}
             onChange={handleInputChange}
             className={styles.textField}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -339,6 +357,9 @@ const RegisterForm: React.FC = () => {
             value={formData.user_password}
             onChange={handleInputChange}
             className={styles.textField}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 

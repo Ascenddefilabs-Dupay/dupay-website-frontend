@@ -61,7 +61,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     zIndex: 2,
     padding: '20px',
     borderRadius: '20px',
-    width:'400px',
+    width:'auto',
     margin:'0 auto',
     boxShadow: '0 4px 30px rgba(0, 0, 0, 0.5)',
   },

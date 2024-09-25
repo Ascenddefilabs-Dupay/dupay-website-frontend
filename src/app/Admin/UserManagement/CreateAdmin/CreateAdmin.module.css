@@ -1,7 +1,7 @@
 .page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     background-color: black;
     padding: 2rem;
@@ -11,14 +11,16 @@
   .heading {
     color: white;
     margin-bottom: 1rem;
+    font-family: Poppins;
   }
   
   .form {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem; /* Add some gap between the columns */
+    font-family: Poppins;
   }
   
   .field {
@@ -26,31 +28,43 @@
     flex-direction: column; /* Stack labels and inputs on smaller screens */
     justify-content: space-between;
     flex-basis: calc(50% - 1rem); /* Divide into two columns */
+    font-family: Poppins;
   }
   
   .label {
     color: white;
     margin-bottom: 0.25rem; /* Slight margin below label */
     font-size: 0.9rem;
+    font-family: Poppins;
   }
   
   .required {
     color: red;
   }
   
-  .textField {
-    background-color: darkgrey;
-    padding: 0.25rem;
-    display: flex;
-    align-items: center;
-  }
+
+    .textFieldInput {
+      background-color: #2A2D3C;
+      /* height: 54px; */
+      color: #fff; /* Text color for better contrast */
+      width:366px;
+      border-radius: 8px;
+      border: 1px;
+      font-family: Poppins;
+    }
+
   
   .input{
-    background-color: darkgrey;
+    background-color: #2A2D3C; /* Set the background color */
+    color: #fff; /* Text color for better contrast */
     padding: 0.25rem;
     display: flex;
-    height: 40px;
+    height: 50px;
+    width:366px;
+    border-radius: 8px;
+    border: 1px;
     align-items: center;
+    font-family: Poppins;
   }
   
   .input:focus {
@@ -59,38 +73,41 @@
     border: none;
     padding: 0.25rem;
     font-size: 0.9rem;
-    background-color: darkgrey;
+    background-color: rgba(128, 128, 128, 0.253);
     border-radius: 4px;
+    font-family: Poppins;
   }
   
   .textField input {
-    height: 1.5rem;
+    height: 40px;
     width: 100%;
     border: none;
     padding: 0.25rem;
     font-size: 0.9rem;
-    background-color: darkgrey;
+    background-color: rgba(128, 128, 128, 0.253);
     border-radius: 4px;
+    font-family: Poppins;
   }
   
   .defaultDate {
-    background-color: darkgrey;
+    background-color: rgba(128, 128, 128, 0.253);
     padding: 0.25rem;
     display: flex;
     height: 40px;
     align-items: center;
+    font-family: Poppins;
   }
   .submitButton {
-    width: 100%;
+    width: 96%;
     margin-top: 1rem;
     padding: 0.5rem;
     background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: Poppins;
   }
   
   .submitButton:hover {
@@ -100,6 +117,7 @@
   .errorText {
     color: #f44336;
     margin-top: 4px;
+    font-family: Poppins;
   }
   
   @media (max-width: 600px) {
