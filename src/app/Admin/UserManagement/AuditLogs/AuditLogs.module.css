@@ -204,7 +204,7 @@
     display: flex;
     justify-content: end;
     position: relative;
-    left: 450px;
+    left: 455px;
     font-family: Poppins;
   }
   .tableCell {
@@ -213,7 +213,13 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color:white;
+    padding: 10px 16px; /* Add padding for spacing within the cell */
+    border: none; /* Remove cell borders */
+    margin-bottom: 10px;
     font-family: Poppins;
+    /* display: flex; */
+  justify-content: center; /* Center horizontally */
+  align-items: center; 
     
   }
 
@@ -224,16 +230,25 @@
     white-space: nowrap;
     color:white;
     font-family: Poppins;
+    justify-content: center;
   }
   
   .tableRow {
-    background-color: rgba(128, 128, 128, 0.253);
-    color: white;
+    background-color:  rgba(128, 128, 128, 0.253);
     border-radius: 8px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    color:white;
+    border-radius: 4px;
+    background-color: transparent; /* Ensure the background is transparent */
+    border: none;
+    margin-bottom: 10px;
     font-family: Poppins;
   }
-  
+  .tableRow + .tableRow  + .tableRow {
+    margin-top: 10px; /* Space between rows */
+    margin-bottom: 10px;
+  }
   .profileImage {
     width: 50px;
     height: 50px;
@@ -292,6 +307,9 @@
   
   .tableHeaderCell {
     font-weight: bold; /* Make the text bold */
+    
+    justify-content: center;
+    font-family: Poppins;
   }
   
   .filterDropdown {

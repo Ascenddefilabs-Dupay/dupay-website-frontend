@@ -21,6 +21,7 @@ import styles from './AuditLogs.module.css';
 import { FaRegCalendar } from "react-icons/fa";
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { IoFilter } from "react-icons/io5";
 
 interface WalletAdminActions {
   id: string;
@@ -101,7 +102,7 @@ const Dashboard = () => {
           onClick={() => setShowDateFields(!showDateFields)}
           className={styles.header}
         >
-          <FaRegCalendar />
+          <IoFilter />
         </IconButton>
       </Box>
       {showDateFields && (
@@ -169,7 +170,7 @@ const Dashboard = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>User</TableCell>
+              <TableCell  className={`${styles.tableCell} ${styles.tableHeaderCell}`}></TableCell>
               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Action</TableCell>
               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Date and Time</TableCell>
               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Admin</TableCell>

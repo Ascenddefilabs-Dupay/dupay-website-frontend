@@ -327,86 +327,6 @@ const Dashboard = () => {
             />
           </Box>
         )}
-        {/* Main Container for Currency and Date Fields */}
-        {/* {(showDate || showDateFilters) && (
-        <Box className={styles.mainFilters}>
-            {showDate && (
-            <Select
-                value={selectedCurrency}
-                onChange={handleFilterChange}
-                displayEmpty
-                className={styles.currencySelect}
-                inputProps={{ 'aria-label': 'Currency' }}
-            >
-                <MenuItem value="">All Currencies</MenuItem>
-                {currencies.map((currency) => (
-                <MenuItem key={currency} value={currency}>
-                    {currency}
-                </MenuItem>
-                ))}
-            </Select>
-            )}
-        </Box>
-        
-        )}
-      {showDateFilters && (
-            <Box  mb={2} display="flex" className={styles.box}>
-              <Typography className={styles.head} sx={{ mr: 2 }}>
-                From:
-              </Typography>
-                <TextField
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                InputLabelProps={{ shrink: true }}
-                className={styles.dateField}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                      onClick={openStartDatePicker}
-                      >
-                        <FaRegCalendar style={{ color: 'white', fontSize: '16px' }} />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                id="start-date-input"
-                sx={{
-                  input: {
-                    color: 'white',
-                    backgroundColor: 'rgba(128, 128, 128, 0.253)',
-                  },
-                }}
-                />
-                <Typography className={styles.head} sx={{ mr: 2 }}>
-                  To:
-                </Typography>
-                <TextField
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                InputLabelProps={{ shrink: true }}
-                className={styles.dateField}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={openEndDatePicker}>
-                        <FaRegCalendar style={{ color: 'white', fontSize: '16px' }} />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                id="end-date-input"
-                sx={{
-                  input: {
-                    color: 'white',
-                    backgroundColor: 'rgba(128, 128, 128, 0.253)',
-                  },
-                }}
-                />
-            </Box>
-            )} */}
 
       {/* Combined Table */}
       <TableContainer component={Paper} className={styles.tableContainer}>
@@ -421,31 +341,66 @@ const Dashboard = () => {
           </TableHead>
           <TableBody>
             {combinedData.map((data, index) => (
+              // <TableRow key={`${data.transaction_id}-${index}`} className={styles.tableRow}>
+              //   <TableCell className={styles.tableCell} >
+              //     <Box display="flex"  alignItems="center">
+              //     {data.user_profile_photo ? (
+              //           <img
+              //             src={data.user_profile_photo}
+              //             alt={data.user_first_name}
+              //             className={styles.profileImage}
+              //           />
+              //         ) : (
+              //           <Box className={styles.profilePlaceholder}>
+              //             <Typography variant="h4" className={styles.initial}>
+              //               {`${data.user_first_name} ${data.user_middle_name || ''} ${data.user_last_name || ''}`.trim().charAt(0)}
+              //             </Typography>
+              //           </Box>
+              //         )}
+              //       <Box  display="flex"  alignItems="center" justifyContent="center" ml={2}>
+              //         <Typography variant="body1"  justifyContent="center" alignItems="center">{data.user_first_name}</Typography>
+              //       </Box>
+              //     </Box>
+              //   </TableCell>
+              //   <TableCell className={styles.tableCell}>{formatDate(data.transaction_timestamp)}</TableCell>
+              //   <TableCell className={styles.tableCell}>{data.transaction_amount}</TableCell>
+              //   <TableCell className={styles.tableCell}>{data.transaction_type}</TableCell>
+              // </TableRow>
               <TableRow key={`${data.transaction_id}-${index}`} className={styles.tableRow}>
-                <TableCell className={styles.tableCell} >
-                  <Box display="flex"  alignItems="center">
-                  {data.user_profile_photo ? (
-                        <img
-                          src={data.user_profile_photo}
-                          alt={data.user_first_name}
-                          className={styles.profileImage}
-                        />
-                      ) : (
-                        <Box className={styles.profilePlaceholder}>
-                          <Typography variant="h4" className={styles.initial}>
-                            {`${data.user_first_name} ${data.user_middle_name || ''} ${data.user_last_name || ''}`.trim().charAt(0)}
-                          </Typography>
-                        </Box>
-                      )}
-                    <Box  display="flex"  alignItems="center" justifyContent="center" ml={2}>
-                      <Typography variant="body1"  justifyContent="center" alignItems="center">{data.user_first_name}</Typography>
+                <TableCell className={styles.tableCell} style={{ width: '150px', maxWidth: '150px' }}>
+                  <Box display="flex" alignItems="center" justifyContent="center">
+                    {data.user_profile_photo ? (
+                      <img
+                        src={data.user_profile_photo}
+                        alt={data.user_first_name}
+                        className={styles.profileImage}
+                        style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+                      />
+                    ) : (
+                      <Box className={styles.profilePlaceholder} style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Typography variant="h4" className={styles.initial}>
+                          {`${data.user_first_name} ${data.user_middle_name || ''} ${data.user_last_name || ''}`.trim().charAt(0)}
+                        </Typography>
+                      </Box>
+                    )}
+                    <Box display="flex" alignItems="center" justifyContent="center" ml={2}>
+                      <Typography variant="body1" justifyContent="center" alignItems="center">
+                      {`${data.user_first_name} ${data.user_middle_name || ''} ${data.user_last_name || ''}`.trim()}
+                      </Typography>
                     </Box>
                   </Box>
                 </TableCell>
-                <TableCell className={styles.tableCell}>{formatDate(data.transaction_timestamp)}</TableCell>
-                <TableCell className={styles.tableCell}>{data.transaction_amount}</TableCell>
-                <TableCell className={styles.tableCell}>{data.transaction_type}</TableCell>
+                <TableCell className={styles.tableCell} style={{ width: '200px' }}>
+                  {formatDate(data.transaction_timestamp)}
+                </TableCell>
+                <TableCell className={styles.tableCell} style={{ width: '150px' }}>
+                  {data.transaction_amount}
+                </TableCell>
+                <TableCell className={styles.tableCell} style={{ width: '150px' }}>
+                  {data.transaction_type}
+                </TableCell>
               </TableRow>
+
             ))}
           </TableBody>
         </Table>

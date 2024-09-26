@@ -10,7 +10,7 @@ import styles from './AccountManage.module.css';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { IoFilter } from "react-icons/io5";
-import { HiStatusOnline } from "react-icons/hi";
+import { GrStatusInfo } from "react-icons/gr";
 import { IoPersonAddSharp } from "react-icons/io5";
 
 interface Users {
@@ -144,19 +144,19 @@ const Dashboard: React.FC = () => {
           <IoPersonAddSharp />
         </IconButton>
         </Link>
-      <IconButton
-          className={styles.header}
-          title="Usertype" 
-          onClick={(e) => setUserTypeMenuAnchor(e.currentTarget)}
-        >
-          <IoFilter />
-        </IconButton>
         <IconButton
           className={styles.currency}
           title="Status" 
           onClick={(e) => setStatusMenuAnchor(e.currentTarget)}
         >
-          <HiStatusOnline />
+          <GrStatusInfo />
+        </IconButton>
+        <IconButton
+          className={styles.currency}
+          title="Usertype" 
+          onClick={(e) => setUserTypeMenuAnchor(e.currentTarget)}
+        >
+          <IoFilter />
         </IconButton>
         <Menu
           anchorEl={statusMenuAnchor}
