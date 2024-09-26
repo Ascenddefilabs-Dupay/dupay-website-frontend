@@ -49,7 +49,7 @@
   .profileCard {
     display: flex;
     margin-top: 20px;
-    width: 80%;
+    width: 70%;
     background-color:  rgba(128, 128, 128, 0.253);
     border-radius: 8px;
     color: white;
@@ -109,9 +109,9 @@
   .detailInput {
     display: flex;
     align-items: center;
-    height: 54px; /* Control the height of the text field */
+    height: 44px; /* Control the height of the text field */
     color:white;
-    background-color: #2A2D3C;
+    /* background-color: #2A2D3C; */
     width:366px;
     border-radius: 8px;
     border: 1px;
@@ -149,14 +149,15 @@
     /* background: linear-gradient(90deg, #007bff9f, #301c30); */
     /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    color: white;
+    color: black;
     width: 150px;
+    background-color: white;
     /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
-  -webkit-background-clip: text; /* For webkit browsers like Chrome, Safari */
-  -webkit-text-fill-color: transparent; /* For webkit browsers to make the text transparent */
-  background-clip: text; /* For Firefox */
+  /* -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  background-clip: text; 
   color: transparent; 
-  font-weight: bold;
+  font-weight: bold; */
   font-family: Poppins;
   }
   .profilePlaceholder {

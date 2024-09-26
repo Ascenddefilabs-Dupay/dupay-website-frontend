@@ -365,7 +365,7 @@ const RegisterForm: React.FC = () => {
 
         
         {/* Submit Button */}
-        <Button type="submit" variant="contained" color="primary" className={styles.submitButton}>
+        <Button type="submit" variant="contained"  className={styles.submitButton}>
           SUBMIT
         </Button>
       </Box>

@@ -98,16 +98,18 @@
     font-family: Poppins;
   }
   .submitButton {
-    width: 96%;
-    margin-top: 1rem;
-    padding: 0.5rem;
-    background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
-    font-size: 1rem;
-    color: white;
+    width: auto; /* Make the width auto to fit content */
+    min-width: 60px;
+    padding: 0.5rem 1rem; /* Adjust padding for a smaller appearance */
+    background-color: #fff;
+    font-size: 0.875rem; /* Smaller font size */
+    color: black;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     font-family: Poppins;
+    display: block; /* Ensures the button behaves like a block element */
+    margin: 0 auto
   }
   
   .submitButton:hover {

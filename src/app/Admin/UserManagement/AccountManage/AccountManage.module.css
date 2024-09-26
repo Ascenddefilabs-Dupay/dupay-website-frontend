@@ -24,17 +24,19 @@
     background-color:  rgba(128, 128, 128, 0.253);
     border-radius: 8px;
     color:white;
+    font-family: Poppins;
   }
   
   .filterButtons {
     margin-bottom: 16px;
     align-items: flex-start;
+    font-family: Poppins;
   }
   .button {
     /* background: linear-gradient(90deg, #007bff9f, #800080); */
     background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
-    font-family: Arial, Helvetica, sans-serif;
     color: white;
+    font-family: Poppins;
   }
   .filterButton {
     /* display: flex; */
@@ -54,11 +56,13 @@
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     color:white;
+    font-family: Poppins;
     /* width:1200px; */
   }
   .heading {
     color: white;
     margin-bottom: 1rem;
+    font-family: Poppins;
   }
   /* AccountManage.module.css */
 .tableCell {
@@ -71,6 +75,7 @@
     border: none; /* Remove cell borders */
     align-items: center;
     margin-bottom: 10px;
+    font-family: Poppins;
   }
   
   .tableRow {
@@ -83,6 +88,7 @@
     background-color: transparent; /* Ensure the background is transparent */
     border: none;
     margin-bottom: 10px;
+    font-family: Poppins;
     
   }
   .tableRow + .tableRow  + .tableRow {
@@ -122,6 +128,7 @@
     border-radius: 4px;
     text-transform: none;
     font-size: 14px;
+    font-family: Poppins;
   }
   
   .actionButton:hover {
@@ -136,6 +143,7 @@
     text-decoration: none; /* Remove underline */
     font-weight: bold; /* Optional: make it bold */
     transition: color 0.3s; /* Add a smooth transition for hover effect */
+    font-family: Poppins;
   }
   
   .viewDetailsLink:hover {
@@ -166,6 +174,7 @@
     background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    font-family: Poppins;
     border-radius: 5px;
     /* height:10px; */
 
@@ -177,12 +186,14 @@
     background-color: darkgray;
     display: flex;
     align-items: center;
+    font-family: Poppins;
     justify-content: center;
   }
   
   .initial {
     color: white;
     font-weight: bold;
+    font-family: Poppins;
   }
   .header {
     color: white;
@@ -191,7 +202,8 @@
     display: flex;
     justify-content: end;
     position: relative;
-    left: 400px;
+    left: 490px;
+    font-family: Poppins;
   }
   .currency{
     color: white;
@@ -200,9 +212,11 @@
     display: flex;
     justify-content: end;
     position: relative;
-    left: 300px;
+    left: 430px;
+    font-family: Poppins;
   }
   .heading {
     color: white;
     margin-bottom: 1rem;
+    font-family: Poppins;
   }

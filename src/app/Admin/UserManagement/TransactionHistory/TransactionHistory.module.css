@@ -53,7 +53,7 @@
   max-width: 400px;
   width: 200px;
   height: 60px;
-  left: 260px;
+  left: 265px;
   color: white;
   background-color: rgba(128, 128, 128, 0.253);
   font-family: Poppins;
@@ -90,7 +90,7 @@
   color:white;
   display: flex;
   position: relative;
-  left: 430px;
+  left: 445px;
   justify-content: flex-end;
   /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
   /* font-family: Arial, Helvetica, sans-serif; */
@@ -137,7 +137,7 @@
   display: flex;
   justify-content: end;
   position: relative;
-  left: 440px;
+  left: 455px;
   font-family: Poppins;
 }
 .header {
@@ -148,7 +148,7 @@
   display: flex;
   justify-content: end;
   position: relative;
-  left: 400px;
+  left: 470px;
 }
 .currency{
   color: white;
@@ -166,6 +166,7 @@
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   font-family: Poppins;
   margin: 0 auto;
+  justify-content: center;
   /* width:1200px; */
 }
 
@@ -183,6 +184,7 @@
   white-space: nowrap;
   color: white;
   text-align: center;
+  justify-content: center;
   padding: 10px 16px; /* Add padding for spacing within the cell */
   border: none; /* Remove cell borders */
   align-items: center;
@@ -197,6 +199,9 @@
   border-radius: 4px;
   background-color: transparent; /* Ensure the background is transparent */
   border: none;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   margin-bottom: 10px;
   
 }

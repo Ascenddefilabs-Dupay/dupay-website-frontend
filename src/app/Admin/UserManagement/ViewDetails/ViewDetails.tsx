@@ -9,8 +9,8 @@ import styles from './ViewDetails.module.css'; // Import the CSS module
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { MdOutlineNoAccounts } from "react-icons/md";
-import { MdAccountBalanceWallet } from "react-icons/md";
-import { IoSettings } from "react-icons/io5";
+import { FaCoins } from "react-icons/fa";
+import { FaMoneyCheckAlt } from "react-icons/fa";
 // import { TbFreezeRowColumn } from "react-icons/tb";
 
 interface User {
@@ -147,13 +147,13 @@ const UserProfile: React.FC = () => {
           className={styles.currency}
           title="SetLimit" 
         >
-          <IoSettings /> 
+          <FaMoneyCheckAlt /> 
         </IconButton>
         <IconButton
           className={styles.currency}
           title="Balance" 
         >
-          <MdAccountBalanceWallet />
+          <FaCoins />
         </IconButton>
         </Box>
       {/* Header Section */}
@@ -186,10 +186,9 @@ const UserProfile: React.FC = () => {
           <Typography variant="h6">
             {`${user?.user_first_name} ${user?.user_middle_name || ''} ${user?.user_last_name || ''}`.trim()}
           </Typography>
-          <Typography variant="h6" className={styles.detailValue}>{user?.user_dob}</Typography>
-          <Typography  variant="h6" className={styles.detailValue}>{user?.user_phone_number}</Typography>
-          <Typography  variant="h6" className={styles.detailValue}>{user?.user_email}</Typography>
-          <Typography ></Typography>
+          <Typography variant="h6">{user?.user_dob}</Typography>
+          <Typography  variant="h6" >{user?.user_phone_number}</Typography>
+          <Typography  variant="h6" >{user?.user_email}</Typography>
         </Box>
 
         <CardContent className={styles.detailsSection}>
@@ -213,8 +212,8 @@ const UserProfile: React.FC = () => {
             <Typography className={styles.detailLabel}>Address: </Typography>
             <Typography className={styles.detailValue}>{user?.user_address_line_1}</Typography>
           </Box>
-          <Box className={styles.detail} sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Link href={`/Admin/UserManagement/EditDetails?user_id=${user?.user_id}`} style={{ color: '#4A8EF3', textDecoration: 'underline', justifyContent:'center' ,left:'100px'}}>
+          <Box className={styles.detail} sx={{ display: 'flex' }}>
+          <Link href={`/Admin/UserManagement/EditDetails?user_id=${user?.user_id}`} style={{ color: '#4A8EF3', textDecoration: 'underline', justifyContent:'center' ,marginLeft: '100px'}}>
                       Edit Details
                     </Link>
                     </Box>

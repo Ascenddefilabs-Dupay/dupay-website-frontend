@@ -216,7 +216,7 @@ const RegisterForm: React.FC = () => {
         {/* Email */}
         <Box className={styles.field}>
           <Typography variant="body1" className={styles.label}>
-            E-Mail: <span className={styles.required}>*</span>
+             E-Mail: <span className={styles.required}>*</span>
           </Typography>
           <TextField
             fullWidth
