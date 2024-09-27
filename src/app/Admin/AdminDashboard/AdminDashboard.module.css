@@ -6,8 +6,17 @@
   background-color: #121212;
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  overflow-y: hidden;
+}
+.sidebar, .mainContent {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+.sidebar::-webkit-scrollbar, .mainContent::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -37,6 +46,7 @@ left: 0;
   display: flex;
   align-items: center;
 }
+
 
 .profileIcon {
   font-size: 36px;
@@ -110,7 +120,7 @@ left: 0;
   overflow-y: auto;
   font-size: 16px;
   transition: margin-left 0.3s ease;
-  width: 70%;
+  width: 81%;
   height: 70%;
 }
 

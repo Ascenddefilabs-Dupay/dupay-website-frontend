@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState, useEffect } from "react";
@@ -31,6 +32,7 @@ import {
   faUserPlus,
   faLifeRing,
   faUserCircle,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   faUniversity,
   faSignOutAlt,
   faFilter,
@@ -137,6 +139,7 @@ const AdminDashboard: React.FC = () => {
         setTransactionData(transactions);
       })
       .catch((error) => console.error('Error fetching transaction data:', error));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handlePerformanceFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
@@ -163,6 +166,7 @@ const AdminDashboard: React.FC = () => {
 
   useEffect(() => {
     handleSystemPerformance();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactionData, performanceFilters]); // Include performanceFilters to re-calculate on change
 
   const getFilteredData = (users: UserData[], filters: { active: boolean; inactive: boolean; hold: boolean }): PieChartData[] => {
@@ -278,6 +282,7 @@ const AdminDashboard: React.FC = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactionData]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const userActivityData: PieChartData[] = [
     { name: 'Active', value: activeUsersCount, color: '#1569C7' },
     { name: 'Hold', value: holdUsersCount, color: '#FF8042' },
@@ -509,7 +514,7 @@ const AdminDashboard: React.FC = () => {
             </Typography>
             <PieChart width={400} height={300}>
               <Pie  data={filteredUserData}  dataKey="value" cx="50%" cy="50%" outerRadius={100} labelLine={false} >
-                {userActivityData.map((entry, index) => (
+                {filteredUserData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
@@ -632,7 +637,7 @@ const AdminDashboard: React.FC = () => {
         <IoFilter />
         </IconButton>
         </Box>
-        <BarChart width={400} height={260} data={categories.map((cat, idx) => ({ name: cat, Recieved: RecievedValues[idx], Transfer: transferValues[idx], Withdrawn: withdrawalValues[idx], Topup: TopupValues[idx] }))}>
+        <BarChart width={500} height={260} data={categories.map((cat, idx) => ({ name: cat, Recieved: RecievedValues[idx], Transfer: transferValues[idx], Withdrawn: withdrawalValues[idx], Topup: TopupValues[idx] }))}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" 
           stroke="white"  // Set the X-axis line color to white
