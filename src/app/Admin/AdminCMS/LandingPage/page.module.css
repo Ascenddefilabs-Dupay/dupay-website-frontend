@@ -1,0 +1,332 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: black;
+  font-family: 'Poppins';
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.backButtonContainer {
+  display: flex;
+  align-items: center;
+}
+
+.backArrowIcon {
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.backArrowIcon:hover {
+  color: purple;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.1;
+}
+
+.textBoxContainer {
+  margin-bottom: 2rem;
+  background-color: #2A2D3C;
+  margin-top: 2rem;
+  justify-content: space-between;
+  width: 60%;
+  border-radius: 4px;
+  border: solid white;
+  gap: 0%;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  width: 100%; /* Adjusted to take full width */
+  background-color: #2A2D3C;
+  color: white;
+}
+
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  font-family: 'Poppins';
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.navbarLeft {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 1rem;
+}
+
+.navbarTitle {
+  font-family: 'Poppins';
+  flex: 1;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+}
+
+.backButtonText {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.backButtonText:hover {
+  color: purple;
+}
+
+.addButton {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
+  color: white;
+  border: solid #2A2D3C;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 30%;
+  transition: background 0.3s;
+}
+
+.addButton:disabled {
+  cursor: not-allowed;
+}
+
+.tableContainer {
+  width: 60%;
+  max-width: 800px; 
+  background-color: #2A2D3C;
+  color: white;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.accountTypeHeader {
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plusIcon {
+  cursor: pointer;
+  color: white;
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+.plusIcon:hover {
+  color: purple;
+}
+
+.table th {
+  color: white;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  
+}
+.table td{
+  border-bottom: 1px solid black;
+}
+.table th, .table td {
+  padding: 0.5rem;
+  text-align: left;
+  color: white; /* Changed to white */
+  
+}
+
+.inputEdit {
+  width: 90%;
+  color: black;
+}
+
+.activeButton {
+  color: white;
+  cursor: pointer;
+}
+
+.actionIcons {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.icon {
+  cursor: pointer;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.icon:hover {
+  color: purple;
+}
+
+.iconImage {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.uploadButton {
+  cursor: pointer;
+}
+
+.confirmToast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.confirmToast button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirmToast button:first-of-type {
+  background-color: #d9534f;
+  color: white;
+}
+
+.confirmToast button:last-of-type {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.confirmToastContainer {
+  background: transparent;
+  box-shadow: none;
+}
+
+.table .iconColumn {
+  text-align: center;
+  width: 80px;
+}
+
+.table .iconImage {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.deleteIcon {
+  cursor: pointer;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.deleteIcon:hover {
+  color: red;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbarTitle {
+    font-size: 1.5rem; /* Smaller title on mobile */
+  }
+
+  .tableContainer, .textBoxContainer {
+    width: 90%; /* Full width on mobile */
+  }
+
+  .buttonContainer {
+    flex-direction: column; /* Stack buttons vertically */
+  }
+
+  .addButton {
+    width: 50%; /* Full width for buttons */
+    margin: 0; /* Remove margin for full width */
+  }
+
+  .input {
+    width: 100%; /* Full width input */
+  }
+
+  .backButtonText {
+    font-size: 14px; /* Smaller font size for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem; /* Smaller navbar padding */
+  }
+
+  .navbarTitle {
+    font-size: 1.2rem; /* Smaller title on small screens */
+  }
+
+  .button {
+    font-size: 0.9rem; /* Smaller button font */
+  }
+
+  .table th, .table td {
+    font-size: 0.9rem; /* Smaller table font */
+  }
+
+  .icon {
+    font-size: 0.75rem; /* Smaller icons */
+  }
+}
+
+.tableRow {
+  display: flex; /* Use flexbox to align items in the same row */
+  justify-content: space-between; /* Ensure space between items */
+  align-items: center; /* Vertically center align the content */
+  padding: 0.5rem; /* Add some padding for better spacing */
+}
+
+.actionIcons {
+  display: flex;
+  gap: 0.5rem;
+}

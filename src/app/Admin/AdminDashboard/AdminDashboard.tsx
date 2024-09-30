@@ -204,15 +204,28 @@ const AdminDashboard: React.FC = () => {
           <ul>
             <li>
               <FontAwesomeIcon icon={faChartBar} className={styles.navIcon} />
-              <Link href="/">Dashboard</Link>
+              <Link href="/Admin/AdminDashboard">Dashboard</Link>
             </li>
             <li>
               <FontAwesomeIcon icon={faChartLine} className={styles.navIcon} />
               <Link href="/Admin/UserManagement/ReportAnalysis">Report Analysis</Link>
             </li>
             <li>
+<<<<<<< Updated upstream
               <FontAwesomeIcon icon={faUserCog} className={styles.navIcon} />
               <Link href="/Admin/UserManagement/AccountManage">Account Management</Link>
+=======
+              <GrSystem  className={styles.navIcon} />
+              <Link href="/Admin/AdminCMS">Content Management</Link>
+            </li>
+            <li>
+              <FontAwesomeIcon icon={faUserPlus} className={styles.navIcon} />
+              <Link href="/Admin/UserManagement/CreateAdmin">Create Admin</Link>
+            </li>
+            <li>
+              <FaWallet className={styles.navIcon} />
+              <Link href="/Admin/UserManagement/CreateAdmin">Wallet Management</Link>
+>>>>>>> Stashed changes
             </li>
             <li>
               <FontAwesomeIcon
