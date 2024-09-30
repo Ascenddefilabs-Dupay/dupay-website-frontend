@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 .container {
   display: flex;
   flex-direction: column;
@@ -7,6 +8,7 @@
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   overflow-y: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 .sidebar, .mainContent {
   scrollbar-width: none; /* Firefox */
@@ -26,6 +28,7 @@
   background-color: #1a1a1a;
   position: relative;
   z-index: 2;
+  font-family: 'Poppins', sans-serif;
 }
 
 .headerLeft {
@@ -33,6 +36,7 @@
   align-items: center;
   font-size: 28px;
 left: 0;
+font-family: 'Poppins', sans-serif;
 }
 
 .logo {
@@ -40,6 +44,7 @@ left: 0;
   color: white;
   font-size: 40px;
   margin-left: -20px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .profileSection {
@@ -58,16 +63,19 @@ left: 0;
   flex-direction: column;
   align-items: flex-start;
   margin-left: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .profileName {
   font-size: 18px;
   font-weight: bold;
+  font-family: 'Poppins', sans-serif;
 }
 
 .profileRole {
   font-size: 14px;
   color: gray;
+  font-family: 'Poppins', sans-serif;
 }
 
 .sidebar {
@@ -81,6 +89,7 @@ left: 0;
   overflow-y: auto;
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
   transition: left 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .sidebarVisible {
@@ -122,6 +131,7 @@ left: 0;
   transition: margin-left 0.3s ease;
   width: 81%;
   height: 70%;
+  font-family: 'Poppins', sans-serif;
 }
 
 .sidebarVisible ~ .mainContent {
@@ -132,6 +142,7 @@ left: 0;
   font-size: 28px;
   margin-bottom: 20px;
   padding-left: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .icon {
@@ -159,6 +170,7 @@ left: 0;
   height: 300px;
   padding: 20px;
   border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .chartHeader {
@@ -166,22 +178,26 @@ left: 0;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .metricIcons {
   display: flex;
   gap: 20px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .icon {
   cursor: pointer;
   font-size: 24px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .filterIcon {
   cursor: pointer;
   font-size: 24px;
   position: relative;
+  font-family: 'Poppins', sans-serif;
 }
 
 .filterDropdown {
@@ -194,6 +210,7 @@ left: 0;
   z-index: 10;
   padding: 10px 0;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  font-family: 'Poppins', sans-serif;
 }
 
 .filterDropdown button {
@@ -206,6 +223,7 @@ left: 0;
   cursor: pointer;
   text-align: left;
   font-size: 16px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .filterDropdown button:hover {
@@ -223,6 +241,7 @@ left: 0;
   padding: 10px;
   border-radius: 10px;
   background-color: #1a1a1a;
+  font-family: 'Poppins', sans-serif;
 }
 
 @media (max-width: 767px) {
@@ -384,20 +403,6 @@ left: 0;
 /* components/ReportAnalysis.module.css */
 
 /* Styling for the AppBar */
-.page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  padding: 1rem;
-  height: 160vh;
-}
-.page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 
 .chartContainer {
@@ -405,6 +410,7 @@ left: 0;
   flex-direction: column;
   align-items: center;
   margin-bottom: 40px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .chartRow {
@@ -412,6 +418,7 @@ left: 0;
   justify-content: space-between;
   width: 100%;
   max-width: 1400px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .pieChart {
@@ -419,6 +426,7 @@ left: 0;
   margin: 20px;
   display: flex;
   justify-content: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .pie{
@@ -428,6 +436,7 @@ left: 0;
   /* align-items: center; */
   /* background-color: white; */
   width:150px;
+  font-family: 'Poppins', sans-serif;
 }
 .head {
   display: flex;
@@ -440,12 +449,14 @@ left: 0;
   color: white;
   margin-bottom: 50px;
   height: 1px;
+  font-family: 'Poppins', sans-serif;
 }
 /* Styling for the title in the AppBar */
 .title {
   flex-grow: 1;
   font-size: 1.5rem;
   color: white;
+  font-family: 'Poppins', sans-serif;
 }
 /* components/ReportAnalysis.module.css */
 
@@ -456,23 +467,26 @@ font-weight: bold;
 font-size: 1rem;
 color: white;
 background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
-font-family: Arial, Helvetica, sans-serif;
+font-family: 'Poppins', sans-serif;
 /* background-color: black; */
 }
 .buttonContainer {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .userList {
   margin-top: 2rem;
   text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .userList ul {
   list-style: none;
   padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 .userList li {
@@ -483,6 +497,7 @@ font-family: Arial, Helvetica, sans-serif;
 .profileBox {
   display: flex;
   align-items: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Avatar styling */
@@ -502,6 +517,7 @@ font-family: Arial, Helvetica, sans-serif;
   margin-top: 2rem;
   padding: 2rem;
   color:white;
+  font-family: 'Poppins', sans-serif;
 }
 
 .sectionTitle {
@@ -519,6 +535,7 @@ font-family: Arial, Helvetica, sans-serif;
   /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
   /* font-family: Arial, Helvetica, sans-serif; */
   background-color: black;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Pie chart container */
@@ -526,6 +543,7 @@ font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+  font-family: 'Poppins', sans-serif;
 
 
 }
@@ -534,6 +552,7 @@ font-family: Arial, Helvetica, sans-serif;
   justify-content: center;
   margin-top: 2rem;
   color: white;
+  font-family: 'Poppins', sans-serif;
 
 }
 
@@ -542,6 +561,7 @@ font-family: Arial, Helvetica, sans-serif;
   flex-grow: 1;
   font-size: 1.5rem;
   color: white;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Button container styling */
@@ -549,6 +569,7 @@ font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* User list styling */

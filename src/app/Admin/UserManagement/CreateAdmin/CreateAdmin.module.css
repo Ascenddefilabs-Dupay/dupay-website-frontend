@@ -66,14 +66,16 @@
     align-items: center;
     font-family: Poppins;
   }
-  
+  .input:focus {
+    outline: none; /* Remove the default focus outline */
+    box-shadow: 0 0 4px #2A2D3C; /* Optional: add a subtle shadow when focused */
+  }
   .input:focus {
     height: 40px;
     width: 100%;
     border: none;
     padding: 0.25rem;
     font-size: 0.9rem;
-    background-color: rgba(128, 128, 128, 0.253);
     border-radius: 4px;
     font-family: Poppins;
   }
