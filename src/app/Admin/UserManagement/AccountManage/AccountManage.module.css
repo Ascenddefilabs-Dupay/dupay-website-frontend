@@ -10,7 +10,7 @@
   .page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     background-color: black;
     padding: 1rem;
@@ -24,17 +24,19 @@
     background-color:  rgba(128, 128, 128, 0.253);
     border-radius: 8px;
     color:white;
+    font-family: Poppins;
   }
   
   .filterButtons {
     margin-bottom: 16px;
     align-items: flex-start;
+    font-family: Poppins;
   }
   .button {
     /* background: linear-gradient(90deg, #007bff9f, #800080); */
     background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
-    font-family: Arial, Helvetica, sans-serif;
     color: white;
+    font-family: Poppins;
   }
   .filterButton {
     /* display: flex; */
@@ -47,6 +49,31 @@
     color: white;
     
   }
+/* Add this to hide the scrollbar for all browsers */
+.tableContainer::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.tableContainer {
+  background-color: rgba(128, 128, 128, 0.253);
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  color: white;
+  font-family: Poppins;
+  overflow-y: auto; /* Allow vertical scrolling */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}
+
+.tableContainer::-webkit-scrollbar {
+  width: 0;
+  background: transparent; /* Optional: Hide scrollbar background */
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: transparent; /* Optional: Hide scrollbar thumb */
+}
 
   .tableContainer {
     background-color:  rgba(128, 128, 128, 0.253);
@@ -54,11 +81,14 @@
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     color:white;
+    font-family: Poppins;
+    /* overflow-y: hidden; */
     /* width:1200px; */
   }
   .heading {
     color: white;
     margin-bottom: 1rem;
+    font-family: Poppins;
   }
   /* AccountManage.module.css */
 .tableCell {
@@ -67,6 +97,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color:white;
+    padding: 10px 16px; /* Add padding for spacing within the cell */
+    border: none; /* Remove cell borders */
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: Poppins;
   }
   
   .tableRow {
@@ -75,7 +110,18 @@
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     color:white;
+    border-radius: 4px;
+    background-color: transparent; /* Ensure the background is transparent */
+    border: none;
+    margin-bottom: 10px;
+    font-family: Poppins;
+    
   }
+  .tableRow + .tableRow  + .tableRow {
+    margin-top: 10px; /* Space between rows */
+    margin-bottom: 10px;
+  }
+
   
   .profileImage {
     width: 40px;
@@ -108,6 +154,7 @@
     border-radius: 4px;
     text-transform: none;
     font-size: 14px;
+    font-family: Poppins;
   }
   
   .actionButton:hover {
@@ -122,6 +169,7 @@
     text-decoration: none; /* Remove underline */
     font-weight: bold; /* Optional: make it bold */
     transition: color 0.3s; /* Add a smooth transition for hover effect */
+    font-family: Poppins;
   }
   
   .viewDetailsLink:hover {
@@ -152,6 +200,7 @@
     background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    font-family: Poppins;
     border-radius: 5px;
     /* height:10px; */
 
@@ -163,10 +212,37 @@
     background-color: darkgray;
     display: flex;
     align-items: center;
+    font-family: Poppins;
     justify-content: center;
   }
   
   .initial {
     color: white;
     font-weight: bold;
+    font-family: Poppins;
+  }
+  .header {
+    color: white;
+    margin-bottom: 1rem;
+    text-align: right;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    left: 490px;
+    font-family: Poppins;
+  }
+  .currency{
+    color: white;
+    margin-bottom: 1rem;
+    text-align: right;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    left: 430px;
+    font-family: Poppins;
+  }
+  .heading {
+    color: white;
+    margin-bottom: 1rem;
+    font-family: Poppins;
   }

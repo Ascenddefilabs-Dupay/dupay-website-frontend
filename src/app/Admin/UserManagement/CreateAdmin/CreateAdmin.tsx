@@ -45,7 +45,7 @@ const RegisterForm: React.FC = () => {
 
   const checkUserIdUnique = async (userId: string): Promise<boolean> => {
     try {
-      const response = await axios.get(`http://localhost:8000/usermanagementapi/AdminUser/${userId}/`);
+      const response = await axios.get(`http://localhost:8000/createadminapi/AdminUser/${userId}/`);
       console.log('Response:', response);
       return false; // User ID is not unique (exists)
     } catch (error) {
@@ -157,7 +157,7 @@ const RegisterForm: React.FC = () => {
     const hashedPassword = bcrypt.hashSync(formData.user_password, 10);
 
     const response = await axios.post(
-      'http://localhost:8000/usermanagementapi/AdminUser/',
+      'http://localhost:8000/createadminapi/AdminUser/',
       {
         user_id: newUserId,
         ...formData,
@@ -218,6 +218,9 @@ const RegisterForm: React.FC = () => {
             value={formData.user_first_name}
             onChange={handleInputChange}
             className={styles.textField}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -233,6 +236,9 @@ const RegisterForm: React.FC = () => {
             value={formData.user_last_name}
             onChange={handleInputChange}
             className={styles.textField}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -250,6 +256,9 @@ const RegisterForm: React.FC = () => {
             className={styles.textField}
             error={errors.emailInvalid}
             helperText={errors.emailInvalid ? 'Invalid email format.' : ''}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -267,6 +276,9 @@ const RegisterForm: React.FC = () => {
             className={styles.textField}
             error={errors.phoneInvalid}
             helperText={errors.phoneInvalid ? 'Invalid phone number. Must be 10 digits.' : ''}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -288,6 +300,9 @@ const RegisterForm: React.FC = () => {
             className={styles.textField}
             error={errors.dobInvalid}
             helperText={errors.dobInvalid ? 'You must be at least 18 years old.' : ''}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -323,6 +338,9 @@ const RegisterForm: React.FC = () => {
             value={formData.password}
             onChange={handleInputChange}
             className={styles.textField}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
@@ -339,12 +357,15 @@ const RegisterForm: React.FC = () => {
             value={formData.user_password}
             onChange={handleInputChange}
             className={styles.textField}
+            InputProps={{
+              className: styles.textFieldInput, // Apply the custom input styles
+            }}
           />
         </Box>
 
         
         {/* Submit Button */}
-        <Button type="submit" variant="contained" color="primary" className={styles.submitButton}>
+        <Button type="submit" variant="contained"  className={styles.submitButton}>
           SUBMIT
         </Button>
       </Box>

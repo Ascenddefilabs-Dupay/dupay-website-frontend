@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { PieChart, Pie, Cell, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { Box, Typography, IconButton, Menu, MenuItem, Grid } from '@mui/material';
 import styles from './ReportAnalysis.module.css'; // Import the CSS module
-import { FaFilter } from "react-icons/fa";
+import { IoFilter } from "react-icons/io5";
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { Checkbox, FormControlLabel, Stack } from '@mui/material';
 
 
 
@@ -20,6 +22,7 @@ interface TransactionData {
   transaction_amount: number | string;
   transaction_status: string;
 }
+
 interface CustomizedLabelProps {
   cx: number;
   cy: number;
@@ -40,6 +43,16 @@ const ReportAnalysis = () => {
   const [timeGranularity, setTimeGranularity] = useState<'day' | 'month' | 'year'>('day');
   const [systemPerformanceData, setSystemPerformanceData] = useState<PieChartData[]>([]);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [filteredUserData, setFilteredUserData] = useState<PieChartData[]>([]);
+  const [filters, setFilters] = useState({
+    active: true,
+    inactive: true,
+    hold: true,
+  });
+  const [performanceFilters, setPerformanceFilters] = useState({
+    success: true,
+    failed: true,
+  });
 
   // Fetch user data and transaction data upon page load
   useEffect(() => {
@@ -48,6 +61,7 @@ const ReportAnalysis = () => {
       .then((response) => {
         const users: UserData[] = response.data;
         setUserData(users);
+        setFilteredUserData(getFilteredData(users, filters));
       })
       .catch((error) => console.error('Error fetching user data:', error));
 
@@ -59,6 +73,61 @@ const ReportAnalysis = () => {
       })
       .catch((error) => console.error('Error fetching transaction data:', error));
   }, []);
+  const handlePerformanceFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    setPerformanceFilters(prevFilters => ({ ...prevFilters, [name]: checked }));
+  };
+
+  const handleSystemPerformance = () => {
+    const successfulTransactions = transactionData.filter(t => t.transaction_status === 'Success').length;
+    const failedTransactions = transactionData.filter(t => t.transaction_status === 'Pending').length;
+    const totalTransactions = successfulTransactions + failedTransactions;
+
+    const performanceData: PieChartData[] = [];
+
+    if (performanceFilters.success && successfulTransactions > 0) {
+      performanceData.push({ name: 'Success Transactions', value: (successfulTransactions / totalTransactions) * 100, color: '#4CAF50' });
+    }
+
+    if (performanceFilters.failed && failedTransactions > 0) {
+      performanceData.push({ name: 'Failed Transactions', value: (failedTransactions / totalTransactions) * 100, color: '#F44336' });
+    }
+
+    setSystemPerformanceData(performanceData);
+  };
+
+  useEffect(() => {
+    handleSystemPerformance();
+  }, [transactionData, performanceFilters]); // Include performanceFilters to re-calculate on change
+
+  const getFilteredData = (users: UserData[], filters: { active: boolean; inactive: boolean; hold: boolean }): PieChartData[] => {
+    // Count users based on filter criteria
+    const activeUsersCount = filters.active ? users.filter((user) => user.user_status === true && !user.user_hold).length : 0;
+    const holdUsersCount = filters.hold ? users.filter((user) => user.user_hold === true).length : 0;
+    const inactiveUsersCount = filters.inactive ? users.filter((user) => user.user_status === false && !user.user_hold).length : 0;
+
+    const filteredData: PieChartData[] = [];
+
+    if (activeUsersCount > 0) {
+      filteredData.push({ name: 'Active', value: activeUsersCount, color: '#1569C7' });
+    }
+    if (holdUsersCount > 0) {
+      filteredData.push({ name: 'Hold', value: holdUsersCount, color: '#FF8042' });
+    }
+    if (inactiveUsersCount > 0) {
+      filteredData.push({ name: 'Inactive', value: inactiveUsersCount, color: '#64E986' });
+    }
+
+    return filteredData;
+  };
+
+  // Function to handle checkbox changes
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    const newFilters = { ...filters, [name]: checked };
+    setFilters(newFilters);
+    setFilteredUserData(getFilteredData(userData, newFilters));
+  };
 
   // Process Transaction Data for plotting the graph
   const processTransactionData = () => {
@@ -105,6 +174,7 @@ const ReportAnalysis = () => {
   const { categories, RecievedValues, transferValues, withdrawalValues, TopupValues } = processTransactionData();
 
   // Render labels for the Pie Chart
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const renderCustomizedLabel = (props: CustomizedLabelProps) => {
     const { cx, cy, midAngle, outerRadius, value, name } = props;
     const radius = outerRadius - 10;
@@ -123,20 +193,20 @@ const ReportAnalysis = () => {
   const inactiveUsersCount = userData.filter(user => user.user_status === false).length;
 
   // Process System Performance Data
-  const handleSystemPerformance = () => {
-    const successfulTransactions = transactionData.filter(t => t.transaction_status === 'Success').length;
-    const failedTransactions = transactionData.filter(t => t.transaction_status === 'Pending').length;
-    const totalTransactions = successfulTransactions + failedTransactions;
+  // const handleSystemPerformance = () => {
+  //   const successfulTransactions = transactionData.filter(t => t.transaction_status === 'Success').length;
+  //   const failedTransactions = transactionData.filter(t => t.transaction_status === 'Pending').length;
+  //   const totalTransactions = successfulTransactions + failedTransactions;
 
-    if (totalTransactions > 0) {
-      const successPercentage = (successfulTransactions / totalTransactions) * 100;
-      const failedPercentage = (failedTransactions / totalTransactions) * 100;
-      setSystemPerformanceData([
-        { name: 'Success Transactions', value: successPercentage, color: '#4CAF50' },
-        { name: 'Failed Transactions', value: failedPercentage, color: '#F44336' },
-      ]);
-    }
-  };
+  //   if (totalTransactions > 0) {
+  //     const successPercentage = (successfulTransactions / totalTransactions) * 100;
+  //     const failedPercentage = (failedTransactions / totalTransactions) * 100;
+  //     setSystemPerformanceData([
+  //       { name: 'Success Transactions', value: successPercentage, color: '#4CAF50' },
+  //       { name: 'Failed Transactions', value: failedPercentage, color: '#F44336' },
+  //     ]);
+  //   }
+  // };
 
   useEffect(() => {
     handleSystemPerformance();
@@ -144,9 +214,9 @@ const ReportAnalysis = () => {
   }, [transactionData]);
 
   const userActivityData: PieChartData[] = [
-    { name: 'Active Users', value: activeUsersCount, color: '#1569C7' },
-    { name: 'Hold Users', value: holdUsersCount, color: '#FF8042' },
-    { name: 'Inactive Users', value: inactiveUsersCount, color: '#64E986' },
+    { name: 'Active', value: activeUsersCount, color: '#1569C7' },
+    { name: 'Hold', value: holdUsersCount, color: '#FF8042' },
+    { name: 'Inactive', value: inactiveUsersCount, color: '#64E986' },
   ];
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -156,6 +226,7 @@ const ReportAnalysis = () => {
     setTimeGranularity(granularity);
     setAnchorEl(null);
   };
+  
   return (
     <div className={styles.page}>
        <Link href="/Admin/AdminDashboard">
@@ -177,16 +248,11 @@ const ReportAnalysis = () => {
           },
         }}
       >
-        <MenuItem onClick={() => handleClose('day')}>Day Wise</MenuItem>
-        <MenuItem onClick={() => handleClose('month')}>Month Wise</MenuItem>
-        <MenuItem onClick={() => handleClose('year')}>Year Wise</MenuItem>
+        <MenuItem onClick={() => handleClose('day')}>Daily</MenuItem>
+        <MenuItem onClick={() => handleClose('month')}>Monthly</MenuItem>
+        <MenuItem onClick={() => handleClose('year')}>Yearly</MenuItem>
       </Menu>
 
-      {/* <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-        <MenuItem onClick={() => handleClose('day')}>Day Wise</MenuItem>
-        <MenuItem onClick={() => handleClose('month')}>Month Wise</MenuItem>
-        <MenuItem onClick={() => handleClose('year')}>Year Wise</MenuItem>
-      </Menu> */}
       <Grid container spacing={4} className={styles.chartGrid}>
         {/* User Activity Chart */}
         <Grid item xs={12} md={6}>
@@ -195,14 +261,56 @@ const ReportAnalysis = () => {
               User Activity
             </Typography>
             <PieChart width={400} height={300}>
-              <Pie data={userActivityData} dataKey="value" cx="50%" cy="50%" outerRadius={100} labelLine={false} label={renderCustomizedLabel}>
+              <Pie  data={filteredUserData}  dataKey="value" cx="50%" cy="50%" outerRadius={100} labelLine={false} >
                 {userActivityData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Legend />
+              <Tooltip contentStyle={{ backgroundColor: '#333', color: 'white' }}   labelStyle={{ color: 'white' }} 
+              itemStyle={{ color: 'white' }}
+              formatter={(value, name) => [`${value} users`, name]} />
+              {/* <Legend/> */}
             </PieChart>
+            <Box className={styles.filterContainer}>
+        <Typography variant="h6" style={{ color: '#fff' }}>User Status</Typography>
+        <Stack direction="column" spacing={1} className={styles.filterStack}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={filters.active}
+                onChange={handleFilterChange}
+                name="active"
+                style={{ color: '#1569C7' }} // Match checkbox color with PieChart color
+              />
+            }
+            label={<span style={{ color: 'white' }}>Active</span>}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={filters.hold}
+                onChange={handleFilterChange}
+                name="hold"
+                style={{ color: '#FF8042' }} // Match checkbox color with PieChart color
+              />
+            }
+            label={<span style={{ color: 'white' }}>Hold</span>}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={filters.inactive}
+                onChange={handleFilterChange}
+                name="inactive"
+                style={{ color: '#64E986' }} // Match checkbox color with PieChart color
+              />
+            }
+            label={<span style={{ color: 'white' }}>Inactive</span>}
+          />
+        </Stack>
+      </Box>
           </Box>
+          
         </Grid>
 
         {/* System Performance Chart */}
@@ -211,14 +319,6 @@ const ReportAnalysis = () => {
             <Typography variant="h6" align="center" className={styles.head}>
               System Performance
             </Typography>
-            {/* <PieChart width={400} height={300}>
-              <Pie data={systemPerformanceData} dataKey="value" cx="50%" cy="50%" outerRadius={100} labelLine={false} label={({ name, value }) => `${name}: ${value.toFixed(2)}%`}>
-                {systemPerformanceData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-              <Legend />
-            </PieChart> */}
             <PieChart width={700} height={300}>
               <Pie
                 data={systemPerformanceData}
@@ -227,32 +327,49 @@ const ReportAnalysis = () => {
                 cy="50%"
                 outerRadius={100}
                 labelLine={false}
-                label={({ cx, cy, midAngle, innerRadius, outerRadius, value, name }) => {
-                  const RADIAN = Math.PI / 180;
-                  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-                  return (
-                    <text
-                      x={x}
-                      y={y}
-                      fill="white"
-                      textAnchor={x > cx ? 'start' : 'end'}
-                      dominantBaseline="central"
-                      fontSize="14px"
-                    >
-                      {`${name}: ${value.toFixed(2)}%`}
-                    </text>
-                  );
-                }}
               >
                 {systemPerformanceData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Legend />
+              {/* <Tooltip formatter={(value, name) => [`${value.toFixed(2)}%`, name]} /> */}
+              <Tooltip contentStyle={{ backgroundColor: '#333', color: 'white' }}   labelStyle={{ color: 'white' }} 
+              itemStyle={{ color: 'white' }}
+                formatter={(value, name) => {
+                  // Convert value to a number if possible, otherwise default to 0
+                  const numericValue = !isNaN(Number(value)) ? Number(value) : 0;
+                  return [`${numericValue.toFixed(2)}%`, name];
+                }}
+              />
+              {/* <Legend /> */}
             </PieChart>
+            <Box className={styles.filterContainer}>
+            <Typography variant="h6" style={{ color: '#fff' }}>System Performance</Typography>
+            <Stack direction="column" spacing={1} className={styles.filterStack}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={performanceFilters.success}
+                    onChange={handlePerformanceFilterChange}
+                    name="success"
+                    style={{ color: '#4CAF50' }}
+                  />
+                }
+                label={<span style={{ color: 'white' }}>Successful Transactions</span>}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={performanceFilters.failed}
+                    onChange={handlePerformanceFilterChange}
+                    name="failed"
+                    style={{ color: '#F44336' }}
+                  />
+                }
+                label={<span style={{ color: 'white' }}>Failed Transactions</span>}
+              />
+            </Stack>
+          </Box>
           </Box>
         </Grid>
       </Grid>
@@ -261,26 +378,12 @@ const ReportAnalysis = () => {
       <Box className={styles.chartContainer}>
         <Box mb={2} display="flex" alignItems="center" justifyContent="center">
         <Typography variant="h6" align="center" className={styles.head}>
-          Transaction Trends :
+          Transaction Trends   
         </Typography>
-        <IconButton onClick={handleClick} sx={{ color: 'white', ml: 1 }} >
-          <FaFilter />
+        <IconButton className={styles.icon} onClick={handleClick} sx={{ color: 'white', ml: 1 }} >
+        <IoFilter />
         </IconButton>
         </Box>
-        {/* <Box marginBottom={2}>
-        <FormControl variant="outlined" >
-          <Select
-            value={timeGranularity}
-            onChange={(e) => setTimeGranularity(e.target.value as 'day' | 'month' | 'year')}
-            displayEmpty
-            inputProps={{ 'aria-label': 'Select time granularity' }}
-          >
-            <MenuItem value="day">Daily</MenuItem>
-            <MenuItem value="month">Monthly</MenuItem>
-            <MenuItem value="year">Yearly</MenuItem>
-          </Select>
-        </FormControl>
-      </Box> */}
         <BarChart width={600} height={300} data={categories.map((cat, idx) => ({ name: cat, Recieved: RecievedValues[idx], Transfer: transferValues[idx], Withdrawn: withdrawalValues[idx], Topup: TopupValues[idx] }))}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" 

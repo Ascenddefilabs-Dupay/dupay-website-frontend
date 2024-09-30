@@ -2,13 +2,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Box, Button, Grid, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Select, MenuItem, FormControl } from '@mui/material';
+import { Box, Grid, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, MenuItem, Menu } from '@mui/material';
 import axios, { AxiosError } from 'axios';
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './AccountManage.module.css';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { IoFilter } from "react-icons/io5";
+import { GrStatusInfo } from "react-icons/gr";
+import { IoPersonAddSharp } from "react-icons/io5";
 
 interface Users {
   user_id: string;
@@ -34,6 +37,8 @@ const Dashboard: React.FC = () => {
   const [filteredUsers, setFilteredUsers] = useState<Users[]>([]);
   const [selectedUserType, setSelectedUserType] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [statusMenuAnchor, setStatusMenuAnchor] = useState<null | HTMLElement>(null);
+  const [userTypeMenuAnchor, setUserTypeMenuAnchor] = useState<null | HTMLElement>(null); // New state for user type filter
   // const [openDetails, setOpenDetails] = useState<number | null>(null);
 
   useEffect(() => {
@@ -68,7 +73,10 @@ const Dashboard: React.FC = () => {
   const handleFilter = (user_type: string) => {
     setSelectedUserType(user_type);
   };
-
+  const handleStatusFilter = (status: string) => {
+    setSelectedStatus(status);
+    setStatusMenuAnchor(null); // Close the dropdown after selecting a status
+  };
   // const handleMoreVertClick = (userId: number) => {
   //   setOpenDetails(openDetails === userId ? null : userId);
   // };
@@ -107,37 +115,85 @@ const Dashboard: React.FC = () => {
 
   const getStatusDisplay = (user_hold?: boolean, user_status?: string | boolean) => {
     if (user_hold === true) {
-      return { text: 'Hold', color: 'orange' };
+      return { text: 'Hold', color: 'white' };
     }
 
     if (user_status === 'true' || user_status === true) {
-      return { text: 'Active', color: 'green' };
+      return { text: 'Active', color: 'white' };
     } else if (user_status === 'false' || user_status === false) {
-      return { text: 'Inactive', color: 'red' };
+      return { text: 'Inactive', color: 'white' };
     }
 
-    return { text: 'Inactive', color: 'red' };
+    return { text: 'Inactive', color: 'white' };
   };
 
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
           <Link href="/Admin/AdminDashboard">
-          <FaArrowLeft  style={{position: 'relative' ,right:'500px', color: 'white'}} />
+          <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
           </Link>
-            <center>
-              <div className="centeredBox">
-              <Typography variant="h4" className={styles.heading} gutterBottom>
-                Account Management
-              </Typography>
-              </div>
-            </center>
-          </header>
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
+      <Typography variant="h4" className={styles.heading} gutterBottom>
+        Account Management
+      </Typography>
+      <Link href="/Admin/UserManagement/AddUser">
+      <IconButton
+          className={styles.currency}
+          title="Add User" 
+        >
+          <IoPersonAddSharp />
+        </IconButton>
+        </Link>
+        <IconButton
+          className={styles.currency}
+          title="Status" 
+          onClick={(e) => setStatusMenuAnchor(e.currentTarget)}
+        >
+          <GrStatusInfo />
+        </IconButton>
+        <IconButton
+          className={styles.currency}
+          title="Usertype" 
+          onClick={(e) => setUserTypeMenuAnchor(e.currentTarget)}
+        >
+          <IoFilter />
+        </IconButton>
+        <Menu
+          anchorEl={statusMenuAnchor}
+          open={Boolean(statusMenuAnchor)}
+          onClose={() => setStatusMenuAnchor(null)} // Close menu when clicked outside
+          PaperProps={{
+            style: {
+              backgroundColor: 'rgba(128, 128, 128, 0.253)', // Set the background color
+            },
+          }}
+        >
+          <MenuItem onClick={() => handleStatusFilter('all')}  sx={{ color: 'white' }}>All</MenuItem>
+          <MenuItem onClick={() => handleStatusFilter('Active')}  sx={{ color: 'white' }}>Active</MenuItem>
+          <MenuItem onClick={() => handleStatusFilter('Inactive')}  sx={{ color: 'white' }}>Inactive</MenuItem>
+          <MenuItem onClick={() => handleStatusFilter('Hold')}  sx={{ color: 'white' }}>Hold</MenuItem>
+        </Menu>
+        <Menu
+          anchorEl={userTypeMenuAnchor}
+          open={Boolean(userTypeMenuAnchor)}
+          onClose={() => setUserTypeMenuAnchor(null)}
+          PaperProps={{
+            style: {
+              backgroundColor: 'rgba(128, 128, 128, 0.253)',
+            },
+          }}
+        >
+          <MenuItem onClick={() => handleFilter('all')} sx={{ color: 'white' }}>All</MenuItem>
+          <MenuItem onClick={() => handleFilter('user')} sx={{ color: 'white' }}>User</MenuItem>
+          <MenuItem onClick={() => handleFilter('admin')} sx={{ color: 'white' }}>Admin</MenuItem>
+          <MenuItem onClick={() => handleFilter('super_admin')} sx={{ color: 'white' }}>Super Admin</MenuItem>
+        </Menu>
+        </Box>
       <Grid container spacing={2} className={styles.statisticsContainer}>
-        <Grid item xs={4}>
+      <Grid item xs={4}>
           <Paper className={styles.statisticBox}>
-            <Typography variant="h6">Customers</Typography>
-            <Typography variant="h4">{users.filter(user => user.user_type === 'customer').length}</Typography>
+            <Typography variant="h6">Super Admins</Typography>
+            <Typography variant="h4">{users.filter(user => user.user_type === 'super_admin').length}</Typography>
           </Paper>
         </Grid>
         <Grid item xs={4}>
@@ -148,82 +204,22 @@ const Dashboard: React.FC = () => {
         </Grid>
         <Grid item xs={4}>
           <Paper className={styles.statisticBox}>
-            <Typography variant="h6">Super Admins</Typography>
-            <Typography variant="h4">{users.filter(user => user.user_type === 'super_admin').length}</Typography>
+            <Typography variant="h6">Users</Typography>
+            <Typography variant="h4">{users.filter(user => user.user_type === 'user').length}</Typography>
           </Paper>
         </Grid>
       </Grid>
-
-      <Box className={styles.filterButtons}>
-        <Button
-          className={styles.filterButton}
-          variant={selectedUserType === 'all' ? 'contained' : 'outlined'}
-          onClick={() => handleFilter('all')}
-        >
-          View All
-        </Button>
-        <Button
-          className={styles.filterButton}
-          variant={selectedUserType === 'customer' ? 'contained' : 'outlined'}
-          onClick={() => handleFilter('customer')}
-        >
-          Customer
-        </Button>
-        <Button
-          className={styles.filterButton}
-          variant={selectedUserType === 'admin' ? 'contained' : 'outlined'}
-          onClick={() => handleFilter('admin')}
-        >
-          Admin
-        </Button>
-        <Button
-          className={styles.filterButton}
-          variant={selectedUserType === 'super_admin' ? 'contained' : 'outlined'}
-          onClick={() => handleFilter('super_admin')}
-        >
-          Super Admin
-        </Button>
-        <Button href="/Admin/UserManagement/AddUser" className={styles.button}>
-          + Add Users
-        </Button>
-        <Button>
-        <FormControl className={styles.filterDropdown} style={{ width: '150px', height: '40px' }}>
-          <Select
-            value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value as string)}
-            style={{
-              width: '100%',
-              height: '100%',
-              background: 'linear-gradient(90deg, #007bff9f, #800080)',
-              color: 'white',
-            }}
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  background: 'linear-gradient(90deg, #007bff9f, #800080)',
-                },
-              },
-            }}
-          >
-            <MenuItem value="all" style={{ color: 'white' }}>All</MenuItem>
-            <MenuItem value="Active" style={{ color: 'white' }}>Active</MenuItem>
-            <MenuItem value="Inactive" style={{ color: 'white' }}>Inactive</MenuItem>
-            <MenuItem value="Hold" style={{ color: 'white' }}>Hold</MenuItem>
-          </Select>
-        </FormControl>
-        </Button>
-      </Box>
 
       <TableContainer component={Paper} className={styles.tableContainer}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Username</TableCell>
-              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Role</TableCell>
-              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Phone</TableCell>
+              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}></TableCell>
+              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>UserType</TableCell>
+              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Phone Number</TableCell>
               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Status</TableCell>
-              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Action</TableCell>
-              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>User Action</TableCell>
+              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Delete</TableCell>
+              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -255,16 +251,16 @@ const Dashboard: React.FC = () => {
                   </TableCell>
                   <TableCell className={styles.tableCell}>{user.user_type}</TableCell>
                   <TableCell className={styles.tableCell}>{user.user_phone_number}</TableCell>
-                  <TableCell style={{ color: statusColor }}>{statusText}</TableCell>
-                  <TableCell className={styles.tableCell}>
-                    <Link href={`/Admin/UserManagement/ViewDetails?user_id=${user.user_id}`} style={{ color: 'blue', textDecoration: 'underline' }}>
-                      View Details
-                    </Link>
-                  </TableCell>
+                  <TableCell className={`${styles.tableCell} ${styles.statusCell}`} style={{ color: statusColor ,textDecoration: 'none' }}>{statusText}</TableCell>
                   <TableCell className={styles.tableCell}>
                     <IconButton onClick={() => handleDelete(user.user_id)}>
                       <DeleteIcon style={{ color: 'white' }} />
                     </IconButton>
+                  </TableCell>
+                  <TableCell className={styles.tableCell}>
+                    <Link href={`/Admin/UserManagement/ViewDetails?user_id=${user.user_id}`} style={{ color: '#4A8EF3', textDecoration: 'underline' }}>
+                      View more
+                    </Link>
                   </TableCell>
                 </TableRow>
               );

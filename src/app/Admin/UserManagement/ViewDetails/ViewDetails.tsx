@@ -3,9 +3,15 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Box, Typography, Button, Card, CardContent } from '@mui/material';
+import { Box, Typography, Card, CardContent, IconButton } from '@mui/material';
 import axios from 'axios';
 import styles from './ViewDetails.module.css'; // Import the CSS module
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
+import { MdOutlineNoAccounts } from "react-icons/md";
+import { FaCoins } from "react-icons/fa";
+import { FaMoneyCheckAlt } from "react-icons/fa";
+// import { TbFreezeRowColumn } from "react-icons/tb";
 
 interface User {
   user_id: string;
@@ -105,19 +111,7 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  const getStatusDisplay = (user_hold?: boolean, user_status?: string | boolean) => {
-    if (user_hold === true) {
-      return { text: 'Hold', color: 'orange' };
-    }
 
-    if (user_status === 'true' || user_status === true) {
-      return { text: 'Active', color: 'green' };
-    } else if (user_status === 'false' || user_status === false) {
-      return { text: 'Inactive', color: 'red' };
-    }
-
-    return { text: 'Inactive', color: 'red' }; // Default to 'Inactive'
-  };
   const getStatusColor = (user_hold?: boolean, user_status?: string | boolean) => {
     if (user_hold === true) {
       return 'gray'; // Return white if user_hold is true
@@ -131,43 +125,41 @@ const UserProfile: React.FC = () => {
     
     return 'gray'; // Default color if neither condition is met
   };
-  // const getStatusColor = (user_status?: string | boolean) => {
-  //   if (user_status === 'true' || user_status === true) {
-  //     return 'green';
-  //   } else if (user_status === 'false' || user_status === false) {
-  //     return 'red';
-  //   }
-  //   return 'gray'; // Default color if user_status is not set
-  // };
-
-  // if (!user) {
-  //   return <Typography>Loading...</Typography>; // Placeholder until user data is loaded
-  // }
-
-  const { text: statusText, color: statusColor } = getStatusDisplay(user?.user_hold, user?.user_status);
 
   return (
     <div className={styles.page}>
+      <Link href="/Admin/UserManagement/AccountManage">
+          <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
+      </Link>
+      <Box display="flex" justifyContent="space-between"  mb={4}>
+      <Typography variant="h4" className={styles.heading} gutterBottom>
+        Profile Details
+      </Typography>
+      <IconButton
+          className={styles.currency}
+          title="Freeze" 
+          onClick={handleFreezeAccount}
+        >
+          <MdOutlineNoAccounts />
+        </IconButton>
+
+      <IconButton
+          className={styles.currency}
+          title="SetLimit" 
+        >
+          <FaMoneyCheckAlt /> 
+        </IconButton>
+        <IconButton
+          className={styles.currency}
+          title="Balance" 
+        >
+          <FaCoins />
+        </IconButton>
+        </Box>
       {/* Header Section */}
-      <Box className={styles.header}>
-        <Typography variant="h5">Profile Details</Typography>
-      </Box>
-
-      {/* Action Buttons */}
-      <Box className={styles.actions}>
-        <Button variant="outlined" className={styles.button}>SET LIMIT</Button>
-        <Button></Button>
-        <Button variant="outlined" className={styles.button} onClick={handleFreezeAccount}>
-          {user?.user_hold ? 'Unfreeze' : 'Freeze'}
-        </Button>
-        <Button></Button>
-        <Button variant="outlined" className={styles.button}>BALANCE</Button>
-        <Button></Button>
-        <Button variant="outlined" className={styles.button} href={`/Admin/UserManagement/EditDetails?user_id=${user?.user_id}`}>
-          Edit Details
-        </Button>
-      </Box>
-
+      {/* <Box className={styles.header}>
+        <Typography variant="h5"></Typography>
+      </Box> */}
       {/* Profile Content */}
       <Card className={styles.profileCard}>
       <Box className={styles.imageSection}>
@@ -194,22 +186,12 @@ const UserProfile: React.FC = () => {
           <Typography variant="h6">
             {`${user?.user_first_name} ${user?.user_middle_name || ''} ${user?.user_last_name || ''}`.trim()}
           </Typography>
-          <Typography style={{ color: statusColor }}>{statusText}</Typography>
+          <Typography variant="h6">{user?.user_dob}</Typography>
+          <Typography  variant="h6" >{user?.user_phone_number}</Typography>
+          <Typography  variant="h6" >{user?.user_email}</Typography>
         </Box>
 
         <CardContent className={styles.detailsSection}>
-          <Box className={styles.detailRow}>
-            <Typography className={styles.detailLabel}>Email: </Typography>
-            <Typography className={styles.detailValue}>{user?.user_email}</Typography>
-          </Box>
-          <Box className={styles.detailRow}>
-            <Typography className={styles.detailLabel}>Phone No: </Typography>
-            <Typography className={styles.detailValue}>{user?.user_phone_number}</Typography>
-          </Box>
-          <Box className={styles.detailRow}>
-            <Typography className={styles.detailLabel}>Date Of Birth: </Typography>
-            <Typography className={styles.detailValue}>{user?.user_dob}</Typography>
-          </Box>
           <Box className={styles.detailRow}>
             <Typography className={styles.detailLabel}>State: </Typography>
             <Typography className={styles.detailValue}>{user?.user_state}</Typography>
@@ -230,13 +212,13 @@ const UserProfile: React.FC = () => {
             <Typography className={styles.detailLabel}>Address: </Typography>
             <Typography className={styles.detailValue}>{user?.user_address_line_1}</Typography>
           </Box>
+          <Box className={styles.detail} sx={{ display: 'flex' }}>
+          <Link href={`/Admin/UserManagement/EditDetails?user_id=${user?.user_id}`} style={{ color: '#4A8EF3', textDecoration: 'underline', justifyContent:'center' ,marginLeft: '100px'}}>
+                      Edit Details
+                    </Link>
+                    </Box>
         </CardContent>
       </Card>
-      <Box className={styles.actions}>
-        <Button variant="outlined" className={styles.button} href={`/Admin/UserManagement/AccountManage?user_id=${user?.user_id}`}>
-          Back
-        </Button>
-      </Box>
     </div>
   );
 };

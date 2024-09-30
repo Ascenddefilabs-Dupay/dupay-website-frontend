@@ -13,16 +13,19 @@
     color: white;
     margin-bottom: 0.25rem; /* Slight margin below label */
     font-size: 0.9rem;
+    font-family: Poppins;
   }
 
   .page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     background-color: black;
+    overflow: hidden;
     padding: 1rem;
     margin: 0 auto; /* Remove quotes */
+    height: 100vh;
   }
   
   .statisticBox {
@@ -31,12 +34,14 @@
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     background-color: rgba(128, 128, 128, 0.253);
     color: white;
+    font-family: Poppins;
   }
   
   .filterButtons {
     margin-bottom: 16px;
     align-items: flex-start;
     color: white;
+    font-family: Poppins;
   }
   
   .mainFilters {
@@ -50,12 +55,14 @@
     flex-direction: row;
     align-items: center; /* Align items vertically */
     gap: 10px; /* Space between the currency select and date fields */
+    font-family: Poppins;
   }
   
   .currencySelect {
     flex: 1; /* Adjust as needed to control the width */
     max-width: 200px;
     height: 40px;
+    font-family: Poppins;
   }
   .initialCircle {
     width: 50px;
@@ -66,6 +73,7 @@
     align-items: center;
     background-color: #e0e0e0; /* Use a light background color */
     overflow: hidden; /* Ensures image doesn't overflow the circle */
+    font-family: Poppins;
   }
   
   .profileImage {
@@ -102,10 +110,12 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    font-family: Poppins;
   }
   .box {
     align-items: flex-end;
     color: white;
+    font-family: Poppins;
   }
   .dateFilters {
     
@@ -118,6 +128,7 @@
     background-color: rgba(128, 128, 128, 0.253);
     color:white;
     flex-direction: row; 
+    font-family: Poppins;
   }
   
   .dateField {
@@ -133,6 +144,7 @@
     /* background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%); */
     font-family: Arial, Helvetica, sans-serif;
     background-color:  rgba(128, 128, 128, 0.253);
+    font-family: Poppins;
 
   }
 
@@ -140,6 +152,7 @@
     background: linear-gradient(90deg, #007bff9f, #800080);
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    font-family: Poppins;
   }
   
   .filterButton {
@@ -147,7 +160,9 @@
     margin-right: 8px;
     color: white;
     background: linear-gradient(90deg, #007bff9f, #800080);
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif;
+    font-family: Poppins; */
+    font-family: Poppins;
   }
 
   .filter {
@@ -155,7 +170,8 @@
     margin-right: 8px;
     color: white;
     background: linear-gradient(90deg, #007bff9f, #800080);
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: Poppins;
   }
   
   .tableContainer {
@@ -164,12 +180,14 @@
     border-radius: 8px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
+    font-family: Poppins;
     /* width:1200px; */
   }
   
   .heading {
     color: white;
     margin-bottom: 1rem;
+    font-family: Poppins;
   }
   .header {
     color: white;
@@ -179,6 +197,7 @@
     justify-content: end;
     position: relative;
     left: 550px;
+    font-family: Poppins;
   }
   .head {
     color: white;
@@ -187,7 +206,8 @@
     display: flex;
     justify-content: end;
     position: relative;
-    left: 450px;
+    left: 455px;
+    font-family: Poppins;
   }
   .tableCell {
     max-width: 150px; /* Set your desired width */
@@ -195,8 +215,40 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color:white;
+    padding: 10px 16px; /* Add padding for spacing within the cell */
+    border: none; /* Remove cell borders */
+    margin-bottom: 10px;
+    font-family: Poppins;
+    /* display: flex; */
+  justify-content: center; /* Center horizontally */
+  align-items: center; 
     
   }
+/* Add this to hide the scrollbar for all browsers */
+.tableContainer::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.tableContainer {
+  background-color: rgba(128, 128, 128, 0.253);
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  color: white;
+  font-family: Poppins;
+  overflow-y: auto; /* Allow vertical scrolling */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}
+
+.tableContainer::-webkit-scrollbar {
+  width: 0;
+  background: transparent; /* Optional: Hide scrollbar background */
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: transparent; /* Optional: Hide scrollbar thumb */
+}
 
   .tableCel {
     max-width: 150px; /* Set your desired width */
@@ -204,15 +256,26 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color:white;
+    font-family: Poppins;
+    justify-content: center;
   }
   
   .tableRow {
-    background-color: rgba(128, 128, 128, 0.253);
-    color: white;
+    background-color:  rgba(128, 128, 128, 0.253);
     border-radius: 8px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    color:white;
+    border-radius: 4px;
+    background-color: transparent; /* Ensure the background is transparent */
+    border: none;
+    margin-bottom: 10px;
+    font-family: Poppins;
   }
-  
+  .tableRow + .tableRow  + .tableRow {
+    margin-top: 10px; /* Space between rows */
+    margin-bottom: 10px;
+  }
   .profileImage {
     width: 50px;
     height: 50px;
@@ -224,6 +287,7 @@
   .userInfo {
     display: flex;
     flex-direction: column;
+    font-family: Poppins;
   }
   
   .statusActive {
@@ -249,6 +313,7 @@
     border-radius: 4px;
     text-transform: none;
     font-size: 14px;
+    font-family: Poppins;
   }
   
   .actionButton:hover {
@@ -260,6 +325,7 @@
     text-decoration: none; /* Remove underline */
     font-weight: bold; /* Optional: make it bold */
     transition: color 0.3s; /* Add a smooth transition for hover effect */
+    font-family: Poppins;
   }
   
   .viewDetailsLink:hover {
@@ -268,9 +334,13 @@
   
   .tableHeaderCell {
     font-weight: bold; /* Make the text bold */
+    
+    justify-content: center;
+    font-family: Poppins;
   }
   
   .filterDropdown {
     width: 150px;
     background-color: white;
+    font-family: Poppins;
   }

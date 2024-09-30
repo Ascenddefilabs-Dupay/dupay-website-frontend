@@ -4,7 +4,6 @@
 import { useState, useEffect } from 'react';
 import {
   Box,
-  Button,
   Typography,
   Table,
   TableBody,
@@ -18,18 +17,16 @@ import {
   TextField,
   InputAdornment,
   IconButton,
+  Menu
 } from '@mui/material';
+import { RiArrowDropDownLine } from 'react-icons/ri';
 import axios from 'axios';
 import styles from './TransactionHistory.module.css'; // Import the CSS module
 import { SelectChangeEvent } from '@mui/material';
-import { RiUserReceived2Fill } from "react-icons/ri";
-import { MdDateRange, MdOutlineAddCircle } from 'react-icons/md'; // Import icons
-import { PiHandWithdrawFill } from "react-icons/pi";
-import { BiTransfer } from "react-icons/bi";
-import { GiWallet } from "react-icons/gi";
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { FaRegCalendar } from "react-icons/fa";
+import { IoFilter } from "react-icons/io5";
 // User and Transaction interfaces
 interface Users {
   user_id: string;
@@ -66,12 +63,16 @@ const Dashboard = () => {
   const [endDate, setEndDate] = useState<string>('');
   const [showDateFilters, setShowDateFilters] = useState<boolean>(false); // State to control date filter visibility
   const [showDate, setShowDate] = useState<boolean>(false);
+  // const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  
   // Fetch users and transactions once on mount
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersResponse = await axios.get('http://localhost:8000/usermanagementapi/profile/');
-        const transactionsResponse = await axios.get('http://localhost:8000/usermanagementapi/transaction/');
+        const usersResponse = await axios.get('http://localhost:8000/transactionsapi/profile/');
+        const transactionsResponse = await axios.get('http://localhost:8000/transactionsapi/transaction/');
         setUsers(usersResponse.data);
         setTransactions(transactionsResponse.data);
         // Extract unique currencies from transactions
@@ -183,17 +184,36 @@ const Dashboard = () => {
     }
   };
 
-
-  // Toggle the visibility of date filters
   const toggleDateFilters = () => {
-    setShowDateFilters((prev) => !prev);
+    setShowDateFilters(!showDateFilters);
+    setShowDate(false); // Disable date when filters are toggled
+    setSelectedCurrency(''); // Clear currency selection
   };
-
+  
   const toggleDate = () => {
-    setShowDate((prev) => !prev);
+    setShowDate(!showDate);
+    setShowDateFilters(false); // Disable date range when currency is selected
+    setStartDate(''); // Clear start date
+    setEndDate(''); // Clear end date
   };
+  
+  // Toggle the visibility of date filters
+  // const toggleDateFilters = () => {
+  //   setShowDateFilters((prev) => !prev);
+  // };
+
+  // const toggleDate = () => {
+  //   setShowDate((prev) => !prev);
+  // };
   const handleFilterChange = (event: SelectChangeEvent<string>) => {
     setSelectedCurrency(event.target.value as string);
+  };
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -205,141 +225,109 @@ const Dashboard = () => {
       <Typography variant="h4" className={styles.heading} gutterBottom>
         Transaction Monitoring
       </Typography>
-      <IconButton
-          onClick={toggleDateFilters}
+        <IconButton
+          onClick={handleClick}
           className={styles.header}
         >
-          {showDateFilters ? <MdDateRange /> : <MdDateRange />}
+          <IoFilter />
         </IconButton>
-        <IconButton
-          onClick={toggleDate}
-          className={styles.currency}
-        >
-          <GiWallet />
-        </IconButton>
+        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} PaperProps={{
+            style: {
+              backgroundColor: '#2A2D3C',
+            },
+          }}>
+          <MenuItem onClick={() => { handleFilter('all'); handleClose(); }} sx={{ color: 'white' }}>All Transactions</MenuItem>
+          <MenuItem onClick={() => { handleFilter('deposited'); handleClose(); }} sx={{ color: 'white' }}>Top-up</MenuItem>
+          <MenuItem onClick={() => { handleFilter('withdrawn'); handleClose(); }} sx={{ color: 'white' }}>Withdrawal</MenuItem>
+          <MenuItem onClick={() => { handleFilter('Transfer'); handleClose(); }} sx={{ color: 'white' }}>Transfers</MenuItem>
+          <MenuItem onClick={() => { handleFilter('received'); handleClose(); }} sx={{ color: 'white' }}>Received Payments</MenuItem>
+          <MenuItem onClick={() => { toggleDateFilters(); handleClose(); }} sx={{ color: 'white' }}>Date Range</MenuItem>
+          <MenuItem onClick={() => { toggleDate(); handleClose(); }} sx={{ color: 'white' }}>Currency Type</MenuItem>
+        </Menu>
+        </Box>
+        {/* Main Container for Currency and Date Fields */}
+        <Box className={styles.mainFilters}>
+          {showDate && (
+            <Select
+              value={selectedCurrency}
+              onChange={handleFilterChange}
+              displayEmpty
+              className={styles.currencySelect}
+              inputProps={{ 'aria-label': 'Currency' }}
+              disabled={showDateFilters} // Disable currency select when date filters are shown
+              IconComponent={() => (
+                <RiArrowDropDownLine style={{ color: 'white', fontSize: '60px' }} />
+              )}
+            >
+              <MenuItem value="">All Currencies</MenuItem>
+              {currencies.map((currency) => (
+                <MenuItem key={currency} value={currency}>
+                  {currency}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
         </Box>
 
-      {/* Filter Buttons */}
-      <Box className={styles.filterButtons}>
-      <Button
-          className={styles.filterButton}
-          variant={selectedTransactionType === 'all' ? 'contained' : 'outlined'}
-          onClick={() => handleFilter('all')}
-        >
-          All
-        </Button>
-        <Button
-          className={styles.filterButton}
-          variant={selectedTransactionType === 'received' ? 'contained' : 'outlined'}
-          onClick={() => handleFilter('received')}
-        >
-          <RiUserReceived2Fill /> Received
-        </Button>
-        <Button
-          className={styles.filterButton}
-          variant={selectedTransactionType === 'Transfer' ? 'contained' : 'outlined'}
-          onClick={() => handleFilter('Transfer')}
-        >
-          <BiTransfer /> Transfer
-        </Button>
-        <Button
-          className={styles.filterButton}
-          variant={selectedTransactionType === 'withdrawn' ? 'contained' : 'outlined'}
-          onClick={() => handleFilter('withdrawn')}
-        >
-          <PiHandWithdrawFill /> Withdraw
-        </Button>
-        <Button
-          className={styles.filterButton}
-          variant={selectedTransactionType === 'deposited' ? 'contained' : 'outlined'}
-          onClick={() => handleFilter('deposited')}
-        >
-          <MdOutlineAddCircle /> TopUp
-        </Button>
-        
-      </Box>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-        {/* Main Container for Currency and Date Fields */}
-        {(showDate || showDateFilters) && (
-        <Box className={styles.mainFilters}>
-            {showDate && (
-            <Select
-                value={selectedCurrency}
-                onChange={handleFilterChange}
-                displayEmpty
-                className={styles.currencySelect}
-                inputProps={{ 'aria-label': 'Currency' }}
-            >
-                <MenuItem value="">All Currencies</MenuItem>
-                {currencies.map((currency) => (
-                <MenuItem key={currency} value={currency}>
-                    {currency}
-                </MenuItem>
-                ))}
-            </Select>
-            )}
-        </Box>
-        
+        {showDateFilters && (
+          <Box mb={2} display="flex" className={styles.box}>
+            <Typography className={styles.head} sx={{ mr: 2 }}>
+              From:
+            </Typography>
+            <TextField
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              InputLabelProps={{ shrink: true }}
+              className={styles.dateField}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={openStartDatePicker}>
+                      <FaRegCalendar style={{ color: 'white', fontSize: '16px' }} />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              id="start-date-input"
+              sx={{
+                input: {
+                  color: 'white',
+                  backgroundColor: 'rgba(128, 128, 128, 0.253)',
+                },
+              }}
+              disabled={showDate} // Disable start date when currency is selected
+            />
+            <Typography className={styles.head} sx={{ mr: 2 }}>
+              To:
+            </Typography>
+            <TextField
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              InputLabelProps={{ shrink: true }}
+              className={styles.dateField}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={openEndDatePicker}>
+                      <FaRegCalendar style={{ color: 'white', fontSize: '16px' }} />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              id="end-date-input"
+              sx={{
+                input: {
+                  color: 'white',
+                  backgroundColor: 'rgba(128, 128, 128, 0.253)',
+                },
+              }}
+              disabled={showDate} // Disable end date when currency is selected
+            />
+          </Box>
         )}
-      {showDateFilters && (
-            <Box  mb={2} display="flex" className={styles.box}>
-              <Typography className={styles.head} sx={{ mr: 2 }}>
-                From:
-              </Typography>
-                <TextField
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                InputLabelProps={{ shrink: true }}
-                className={styles.dateField}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                      onClick={openStartDatePicker}
-                      >
-                        <FaRegCalendar style={{ color: 'white', fontSize: '16px' }} />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                id="start-date-input"
-                sx={{
-                  input: {
-                    color: 'white',
-                    backgroundColor: 'rgba(128, 128, 128, 0.253)',
-                  },
-                }}
-                />
-                <Typography className={styles.head} sx={{ mr: 2 }}>
-                  To:
-                </Typography>
-                <TextField
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                InputLabelProps={{ shrink: true }}
-                className={styles.dateField}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={openEndDatePicker}>
-                        <FaRegCalendar style={{ color: 'white', fontSize: '16px' }} />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                id="end-date-input"
-                sx={{
-                  input: {
-                    color: 'white',
-                    backgroundColor: 'rgba(128, 128, 128, 0.253)',
-                  },
-                }}
-                />
-            </Box>
-            )}
-      </Box>
+
       {/* Combined Table */}
       <TableContainer component={Paper} className={styles.tableContainer}>
         <Table>
@@ -348,36 +336,46 @@ const Dashboard = () => {
               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Name</TableCell>
               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Date</TableCell>
               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Amount</TableCell>
-              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Type</TableCell>
+              <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Transaction Type</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {combinedData.map((data, index) => (
               <TableRow key={`${data.transaction_id}-${index}`} className={styles.tableRow}>
-                <TableCell className={styles.tableCell}>
-                  <Box display="flex" alignItems="center">
-                  {data.user_profile_photo ? (
-                        <img
-                          src={data.user_profile_photo}
-                          alt={data.user_first_name}
-                          className={styles.profileImage}
-                        />
-                      ) : (
-                        <Box className={styles.profilePlaceholder}>
-                          <Typography variant="h4" className={styles.initial}>
-                            {`${data.user_first_name} ${data.user_middle_name || ''} ${data.user_last_name || ''}`.trim().charAt(0)}
-                          </Typography>
-                        </Box>
-                      )}
-                    <Box ml={2}>
-                      <Typography variant="body1">{data.user_first_name}</Typography>
+                <TableCell className={styles.tableCell} style={{ width: '150px', maxWidth: '150px' }}>
+                  <Box display="flex" alignItems="center" justifyContent="center">
+                    {data.user_profile_photo ? (
+                      <img
+                        src={data.user_profile_photo}
+                        alt={data.user_first_name}
+                        className={styles.profileImage}
+                        style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+                      />
+                    ) : (
+                      <Box className={styles.profilePlaceholder} style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Typography variant="h4" className={styles.initial}>
+                          {`${data.user_first_name} ${data.user_middle_name || ''} ${data.user_last_name || ''}`.trim().charAt(0)}
+                        </Typography>
+                      </Box>
+                    )}
+                    <Box display="flex" alignItems="center" justifyContent="center" ml={2}>
+                      <Typography variant="body1" justifyContent="center" alignItems="center">
+                      {`${data.user_first_name} ${data.user_middle_name || ''} ${data.user_last_name || ''}`.trim()}
+                      </Typography>
                     </Box>
                   </Box>
                 </TableCell>
-                <TableCell className={styles.tableCell}>{formatDate(data.transaction_timestamp)}</TableCell>
-                <TableCell className={styles.tableCell}>{data.transaction_amount}</TableCell>
-                <TableCell className={styles.tableCell}>{data.transaction_type}</TableCell>
+                <TableCell className={styles.tableCell} style={{ width: '200px' }}>
+                  {formatDate(data.transaction_timestamp)}
+                </TableCell>
+                <TableCell className={styles.tableCell} style={{ width: '150px' }}>
+                  {data.transaction_amount}
+                </TableCell>
+                <TableCell className={styles.tableCell} style={{ width: '150px' }}>
+                  {data.transaction_type}
+                </TableCell>
               </TableRow>
+
             ))}
           </TableBody>
         </Table>

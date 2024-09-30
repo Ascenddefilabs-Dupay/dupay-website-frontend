@@ -1,7 +1,7 @@
 .page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     background-color: black;
     padding: 1rem;
@@ -15,8 +15,13 @@
     background-color: black;
     color: #fff;
     padding: 10px;
+    margin-top: 0px;
+    height:50px
   }
-  
+  .detail {
+    /* text-align: center; Center text or inline elements like links */
+    left: 30px;
+  }
   .userInfo {
     display: flex;
     align-items: center;
@@ -54,6 +59,7 @@
     flex-basis: 60%; /* Adjust value width */
     text-align: left;
     /* color: white;  */
+    
   }
   .button {
     /* background: linear-gradient(90deg, #007bff9f, #301c30); */
@@ -72,6 +78,7 @@
     background-color: rgba(128, 128, 128, 0.253);
     border-radius: 8px;
     color:white;
+    height: 400px;
   }
   .statusCircle {
     position: absolute;
@@ -93,7 +100,24 @@
     align-items: center; /* Center the content horizontally */
     background-color: rgba(128, 128, 128, 0.253);
   }
-  
+  .header {
+    color: white;
+    margin-bottom: 1rem;
+    text-align: right;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    left: 400px;
+  }
+  .currency{
+    color: white;
+    margin-bottom: 1rem;
+    text-align: right;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    left: 450px;
+  }
   .detailsSection {
     /* width: 100%;
     background-color: darkgray; */
@@ -113,34 +137,6 @@
     
   }
    
-
-
-/* ViewDetails.module.css*/
-/* 
-.page {
-    padding: 20px;
-    background-color: #f9f9f9;
-    min-height: 100vh;
-    background-color: black;
-  }
-  
-  .heading {
-    margin-bottom: 20px;
-    color: white;
-    
-    
-  }
-  
-  .detailsContainer {
-    padding: 20px;
-    background-color: darkgray;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .detailsContainer Typography {
-    margin-bottom: 10px;
-  } */
   .profileImage {
     width: 150px;
     height: 150px;
@@ -163,4 +159,7 @@
     color: white; /* Text color */
     font-weight: bold;
   }
-  
+  .heading {
+    color: white;
+    margin-bottom: 1rem;
+  }
