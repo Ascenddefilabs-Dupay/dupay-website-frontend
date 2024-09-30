@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
-
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -240,59 +239,6 @@ const AdminDashboard: React.FC = () => {
       TopupValues: Object.keys(dataForPlot).map((date) => dataForPlot[date].Topup),
     };
   };
-
-  const { categories, RecievedValues, transferValues, withdrawalValues, TopupValues } = processTransactionData();
-
-  // Render labels for the Pie Chart
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const renderCustomizedLabel = (props: CustomizedLabelProps) => {
-    const { cx, cy, midAngle, outerRadius, value, name } = props;
-    const radius = outerRadius - 10;
-    const x = cx + radius * Math.cos(-midAngle * Math.PI / 180);
-    const y = cy + radius * Math.sin(-midAngle * Math.PI / 180);
-
-    return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize="14px">
-        {`${name}: ${value}`}
-      </text>
-    );
-  };
-
-  const activeUsersCount = userData.filter(user => user.user_status === true).length;
-  const holdUsersCount = userData.filter(user => user.user_hold === true).length;
-  const inactiveUsersCount = userData.filter(user => user.user_status === false).length;
-
-  // Process System Performance Data
-  // const handleSystemPerformance = () => {
-  //   const successfulTransactions = transactionData.filter(t => t.transaction_status === 'Success').length;
-  //   const failedTransactions = transactionData.filter(t => t.transaction_status === 'Pending').length;
-  //   const totalTransactions = successfulTransactions + failedTransactions;
-
-  //   if (totalTransactions > 0) {
-  //     const successPercentage = (successfulTransactions / totalTransactions) * 100;
-  //     const failedPercentage = (failedTransactions / totalTransactions) * 100;
-  //     setSystemPerformanceData([
-  //       { name: 'Success Transactions', value: successPercentage, color: '#4CAF50' },
-  //       { name: 'Failed Transactions', value: failedPercentage, color: '#F44336' },
-  //     ]);
-  //   }
-  // };
-
-  useEffect(() => {
-    handleSystemPerformance();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [transactionData]);
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const userActivityData: PieChartData[] = [
-    { name: 'Active', value: activeUsersCount, color: '#1569C7' },
-    { name: 'Hold', value: holdUsersCount, color: '#FF8042' },
-    { name: 'Inactive', value: inactiveUsersCount, color: '#64E986' },
-  ];
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleClose = (granularity: 'day' | 'month' | 'year') => {
     setTimeGranularity(granularity);
     setAnchorEl(null);
@@ -433,7 +379,7 @@ const AdminDashboard: React.FC = () => {
           <ul>
             <li>
               <FontAwesomeIcon icon={faChartBar} className={styles.navIcon} />
-              <Link href="/">Dashboard</Link>
+              <Link href="/Admin/AdminDashboard">Dashboard</Link>
             </li>
             {/* <li>
               <FontAwesomeIcon icon={faChartLine} className={styles.navIcon} />
@@ -445,7 +391,6 @@ const AdminDashboard: React.FC = () => {
             </li>
             <li>
               <GrSystem  className={styles.navIcon} />
-              <Link href="/Admin/UserManagement/ReportAnalysis">Content Management</Link>
             </li>
             <li>
               <FontAwesomeIcon icon={faUserPlus} className={styles.navIcon} />
@@ -569,7 +514,6 @@ const AdminDashboard: React.FC = () => {
         {/* System Performance Chart */}
         <Grid item xs={12} md={6}>
           <Box className={styles.chartContainer}>
-            <Typography variant="h6" align="center" className={styles.head} >
               System Performance
             </Typography>
             <PieChart width={700} height={300}>
