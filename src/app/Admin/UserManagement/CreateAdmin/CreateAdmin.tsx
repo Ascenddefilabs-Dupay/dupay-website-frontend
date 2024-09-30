@@ -45,7 +45,7 @@ const RegisterForm: React.FC = () => {
 
   const checkUserIdUnique = async (userId: string): Promise<boolean> => {
     try {
-      const response = await axios.get(`http://localhost:8000/usermanagementapi/AdminUser/${userId}/`);
+      const response = await axios.get(`http://localhost:8000/createadminapi/AdminUser/${userId}/`);
       console.log('Response:', response);
       return false; // User ID is not unique (exists)
     } catch (error) {
@@ -157,7 +157,7 @@ const RegisterForm: React.FC = () => {
     const hashedPassword = bcrypt.hashSync(formData.user_password, 10);
 
     const response = await axios.post(
-      'http://localhost:8000/usermanagementapi/AdminUser/',
+      'http://localhost:8000/createadminapi/AdminUser/',
       {
         user_id: newUserId,
         ...formData,

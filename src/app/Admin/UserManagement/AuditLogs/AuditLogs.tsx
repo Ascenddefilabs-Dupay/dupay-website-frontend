@@ -42,7 +42,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchActions = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/usermanagementapi/wallet-admin-actions/');
+        const response = await axios.get('http://localhost:8000/auditlogsapi/wallet-admin-actions/');
         setActions(response.data);
         setFilteredActions(response.data);
       } catch (error) {

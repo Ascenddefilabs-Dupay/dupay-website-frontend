@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
+
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -568,7 +569,7 @@ const AdminDashboard: React.FC = () => {
         {/* System Performance Chart */}
         <Grid item xs={12} md={6}>
           <Box className={styles.chartContainer}>
-            <Typography variant="h6" align="center" className={styles.head}>
+            <Typography variant="h6" align="center" className={styles.head} >
               System Performance
             </Typography>
             <PieChart width={700} height={300}>

@@ -71,8 +71,8 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersResponse = await axios.get('http://localhost:8000/usermanagementapi/profile/');
-        const transactionsResponse = await axios.get('http://localhost:8000/usermanagementapi/transaction/');
+        const usersResponse = await axios.get('http://localhost:8000/transactionsapi/profile/');
+        const transactionsResponse = await axios.get('http://localhost:8000/transactionsapi/transaction/');
         setUsers(usersResponse.data);
         setTransactions(transactionsResponse.data);
         // Extract unique currencies from transactions
@@ -341,31 +341,6 @@ const Dashboard = () => {
           </TableHead>
           <TableBody>
             {combinedData.map((data, index) => (
-              // <TableRow key={`${data.transaction_id}-${index}`} className={styles.tableRow}>
-              //   <TableCell className={styles.tableCell} >
-              //     <Box display="flex"  alignItems="center">
-              //     {data.user_profile_photo ? (
-              //           <img
-              //             src={data.user_profile_photo}
-              //             alt={data.user_first_name}
-              //             className={styles.profileImage}
-              //           />
-              //         ) : (
-              //           <Box className={styles.profilePlaceholder}>
-              //             <Typography variant="h4" className={styles.initial}>
-              //               {`${data.user_first_name} ${data.user_middle_name || ''} ${data.user_last_name || ''}`.trim().charAt(0)}
-              //             </Typography>
-              //           </Box>
-              //         )}
-              //       <Box  display="flex"  alignItems="center" justifyContent="center" ml={2}>
-              //         <Typography variant="body1"  justifyContent="center" alignItems="center">{data.user_first_name}</Typography>
-              //       </Box>
-              //     </Box>
-              //   </TableCell>
-              //   <TableCell className={styles.tableCell}>{formatDate(data.transaction_timestamp)}</TableCell>
-              //   <TableCell className={styles.tableCell}>{data.transaction_amount}</TableCell>
-              //   <TableCell className={styles.tableCell}>{data.transaction_type}</TableCell>
-              // </TableRow>
               <TableRow key={`${data.transaction_id}-${index}`} className={styles.tableRow}>
                 <TableCell className={styles.tableCell} style={{ width: '150px', maxWidth: '150px' }}>
                   <Box display="flex" alignItems="center" justifyContent="center">
