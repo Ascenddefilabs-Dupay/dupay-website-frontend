@@ -6,6 +6,8 @@ import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 import styles from './CreateAdmin.module.css'; // Importing CSS module
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { toast, ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const RegisterForm: React.FC = () => {
@@ -169,9 +171,8 @@ const RegisterForm: React.FC = () => {
         },
       }
     );
-
     if (response.status === 200 || response.status === 201) {
-      alert('User added successfully!');
+      toast.success('User added successfully!');
       console.log('Form Data:', {
         user_id: newUserId,
         ...formData,
@@ -180,10 +181,10 @@ const RegisterForm: React.FC = () => {
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error('Axios error:', error.response?.data || error.message);
-      alert('An error occurred while adding the user. Please try again.');
+      toast.error('An error occurred while adding the user. Please try again.');
     } else {
       console.error('Unknown error:', error);
-      alert('An unknown error occurred.');
+      toast.error('An unknown error occurred.');
     }
   }
 };
@@ -368,6 +369,15 @@ const RegisterForm: React.FC = () => {
         <Button type="submit" variant="contained"  className={styles.submitButton}>
           SUBMIT
         </Button>
+         {/* ToastContainer for rendering toast notifications */}
+      <ToastContainer
+        position="top-center"          // Set the position of the toast notification
+        autoClose={2000}               // Close the notification after 2 seconds
+        hideProgressBar={true}         // Hide the progress bar
+        closeOnClick={true}            // Close the toast when it's clicked
+        pauseOnHover={true}            // Pause the notification on hover
+        transition={Slide}             // Slide transition for the toast
+      />
       </Box>
     </div>
   );

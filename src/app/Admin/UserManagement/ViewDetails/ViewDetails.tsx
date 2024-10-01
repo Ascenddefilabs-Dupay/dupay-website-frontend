@@ -113,6 +113,7 @@ const UserProfile: React.FC = () => {
 
 
   const getStatusColor = (user_hold?: boolean, user_status?: string | boolean) => {
+    console.log('user_hold:', user_hold, 'user_status:', user_status); // Debugging line
     if (user_hold === true) {
       return 'gray'; // Return white if user_hold is true
     }
@@ -123,7 +124,7 @@ const UserProfile: React.FC = () => {
       return 'red'; // Return red if user_status is 'false' or false
     }
     
-    return 'gray'; // Default color if neither condition is met
+    return 'red'; // Default color if neither condition is met
   };
 
   return (
