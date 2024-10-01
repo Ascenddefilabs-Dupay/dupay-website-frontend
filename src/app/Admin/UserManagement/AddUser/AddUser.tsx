@@ -7,8 +7,14 @@ import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 import styles from './AddUser.module.css'; // Importing CSS module
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { toast, ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import { useRouter } from 'next/router'; // Import the useRouter hook
+import { useRouter } from 'next/navigation'; // Correct for App Directory (Next.js 13)
+
 
 const RegisterForm: React.FC = () => {
+  const router = useRouter(); // Initialize the router
   const [formData, setFormData] = useState({
     user_first_name: '',
     user_last_name: '',
@@ -22,7 +28,7 @@ const RegisterForm: React.FC = () => {
     user_city: '',
     user_dob: '',
     user_address_line_1: '',
-    user_type: 'customer', // Default value
+    user_type: 'user', // Default value
   });
 
   const [errors, setErrors] = useState({
@@ -95,27 +101,100 @@ const RegisterForm: React.FC = () => {
     return !newErrors.missingFields && !newErrors.passwordMismatch && !newErrors.emailInvalid && !newErrors.phoneInvalid && !newErrors.nameInvalid && !newErrors.dobInvalid;
   };
 
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   if (!validateForm()) {
+  //     if (errors.missingFields) {
+  //       alert('Please fill all required details.');
+  //     }
+  //     if (errors.passwordMismatch) {
+  //       alert('Passwords do not match.');
+  //     }
+  //     if (errors.emailInvalid) {
+  //       alert('Invalid email format.');
+  //     }
+  //     if (errors.phoneInvalid) {
+  //       alert('Invalid phone number. Must be 10 digits.');
+  //     }
+  //     if (errors.nameInvalid) {
+  //       alert('First name and last name cannot be empty.');
+  //     }
+  //     if (errors.dobInvalid) {
+  //       alert('You must be at least 18 years old.');
+  //     }
+  //     return;
+  //   }
+
+  //   let isUniqueUserId = false;
+  //   let newUserId = userId;
+
+  //   while (!isUniqueUserId) {
+  //     isUniqueUserId = await checkUserIdUnique(newUserId);
+
+  //     if (!isUniqueUserId) {
+  //       userCount += 1;
+  //       newUserId = generateUserId(userCount);
+  //     }
+  //   }
+
+  //   try {
+  //     // Hash the password before sending it
+  //     const hashedPassword = bcrypt.hashSync(formData.user_password, 10);
+
+  //     const response = await axios.post(
+  //       'http://localhost:8000/usermanagementapi/profile/',
+  //       {
+  //         user_id: newUserId,
+  //         ...formData,
+  //         user_password: hashedPassword, // Send hashed password
+  //       },
+  //       {
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         }
+  //       }
+  //     );
+
+  //     if (response.status === 200 || response.status === 201) {
+  //       alert('User added successfully!');
+  //       console.log('Form Data:', {
+  //         user_id: newUserId,
+  //         ...formData,
+  //       });
+  //     }
+  //   } catch (error: unknown) {
+  //     if (axios.isAxiosError(error)) {
+  //       console.error('Axios error:', error.response?.data || error.message);
+  //       alert('An error occurred while adding the user. Please try again.');
+  //     } else {
+  //       console.error('Unknown error:', error);
+  //       alert('An unknown error occurred.');
+  //     }
+  //   }
+  // };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Validation check before submission
     if (!validateForm()) {
       if (errors.missingFields) {
-        alert('Please fill all required details.');
+        toast.error('Please fill all required details.');
       }
       if (errors.passwordMismatch) {
-        alert('Passwords do not match.');
+        toast.error('Passwords do not match.');
       }
       if (errors.emailInvalid) {
-        alert('Invalid email format.');
+        toast.error('Invalid email format.');
       }
       if (errors.phoneInvalid) {
-        alert('Invalid phone number. Must be 10 digits.');
+        toast.error('Invalid phone number. Must be 10 digits.');
       }
       if (errors.nameInvalid) {
-        alert('First name and last name cannot be empty.');
+        toast.error('First name and last name cannot be empty.');
       }
       if (errors.dobInvalid) {
-        alert('You must be at least 18 years old.');
+        toast.error('You must be at least 18 years old.');
       }
       return;
     }
@@ -123,6 +202,7 @@ const RegisterForm: React.FC = () => {
     let isUniqueUserId = false;
     let newUserId = userId;
 
+    // Ensuring the user ID is unique by checking with the server
     while (!isUniqueUserId) {
       isUniqueUserId = await checkUserIdUnique(newUserId);
 
@@ -136,6 +216,7 @@ const RegisterForm: React.FC = () => {
       // Hash the password before sending it
       const hashedPassword = bcrypt.hashSync(formData.user_password, 10);
 
+      // Sending the form data to the backend API
       const response = await axios.post(
         'http://localhost:8000/usermanagementapi/profile/',
         {
@@ -150,20 +231,24 @@ const RegisterForm: React.FC = () => {
         }
       );
 
+      // Show success message if the user is added successfully
       if (response.status === 200 || response.status === 201) {
-        alert('User added successfully!');
+        toast.success('User added successfully!');
         console.log('Form Data:', {
           user_id: newUserId,
           ...formData,
         });
+
+        // Navigate to the next page (replace '/next-page' with your actual route)
+        router.push('/Admin/UserManagement/AccountManage');
       }
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         console.error('Axios error:', error.response?.data || error.message);
-        alert('An error occurred while adding the user. Please try again.');
+        toast.error('An error occurred while adding the user. Please try again.');
       } else {
         console.error('Unknown error:', error);
-        alert('An unknown error occurred.');
+        toast.error('An unknown error occurred.');
       }
     }
   };
@@ -409,6 +494,15 @@ const RegisterForm: React.FC = () => {
         <Button type="submit" variant="contained" color="primary" className={styles.submitButton}>
           SUBMIT
         </Button>
+        {/* ToastContainer for rendering toast notifications */}
+      <ToastContainer
+        position="top-center"          // Set the position of the toast notification
+        autoClose={2000}               // Close the notification after 2 seconds
+        hideProgressBar={true}         // Hide the progress bar
+        closeOnClick={true}            // Close the toast when it's clicked
+        pauseOnHover={true}            // Pause the notification on hover
+        transition={Slide}             // Slide transition for the toast
+      />
       </Box>
     </div>
   );
