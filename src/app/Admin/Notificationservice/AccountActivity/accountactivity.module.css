@@ -3,10 +3,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  /* justify-content: center; */
   background-color: #17171a;
-  /* background-color: #000; */
   color: #fff;
   width: 100%;
   height: 100vh;
@@ -20,15 +17,12 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   font-family: 'Poppins', sans-serif;
 }
 
 .header {
   text-align: center;
-  /* position: fixed;
-  bottom : 64%; */
 }
 
 .messagetext {
@@ -75,8 +69,6 @@
 }
 
 .button1 {
-  /* background-color: #fff; */
-  /* color: #fff; */
   left: 18px;
   font-family: 'Poppins', sans-serif;
 }
@@ -88,8 +80,6 @@
   margin: 0 auto;
   margin-top: 30px;
   font-family: 'Poppins', sans-serif;
-  /* position: fixed;
-  bottom: 46%; */
 }
 
 .listItem {
@@ -115,26 +105,14 @@
 }
 
 .editButton {
-  /* background-color: #fff; */
   font-family: 'Poppins', sans-serif;
 }
 
 .deleteButton {
-  /* background-color: #fff; */
   font-family: 'Poppins', sans-serif;
 }
 
-/* .editButton:hover {
-  background-color: #4cae4c;
-  font-family: 'Poppins', sans-serif;
-} */
-
-/* .deleteButton:hover {
-  background-color: #c9302c;
-} */
-
 .notifyButton{
-  /* background: linear-gradient(to right, #7706d3 25%, #f342eb 100%); */
   background: #fff;
   font-weight: bold;
   color: #000;
@@ -143,8 +121,5 @@
 }
 
 .cancelButton{
-  /* background-color: #fff; */
-  /* margin-left: 10px; */
-  /* background-color: rgb(250, 84, 84); */
   font-family: 'Poppins', sans-serif;
 }

@@ -1,54 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  background-color: #000;
+  background-color: #17171a;
   color: #fff;
-  margin: 0 auto;
   width: 100%;
   height: 100vh;
   padding: 20px;
   box-sizing: border-box;
-  overflow-y: hidden;
-  border-radius: 0px;
-}
- 
-.button {
-  position: relative;
-  /* left: 38%; */
-  top: 30px;
-  background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  height: 36px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  transform: translateY(0);
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 0.5rem;
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
+  overflow-y: auto;
+  font-family: 'Poppins', sans-serif;
 }
 
-.button:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15);
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header {
+  text-align: center;
+}
+
+.messagetext {
+  margin-top: 20px;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .centeredBox {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.messagetext {
-  position: relative;
-  top: 40px;
-  /* left: 34.5%; */
+.textField {
+  margin-right: 15px;
+  background-color: #2A2D3C;
+  color: #fff;
+  border-radius: 8px;
+  width: 107vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+.textFieldInput{
+  color: #fff;
+}
+
+.button {
+  background: #fff;
+  color: #000;
+  height: 36px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0 15px;
+  border-radius: 0.5rem;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  font-family: 'Poppins', sans-serif;
+  width: 25vh;
+
+}
+
+.button1 {
+  left: 18px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2A2D3C;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.listItem span {
+  flex: 1;
+  font-family: 'Poppins', sans-serif;
+}
+
+.editButton, .deleteButton {
+  margin-left: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.editButton {
+  font-family: 'Poppins', sans-serif;
+}
+
+.deleteButton {
+  font-family: 'Poppins', sans-serif;
+}
+
+.notifyButton{
+  background: #fff;
+  font-weight: bold;
+  color: #000;
+  margin-left: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cancelButton{
+  font-family: 'Poppins', sans-serif;
 }
