@@ -171,6 +171,12 @@ const AccountActivity: React.FC = () => {
                 InputProps={{
                   className: styles.textFieldInput, // Apply the custom input styles
                 }}
+                multiline
+                rows={4} // Adjust the number of rows as needed
+                sx={{
+                  overflowY: 'auto', // Make it scrollable
+                  maxHeight: '200px', // Set a max height for the text field
+                }}
               />
               <Button variant="contained" className={styles.button} onClick={addContent}>
                 Add Message
