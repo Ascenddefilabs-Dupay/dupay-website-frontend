@@ -42,7 +42,7 @@ const ProductAnnouncement: React.FC = () => {
 
   const fetchActivities = async () => {
     try {
-      const response = await axios.get<AdminProductAnnouncement[]>('http://localhost:8000/productannouncementapi/admin-product-announcement/');
+      const response = await axios.get<AdminProductAnnouncement[]>('http://notificationservice-ind-255574993735.asia-south1.run.app/productannouncementapi/admin-product-announcement/');
       setActivities(response.data);
     } catch (error) {
       console.error('Error fetching activities:', error);
@@ -51,7 +51,7 @@ const ProductAnnouncement: React.FC = () => {
 
   const fetchUserIds = async () => {
     try {
-      const response = await axios.get<{ user_ids: string[] }>('http://localhost:8000/productannouncementapi/get-product-announcement-user-ids/');
+      const response = await axios.get<{ user_ids: string[] }>('http://notificationservice-ind-255574993735.asia-south1.run.app/productannouncementapi/get-product-announcement-user-ids/');
       if (response.data.user_ids) {
         setUserIds(response.data.user_ids);
       } else {
@@ -66,7 +66,7 @@ const ProductAnnouncement: React.FC = () => {
     if (!newContent.trim()) return;
 
     try {
-      const response = await axios.post<AdminProductAnnouncement>('http://localhost:8000/productannouncementapi/admin-product-announcement/', {
+      const response = await axios.post<AdminProductAnnouncement>('http://notificationservice-ind-255574993735.asia-south1.run.app/productannouncementapi/admin-product-announcement/', {
         content: newContent,
       });
       setActivities((prevActivities) => [...prevActivities, response.data]);
@@ -80,7 +80,7 @@ const ProductAnnouncement: React.FC = () => {
     if (!editContent.trim()) return;
 
     try {
-      const response = await axios.put<AdminProductAnnouncement>(`http://localhost:8000/productannouncementapi/admin-product-announcement/${content_id}/`, {
+      const response = await axios.put<AdminProductAnnouncement>(`http://notificationservice-ind-255574993735.asia-south1.run.app/productannouncementapi/admin-product-announcement/${content_id}/`, {
         content: editContent,
       });
       setActivities((prevActivities) =>
@@ -97,7 +97,7 @@ const ProductAnnouncement: React.FC = () => {
 
   const deleteContent = async (content_id: string) => {
     try {
-      await axios.delete(`http://localhost:8000/productannouncementapi/admin-product-announcement/${content_id}/`);
+      await axios.delete(`http://notificationservice-ind-255574993735.asia-south1.run.app/productannouncementapi/admin-product-announcement/${content_id}/`);
       setActivities((prevActivities) =>
         prevActivities.filter((activity) => activity.content_id !== content_id)
       );
@@ -119,7 +119,7 @@ const ProductAnnouncement: React.FC = () => {
   const notifyEveryone = async (content_id: string) => {
     try {
       const response = await axios.post(
-        'http://localhost:8000/productannouncementapi/create-product-announcement/',
+        'http://notificationservice-ind-255574993735.asia-south1.run.app/productannouncementapi/create-product-announcement/',
         { content_id: content_id },
         { headers: { 'Content-Type': 'application/json' } }
       );
