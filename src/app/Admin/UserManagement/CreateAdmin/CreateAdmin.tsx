@@ -33,7 +33,7 @@ const RegisterForm: React.FC = () => {
     dobInvalid: false,
   });
 
-  
+  const [showLoader, setShowLoader] = useState<boolean>(true);
   const generateUserId = (index: number) => {
     const prefix = 'DupA';
     const paddedIndex = String(index).padStart(4, '0');
@@ -188,9 +188,21 @@ const RegisterForm: React.FC = () => {
     }
   }
 };
-  
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowLoader(false);
+  }, ); // 2 seconds delay
+
+  return () => clearTimeout(timer);
+}, []);
+
   return (
     <div className={styles.page}>
+            {showLoader && (
+          <div className={styles.loaderContainer}>
+            <div className={styles.loader}></div>
+          </div>
+        )}
              <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
           </Link>

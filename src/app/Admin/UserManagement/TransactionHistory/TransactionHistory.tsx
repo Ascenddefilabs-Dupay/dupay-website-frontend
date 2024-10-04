@@ -65,7 +65,7 @@ const Dashboard = () => {
   const [showDate, setShowDate] = useState<boolean>(false);
   // const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
+  const [showLoader, setShowLoader] = useState<boolean>(true);
   
   // Fetch users and transactions once on mount
   useEffect(() => {
@@ -189,7 +189,14 @@ const Dashboard = () => {
     setShowDate(false); // Disable date when filters are toggled
     setSelectedCurrency(''); // Clear currency selection
   };
-  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, 2000); // 2 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const toggleDate = () => {
     setShowDate(!showDate);
     setShowDateFilters(false); // Disable date range when currency is selected
@@ -218,6 +225,11 @@ const Dashboard = () => {
 
   return (
     <div className={styles.page}>
+      {showLoader && (
+          <div className={styles.loaderContainer}>
+            <div className={styles.loader}></div>
+          </div>
+        )}
                 <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
           </Link>
@@ -226,6 +238,7 @@ const Dashboard = () => {
         Transaction Monitoring
       </Typography>
         <IconButton
+        title='Filter'
           onClick={handleClick}
           className={styles.header}
         >

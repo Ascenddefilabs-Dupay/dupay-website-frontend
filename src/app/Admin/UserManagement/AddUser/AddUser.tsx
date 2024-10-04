@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
 import axios from 'axios';
 import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation'; // Correct for App Directory (Next.
 
 const RegisterForm: React.FC = () => {
   const router = useRouter(); // Initialize the router
+  const [showLoader, setShowLoader] = useState<boolean>(true);
   const [formData, setFormData] = useState({
     user_first_name: '',
     user_last_name: '',
@@ -252,9 +253,21 @@ const RegisterForm: React.FC = () => {
       }
     }
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, ); // 2 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className={styles.page}>
+            {showLoader && (
+          <div className={styles.loaderContainer}>
+            <div className={styles.loader}></div>
+          </div>
+        )}
        <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
           </Link>

@@ -38,6 +38,7 @@ const Dashboard = () => {
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [showDateFields, setShowDateFields] = useState<boolean>(false);
+  const [showLoader, setShowLoader] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchActions = async () => {
@@ -88,8 +89,22 @@ const Dashboard = () => {
     filterByDateRange();
   }, [filterByDateRange]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, ); // 2 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
+
   return (
     <div className={styles.page}>
+            {showLoader && (
+          <div className={styles.loaderContainer}>
+            <div className={styles.loader}></div>
+          </div>
+        )}
              <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
           </Link>
