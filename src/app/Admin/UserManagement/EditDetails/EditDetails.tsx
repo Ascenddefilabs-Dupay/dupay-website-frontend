@@ -35,6 +35,7 @@ const UserProfile: React.FC = () => {
   const [isInitialEdit, setIsInitialEdit] = useState(true);
   const searchParams = useSearchParams();
   const userId = searchParams ? searchParams.get('user_id') : null;
+  const [showLoader, setShowLoader] = useState<boolean>(true);
 
   const fetchUserProfile = async () => {
     try {
@@ -140,6 +141,13 @@ const UserProfile: React.FC = () => {
       }
     }
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, ); // 2 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleBack = () => {
     console.log('Going back');
@@ -153,6 +161,11 @@ const UserProfile: React.FC = () => {
 
   return (
     <div className={styles.page}>
+            {showLoader && (
+          <div className={styles.loaderContainer}>
+            <div className={styles.loader}></div>
+          </div>
+        )}
       <Link onClick={handleBack} href={`/Admin/UserManagement/ViewDetails?user_id=${user?.user_id}`}>
           <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
       </Link>

@@ -11,6 +11,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { MdOutlineNoAccounts } from "react-icons/md";
 import { FaCoins } from "react-icons/fa";
 import { FaMoneyCheckAlt } from "react-icons/fa";
+
 // import { TbFreezeRowColumn } from "react-icons/tb";
 
 interface User {
@@ -37,6 +38,7 @@ const UserProfile: React.FC = () => {
   const [profileImage, setProfileImage] = useState<string>('');
   const searchParams = useSearchParams();
   const userId = searchParams ? searchParams.get('user_id') : null;
+  const [showLoader, setShowLoader] = useState<boolean>(true);
 
   const fetchUserProfile = async () => {
     try {
@@ -72,6 +74,13 @@ const UserProfile: React.FC = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, ); // 2 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleFreezeAccount = async () => {
     if (!userId) {
@@ -129,6 +138,11 @@ const UserProfile: React.FC = () => {
 
   return (
     <div className={styles.page}>
+      {showLoader && (
+          <div className={styles.loaderContainer}>
+            <div className={styles.loader}></div>
+          </div>
+        )}
       <Link href="/Admin/UserManagement/AccountManage">
           <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
       </Link>

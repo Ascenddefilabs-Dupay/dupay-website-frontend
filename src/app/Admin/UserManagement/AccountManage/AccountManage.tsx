@@ -38,6 +38,7 @@ const Dashboard: React.FC = () => {
   const [selectedUserType, setSelectedUserType] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [statusMenuAnchor, setStatusMenuAnchor] = useState<null | HTMLElement>(null);
+  const [showLoader, setShowLoader] = useState<boolean>(true);
   const [userTypeMenuAnchor, setUserTypeMenuAnchor] = useState<null | HTMLElement>(null); // New state for user type filter
   // const [openDetails, setOpenDetails] = useState<number | null>(null);
 
@@ -126,9 +127,21 @@ const Dashboard: React.FC = () => {
 
     return { text: 'Inactive', color: 'white' };
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, ); // 2 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className={styles.page}>
+            {showLoader && (
+          <div className={styles.loaderContainer}>
+            <div className={styles.loader}></div>
+          </div>
+        )}
           <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
           </Link>
