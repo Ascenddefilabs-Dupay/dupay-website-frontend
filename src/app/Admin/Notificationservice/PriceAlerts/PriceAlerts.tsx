@@ -70,7 +70,7 @@ const PriceAlerts: React.FC = () => {
 
     const fetchPriceAlerts = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/pricealertsapi/get-price-alerts-user-ids/');
+            const response = await axios.get('http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi/get-price-alerts-user-ids/');
             const userIds = response.data.user_ids;
 
             if (userIds && userIds.length > 0) {
@@ -85,7 +85,7 @@ const PriceAlerts: React.FC = () => {
 
     const pollPriceAlerts = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/pricealertsapi/create-price-alerts/', {
+            const response = await axios.post('http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi/create-price-alerts/', {
                 user_id: userId,
             });
 
@@ -101,7 +101,7 @@ const PriceAlerts: React.FC = () => {
 
     const fetchCurrencies = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/pricealertsapi/admin-manage-crypto-currencies/');
+            const response = await axios.get('http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi/admin-manage-crypto-currencies/');
             setCurrencies(response.data);
         } catch (error) {
             console.error('Error fetching currencies:', error);
@@ -161,7 +161,7 @@ const PriceAlerts: React.FC = () => {
         if (!validateForm()) return;
         
         try {
-            const response = await axios.post('http://localhost:8000/pricealertsapi/admin-manage-crypto-currencies/', {
+            const response = await axios.post('http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi/admin-manage-crypto-currencies/', {
                 symbol: newCurrency.symbol,
                 coin_gecko_id: newCurrency.coin_gecko_id,
                 price_change_threshold: newCurrency.price_change_threshold,
@@ -185,7 +185,7 @@ const PriceAlerts: React.FC = () => {
     const handleDelete = async (currency_id: string) => {
         if (!confirm('Are you sure you want to delete this currency?')) return;
         try {
-            await axios.delete(`http://localhost:8000/pricealertsapi/admin-manage-crypto-currencies/${currency_id}/`);
+            await axios.delete(`http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi/admin-manage-crypto-currencies/${currency_id}/`);
             fetchCurrencies();
         } catch (error) {
             console.error('Error deleting currency:', error);
@@ -237,7 +237,7 @@ const PriceAlerts: React.FC = () => {
         if (!valid) return;
 
         try {
-            await axios.put(`http://localhost:8000/pricealertsapi/admin-manage-crypto-currencies/${editCurrencyId}/`, {
+            await axios.put(`http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi/admin-manage-crypto-currencies/${editCurrencyId}/`, {
                 symbol: editCurrency.symbol,
                 coin_gecko_id: editCurrency.coin_gecko_id,
                 price_change_threshold: editCurrency.price_change_threshold,
@@ -260,7 +260,7 @@ const PriceAlerts: React.FC = () => {
 
     const fetchLatestPriceAlerts = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/pricealertsapi/get-latest-admin-price-alerts/');
+            const response = await axios.get('http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi/get-latest-admin-price-alerts/');
             setNotifications(response.data);
         } catch (error) {
             console.error('Error fetching latest price alerts:', error);

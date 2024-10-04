@@ -42,7 +42,7 @@ const InsightsTips: React.FC = () => {
 
   const fetchActivities = async () => {
     try {
-      const response = await axios.get<AdminInsightsTips[]>('http://localhost:8000/insightstipsapi/admin-insights-tips/');
+      const response = await axios.get<AdminInsightsTips[]>('http://notificationservice-ind-255574993735.asia-south1.run.app/insightstipsapi/admin-insights-tips/');
       setActivities(response.data);
     } catch (error) {
       console.error('Error fetching activities:', error);
@@ -51,7 +51,7 @@ const InsightsTips: React.FC = () => {
 
   const fetchUserIds = async () => {
     try {
-      const response = await axios.get<{ user_ids: string[] }>('http://localhost:8000/insightstipsapi/get-insights-tips-user-ids/');
+      const response = await axios.get<{ user_ids: string[] }>('http://notificationservice-ind-255574993735.asia-south1.run.app/insightstipsapi/get-insights-tips-user-ids/');
       if (response.data.user_ids) {
         setUserIds(response.data.user_ids);
       } else {
@@ -66,7 +66,7 @@ const InsightsTips: React.FC = () => {
     if (!newContent.trim()) return;
 
     try {
-      const response = await axios.post<AdminInsightsTips>('http://localhost:8000/insightstipsapi/admin-insights-tips/', {
+      const response = await axios.post<AdminInsightsTips>('http://notificationservice-ind-255574993735.asia-south1.run.app/insightstipsapi/admin-insights-tips/', {
         content: newContent,
       });
       setActivities((prevActivities) => [...prevActivities, response.data]);
@@ -80,7 +80,7 @@ const InsightsTips: React.FC = () => {
     if (!editContent.trim()) return;
 
     try {
-      const response = await axios.put<AdminInsightsTips>(`http://localhost:8000/insightstipsapi/admin-insights-tips/${content_id}/`, {
+      const response = await axios.put<AdminInsightsTips>(`http://notificationservice-ind-255574993735.asia-south1.run.app/insightstipsapi/admin-insights-tips/${content_id}/`, {
         content: editContent,
       });
       setActivities((prevActivities) =>
@@ -97,7 +97,7 @@ const InsightsTips: React.FC = () => {
 
   const deleteContent = async (content_id: string) => {
     try {
-      await axios.delete(`http://localhost:8000/insightstipsapi/admin-insights-tips/${content_id}/`);
+      await axios.delete(`http://notificationservice-ind-255574993735.asia-south1.run.app/insightstipsapi/admin-insights-tips/${content_id}/`);
       setActivities((prevActivities) =>
         prevActivities.filter((activity) => activity.content_id !== content_id)
       );
@@ -119,7 +119,7 @@ const InsightsTips: React.FC = () => {
   const notifyEveryone = async (content_id: string) => {
     try {
       const response = await axios.post(
-        'http://localhost:8000/insightstipsapi/create-insights-tips/',
+        'http://notificationservice-ind-255574993735.asia-south1.run.app/insightstipsapi/create-insights-tips/',
         { content_id: content_id },
         { headers: { 'Content-Type': 'application/json' } }
       );
