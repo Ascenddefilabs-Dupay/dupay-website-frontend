@@ -42,7 +42,7 @@ const AccountActivity: React.FC = () => {
 
   const fetchActivities = async () => {
     try {
-      const response = await axios.get<AdminAccountActivity[]>('http://notificationservice-ind-255574993735.asia-south1.run.app/accountactivityapi/admin-account-activity/');
+      const response = await axios.get<AdminAccountActivity[]>('http://localhost:8000/accountactivityapi/admin-account-activity/');
       setActivities(response.data);
     } catch (error) {
       console.error('Error fetching activities:', error);
@@ -51,7 +51,7 @@ const AccountActivity: React.FC = () => {
 
   const fetchUserIds = async () => {
     try {
-      const response = await axios.get<{ user_ids: string[] }>('http://notificationservice-ind-255574993735.asia-south1.run.app/accountactivityapi/get-account-activity-user-ids/');
+      const response = await axios.get<{ user_ids: string[] }>('http://localhost:8000/accountactivityapi/get-account-activity-user-ids/');
       if (response.data.user_ids) {
         setUserIds(response.data.user_ids);
       } else {
@@ -66,7 +66,7 @@ const AccountActivity: React.FC = () => {
     if (!newContent.trim()) return;
 
     try {
-      const response = await axios.post<AdminAccountActivity>('http://notificationservice-ind-255574993735.asia-south1.run.app/accountactivityapi/admin-account-activity/', {
+      const response = await axios.post<AdminAccountActivity>('http://localhost:8000/accountactivityapi/admin-account-activity/', {
         content: newContent,
       });
       setActivities((prevActivities) => [...prevActivities, response.data]);
@@ -80,7 +80,7 @@ const AccountActivity: React.FC = () => {
     if (!editContent.trim()) return;
 
     try {
-      const response = await axios.put<AdminAccountActivity>(`http://notificationservice-ind-255574993735.asia-south1.run.app/accountactivityapi/admin-account-activity/${content_id}/`, {
+      const response = await axios.put<AdminAccountActivity>(`http://localhost:8000/accountactivityapi/admin-account-activity/${content_id}/`, {
         content: editContent,
       });
       setActivities((prevActivities) =>
@@ -97,7 +97,7 @@ const AccountActivity: React.FC = () => {
 
   const deleteContent = async (content_id: string) => {
     try {
-      await axios.delete(`http://notificationservice-ind-255574993735.asia-south1.run.app/accountactivityapi/admin-account-activity/${content_id}/`);
+      await axios.delete(`http://localhost:8000/accountactivityapi/admin-account-activity/${content_id}/`);
       setActivities((prevActivities) =>
         prevActivities.filter((activity) => activity.content_id !== content_id)
       );
@@ -119,7 +119,7 @@ const AccountActivity: React.FC = () => {
   const notifyEveryone = async (content_id: string) => {
     try {
       const response = await axios.post(
-        'http://notificationservice-ind-255574993735.asia-south1.run.app/accountactivityapi/create-account-activity/',
+        'http://localhost:8000/accountactivityapi/create-account-activity/',
         { content_id: content_id },
         { headers: { 'Content-Type': 'application/json' } }
       );
