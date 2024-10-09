@@ -65,6 +65,7 @@ const Dashboard = () => {
   const [showDate, setShowDate] = useState<boolean>(false);
   // const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showLoader, setShowLoader] = useState<boolean>(true);
   
   // Fetch users and transactions once on mount
@@ -225,11 +226,6 @@ const Dashboard = () => {
 
   return (
     <div className={styles.page}>
-      {showLoader && (
-          <div className={styles.loaderContainer}>
-            <div className={styles.loader}></div>
-          </div>
-        )}
                 <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
           </Link>

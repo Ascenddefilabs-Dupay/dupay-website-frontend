@@ -38,6 +38,7 @@ const Dashboard = () => {
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
   const [showDateFields, setShowDateFields] = useState<boolean>(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showLoader, setShowLoader] = useState<boolean>(true);
 
   useEffect(() => {
@@ -100,11 +101,6 @@ const Dashboard = () => {
 
   return (
     <div className={styles.page}>
-            {showLoader && (
-          <div className={styles.loaderContainer}>
-            <div className={styles.loader}></div>
-          </div>
-        )}
              <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
           </Link>

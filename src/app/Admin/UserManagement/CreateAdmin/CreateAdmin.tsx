@@ -33,6 +33,7 @@ const RegisterForm: React.FC = () => {
     dobInvalid: false,
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showLoader, setShowLoader] = useState<boolean>(true);
   const generateUserId = (index: number) => {
     const prefix = 'DupA';
@@ -198,11 +199,6 @@ useEffect(() => {
 
   return (
     <div className={styles.page}>
-            {showLoader && (
-          <div className={styles.loaderContainer}>
-            <div className={styles.loader}></div>
-          </div>
-        )}
              <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
           </Link>

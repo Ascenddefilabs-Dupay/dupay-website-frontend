@@ -4,13 +4,14 @@
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Box, Typography, Card, CardContent, IconButton } from '@mui/material';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import styles from './ViewDetails.module.css'; // Import the CSS module
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { MdOutlineNoAccounts } from "react-icons/md";
 import { FaCoins } from "react-icons/fa";
 import { FaMoneyCheckAlt } from "react-icons/fa";
+// import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 
 // import { TbFreezeRowColumn } from "react-icons/tb";
 
@@ -32,13 +33,30 @@ interface User {
   user_profile_photo?: string | { data: Uint8Array }; // Handle profile photo data or URL
   user_hold?: boolean; // Added the user_hold field for freezing accounts
 }
+const currencySymbols: { [key: string]: string } = {
+  USD: '$',
+  EUR: '€',
+  GBP: '£',
+  INR: '₹',
+  JPY: '¥',
+  AUD: 'A$',
+  CAD: 'C$',
+  // Add more currency symbols as needed
+};
 
 const UserProfile: React.FC = () => {
   const [user, setUserProfile] = useState<User | null>(null);
   const [profileImage, setProfileImage] = useState<string>('');
   const searchParams = useSearchParams();
   const userId = searchParams ? searchParams.get('user_id') : null;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showLoader, setShowLoader] = useState<boolean>(true);
+  const [balance, setBalance] = useState<number | null>(null);
+  const [currencyType, setCurrencyType] = useState<string | null>(null);
+  const [showBalanceOnly, setShowBalanceOnly] = useState<boolean>(false);
+  const [walletId, setWalletId] = useState<string | null>(null);
+  // const [userId, setUserId] = useState<string | null>(null);
+
 
   const fetchUserProfile = async () => {
     try {
@@ -119,8 +137,143 @@ const UserProfile: React.FC = () => {
       }
     }
   };
+  // interface ApiError {
+  //   response?: {
+  //     data: unknown;
+  //   };
+  //   message: string;
+  // }
+  // const handleFetchBalance = async () => {
+  //   if (!userId) {
+  //     console.error('User ID is missing');
+  //     return;
+  //   }
 
+  //   try {
+  //     const walletResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallets/${userId}/`);
+  //     const walletData = walletResponse.data;
+  //     const walletId = walletData?.fiat_wallet_id;
 
+  //     if (!walletId) {
+  //       alert('No wallet found for this user.');
+  //       return;
+  //     }
+
+  //     const balanceResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${walletId}/`);
+  //     const balanceData = balanceResponse.data.fiat_wallets[0];
+
+  //     if (balanceData?.balance !== undefined && balanceData?.currency_type !== undefined) {
+  //       setBalance(balanceData.balance);
+  //       setCurrencyType(balanceData.currency_type);
+  //       setShowBalanceOnly((prev) => !prev); // Toggle balance view
+  //     } else {
+  //       alert('No balance or currency type found for this wallet.');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching balance:', error);
+  //   }
+  // };
+
+  // const currencySymbol = currencyType ? (currencySymbols[currencyType] || currencyType) : '';
+  const handleFetchBalance = async () => {
+    if (!userId) {
+      console.error('User ID is missing');
+      alert('User ID is missing. Please check your user information.');
+      return;
+    }
+
+    try {
+      // Fetch wallet ID based on user ID
+      const walletResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallets/${userId}/`);
+      const walletData = walletResponse.data;
+      const fetchedWalletId = walletData?.fiat_wallet_id;
+
+      if (!fetchedWalletId) {
+        alert('No wallet found for this user.');
+        return;
+      }
+
+      // Set the walletId in state
+      setWalletId(fetchedWalletId);
+
+      // Fetch balance based on wallet ID
+      const balanceResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${fetchedWalletId}/`);
+      const balanceData = balanceResponse.data.fiat_wallets[0];
+
+      if (balanceData?.balance !== undefined && balanceData?.currency_type !== undefined) {
+        setBalance(balanceData.balance);
+        setCurrencyType(balanceData.currency_type);
+        setShowBalanceOnly((prev) => !prev); // Toggle balance view
+      } else {
+        alert('No balance or currency type found for this wallet.');
+      }
+    } catch (error) {
+      // Handle the error as an Axios error
+      const axiosError = error as AxiosError;
+  
+      // Handle 404 error specifically
+      if (axiosError.response) {
+        if (axiosError.response.status === 404) {
+          alert('No wallet found for this user. Please ensure the user ID is correct.');
+        } else {
+          console.error('Error fetching balance:', axiosError);
+          alert('An error occurred while fetching balance. Please try again.');
+        }
+      } else {
+        console.error('Error fetching balance:', axiosError);
+        alert('An error occurred. Please check your network connection and try again.');
+      }
+    }
+  };
+  //   } catch (error) {
+  //     console.error('Error fetching balance:', error);
+  //   }
+  // };
+
+  // Call handleFetchBalance when the component mounts or userId changes
+  useEffect(() => {
+    handleFetchBalance();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
+
+  const currencySymbol = currencyType ? (currencySymbols[currencyType] || currencyType) : '';
+  // const handleFetchBalance = async () => {
+  //   if (!userId) {
+  //     console.error('User ID is missing');
+  //     return;
+  //   }
+  
+  //   try {
+  //     const walletResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallets/${userId}/`);
+  //     console.log('Wallet response:', walletResponse); 
+  //     const walletData = walletResponse.data;
+  //     const walletId = walletData?.fiat_wallet_id;
+  
+  //     console.log('Wallet ID:', walletId); // Log the wallet ID
+  
+  //     if (!walletId) {
+  //       alert('No wallet found for this user.');
+  //       return;
+  //     }
+  
+  //     const balanceResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${walletId}/`);
+  //     console.log('Balance response:', balanceResponse);
+  
+  //     const balanceData = balanceResponse.data.fiat_wallets[0];
+  
+  //     if (balanceData?.balance !== undefined && balanceData?.currency_type !== undefined) {
+  //       setBalance(balanceData.balance);
+  //       setCurrencyType(balanceData.currency_type); // assuming currency_type is available in the API response
+  //     } else {
+  //       alert('No balance or currency type found for this wallet.');
+  //     }
+  //   } catch (error: unknown) {
+  //     const err = error as ApiError;
+  //     console.error('Error fetching balance:', err.response ? err.response.data : err.message);
+  //   }
+  // };
+  // const currencySymbol = currencyType ? (currencySymbols[currencyType] || currencyType) : '';
+  
   const getStatusColor = (user_hold?: boolean, user_status?: string | boolean) => {
     console.log('user_hold:', user_hold, 'user_status:', user_status); // Debugging line
     if (user_hold === true) {
@@ -138,11 +291,6 @@ const UserProfile: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      {showLoader && (
-          <div className={styles.loaderContainer}>
-            <div className={styles.loader}></div>
-          </div>
-        )}
       <Link href="/Admin/UserManagement/AccountManage">
           <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
       </Link>
@@ -167,6 +315,7 @@ const UserProfile: React.FC = () => {
         <IconButton
           className={styles.currency}
           title="Balance" 
+          onClick={handleFetchBalance}
         >
           <FaCoins />
         </IconButton>
@@ -205,8 +354,46 @@ const UserProfile: React.FC = () => {
           <Typography  variant="h6" >{user?.user_phone_number}</Typography>
           <Typography  variant="h6" >{user?.user_email}</Typography>
         </Box>
-
         <CardContent className={styles.detailsSection}>
+          {showBalanceOnly ? (
+            <Box className={styles.detailRow}>
+              <Typography className={styles.detailLabel}>Balance: </Typography>
+              <Typography className={styles.detailLabel}>{currencyType}</Typography>
+              <Link href={`/Admin/WalletTransactions?wallet_id=${walletId}`} style={{ color: '#4A8EF3', textDecoration: 'underline', justifyContent:'center' ,marginLeft: '100px'}} className={styles.detailValue}>
+                {currencySymbol} {balance}
+              </Link>
+            </Box>
+          ) : (
+            <>
+              <Box className={styles.detailRow}>
+                <Typography className={styles.detailLabel}>State: </Typography>
+                <Typography className={styles.detailValue}>{user?.user_state}</Typography>
+              </Box>
+              <Box className={styles.detailRow}>
+                <Typography className={styles.detailLabel}>Country: </Typography>
+                <Typography className={styles.detailValue}>{user?.user_country}</Typography>
+              </Box>
+              <Box className={styles.detailRow}>
+                <Typography className={styles.detailLabel}>City: </Typography>
+                <Typography className={styles.detailValue}>{user?.user_city}</Typography>
+              </Box>
+              <Box className={styles.detailRow}>
+                <Typography className={styles.detailLabel}>Pin Code: </Typography>
+                <Typography className={styles.detailValue}>{user?.user_pin_code}</Typography>
+              </Box>
+              <Box className={styles.detailRow}>
+                <Typography className={styles.detailLabel}>Address: </Typography>
+                <Typography className={styles.detailValue}>{user?.user_address_line_1}</Typography>
+              </Box>
+              <Box className={styles.detail} sx={{ display: 'flex' }}>
+          <Link href={`/Admin/UserManagement/EditDetails?user_id=${user?.user_id}`} style={{ color: '#4A8EF3', textDecoration: 'underline', justifyContent:'center' ,marginLeft: '100px'}}>
+                      Edit Details
+                    </Link>
+                    </Box>
+            </>
+          )}
+        </CardContent>
+        {/* <CardContent className={styles.detailsSection}>
           <Box className={styles.detailRow}>
             <Typography className={styles.detailLabel}>State: </Typography>
             <Typography className={styles.detailValue}>{user?.user_state}</Typography>
@@ -232,7 +419,15 @@ const UserProfile: React.FC = () => {
                       Edit Details
                     </Link>
                     </Box>
-        </CardContent>
+                    {balance !== null && currencyType !== null && (
+        <Box className={styles.detailRow}>
+          <Typography className={styles.detailLabel}>Balance: </Typography>
+          <Typography className={styles.detailValue}>
+            {currencySymbol} {balance}
+          </Typography>
+        </Box>
+      )}
+        </CardContent> */}
       </Card>
     </div>
   );
