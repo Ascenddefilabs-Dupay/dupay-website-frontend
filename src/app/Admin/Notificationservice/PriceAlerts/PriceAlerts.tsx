@@ -72,7 +72,7 @@ const PriceAlerts: React.FC = () => {
         }
     };
 
-    const API_BASE_URL = 'http://localhost:8000/pricealertsapi';
+    const API_BASE_URL = 'http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi';
 
     const fetchPriceAlerts = async () => {
         try {
@@ -329,6 +329,7 @@ const PriceAlerts: React.FC = () => {
                                 <TextField
                                     label="Crypto Currency"
                                     name="coin_gecko_id"
+                                    placeholder='Ex: bitcoin,sui,...'
                                     value={isEditing ? editCurrency.coin_gecko_id : newCurrency.coin_gecko_id}
                                     onChange={isEditing ? handleEditInputChange : handleInputChange}
                                     error={!!errors.coin_gecko_id}
@@ -367,6 +368,7 @@ const PriceAlerts: React.FC = () => {
                                 <TextField
                                     label="Currency Code"
                                     name="symbol"
+                                    placeholder='Ex: BTC,SUI,...'
                                     value={isEditing ? editCurrency.symbol : newCurrency.symbol}
                                     onChange={isEditing ? handleEditInputChange : handleInputChange}
                                     error={!!errors.symbol}
@@ -406,6 +408,7 @@ const PriceAlerts: React.FC = () => {
                                 <TextField
                                     label="Price Change Threshold (%)"
                                     name="price_change_threshold"
+                                    placeholder='Ex: 5,10.5,...'
                                     value={isEditing ? editCurrency.price_change_threshold : newCurrency.price_change_threshold}
                                     onChange={isEditing ? handleEditInputChange : handleInputChange}
                                     error={!!errors.price_change_threshold}
