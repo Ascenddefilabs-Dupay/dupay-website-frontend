@@ -10,11 +10,12 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { toast, ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import { useRouter } from 'next/router'; // Import the useRouter hook
-import { useRouter } from 'next/navigation'; // Correct for App Directory (Next.js 13)
+import { useRouter } from 'next/navigation'; 
 
 
 const RegisterForm: React.FC = () => {
   const router = useRouter(); // Initialize the router
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showLoader, setShowLoader] = useState<boolean>(true);
   const [formData, setFormData] = useState({
     user_first_name: '',
@@ -102,78 +103,6 @@ const RegisterForm: React.FC = () => {
     return !newErrors.missingFields && !newErrors.passwordMismatch && !newErrors.emailInvalid && !newErrors.phoneInvalid && !newErrors.nameInvalid && !newErrors.dobInvalid;
   };
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   if (!validateForm()) {
-  //     if (errors.missingFields) {
-  //       alert('Please fill all required details.');
-  //     }
-  //     if (errors.passwordMismatch) {
-  //       alert('Passwords do not match.');
-  //     }
-  //     if (errors.emailInvalid) {
-  //       alert('Invalid email format.');
-  //     }
-  //     if (errors.phoneInvalid) {
-  //       alert('Invalid phone number. Must be 10 digits.');
-  //     }
-  //     if (errors.nameInvalid) {
-  //       alert('First name and last name cannot be empty.');
-  //     }
-  //     if (errors.dobInvalid) {
-  //       alert('You must be at least 18 years old.');
-  //     }
-  //     return;
-  //   }
-
-  //   let isUniqueUserId = false;
-  //   let newUserId = userId;
-
-  //   while (!isUniqueUserId) {
-  //     isUniqueUserId = await checkUserIdUnique(newUserId);
-
-  //     if (!isUniqueUserId) {
-  //       userCount += 1;
-  //       newUserId = generateUserId(userCount);
-  //     }
-  //   }
-
-  //   try {
-  //     // Hash the password before sending it
-  //     const hashedPassword = bcrypt.hashSync(formData.user_password, 10);
-
-  //     const response = await axios.post(
-  //       'http://localhost:8000/usermanagementapi/profile/',
-  //       {
-  //         user_id: newUserId,
-  //         ...formData,
-  //         user_password: hashedPassword, // Send hashed password
-  //       },
-  //       {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         }
-  //       }
-  //     );
-
-  //     if (response.status === 200 || response.status === 201) {
-  //       alert('User added successfully!');
-  //       console.log('Form Data:', {
-  //         user_id: newUserId,
-  //         ...formData,
-  //       });
-  //     }
-  //   } catch (error: unknown) {
-  //     if (axios.isAxiosError(error)) {
-  //       console.error('Axios error:', error.response?.data || error.message);
-  //       alert('An error occurred while adding the user. Please try again.');
-  //     } else {
-  //       console.error('Unknown error:', error);
-  //       alert('An unknown error occurred.');
-  //     }
-  //   }
-  // };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -263,11 +192,6 @@ const RegisterForm: React.FC = () => {
 
   return (
     <div className={styles.page}>
-            {showLoader && (
-          <div className={styles.loaderContainer}>
-            <div className={styles.loader}></div>
-          </div>
-        )}
        <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
           </Link>

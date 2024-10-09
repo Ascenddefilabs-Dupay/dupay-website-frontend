@@ -453,7 +453,7 @@ const AdminDashboard: React.FC = () => {
             </li>
             <li>
               <FaWallet className={styles.navIcon} />
-              <Link href="/Admin/UserManagement/CreateAdmin">Wallet Management</Link>
+              <Link href="/Admin/WalletManagement">Wallet Management</Link>
             </li>
             <li>
               <FontAwesomeIcon

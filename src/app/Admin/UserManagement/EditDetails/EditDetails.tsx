@@ -35,6 +35,7 @@ const UserProfile: React.FC = () => {
   const [isInitialEdit, setIsInitialEdit] = useState(true);
   const searchParams = useSearchParams();
   const userId = searchParams ? searchParams.get('user_id') : null;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showLoader, setShowLoader] = useState<boolean>(true);
 
   const fetchUserProfile = async () => {
@@ -73,19 +74,7 @@ const UserProfile: React.FC = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
-  // const getStatusDisplay = (user_hold?: boolean, user_status?: string | boolean) => {
-  //   if (user_hold === true) {
-  //     return { text: 'Hold', color: 'orange' };
-  //   }
 
-  //   if (user_status === 'true' || user_status === true) {
-  //     return { text: 'Active', color: 'green' };
-  //   } else if (user_status === 'false' || user_status === false) {
-  //     return { text: 'Inactive', color: 'red' };
-  //   }
-
-  //   return { text: 'Inactive', color: 'red' }; // Default to 'Inactive'
-  // };
   const getStatusColor = (user_hold?: boolean, user_status?: string | boolean) => {
     if (user_hold === true) {
       return 'gray'; // Return white if user_hold is true
@@ -99,14 +88,7 @@ const UserProfile: React.FC = () => {
     
     return 'gray'; // Default color if neither condition is met
   };
-  // const getStatusColor = (user_status?: string | boolean) => {
-  //       if (user_status === 'true' || user_status === true) {
-  //         return 'green';
-  //       } else if (user_status === 'false' || user_status === false) {
-  //         return 'red';
-  //       }
-  //       return 'gray'; // Default color if user_status is not set
-  //     };
+
   const handleSaveChanges = async () => {
     if (editableUser) {
       try {
@@ -154,18 +136,8 @@ const UserProfile: React.FC = () => {
   };
 
 
-  // if (!user) {
-  //   return <Typography>Loading...</Typography>;
-  // }
-  // const { text: statusText, color: statusColor } = getStatusDisplay(user?.user_hold, user?.user_status);
-
   return (
     <div className={styles.page}>
-            {showLoader && (
-          <div className={styles.loaderContainer}>
-            <div className={styles.loader}></div>
-          </div>
-        )}
       <Link onClick={handleBack} href={`/Admin/UserManagement/ViewDetails?user_id=${user?.user_id}`}>
           <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
       </Link>

@@ -1,4 +1,5 @@
-/* .container {
+
+  /* .container {
     padding: 16px;
     background-color: black;
     margin: '0 auto';
@@ -7,6 +8,14 @@
   .statisticsContainer {
     margin-bottom: 16px;
   }
+  /* WalletManagement.module.css */
+.pieChartContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%; /* Adjust as needed */
+  /* background-color: white; */
+}
   .page {
     display: flex;
     flex-direction: column;

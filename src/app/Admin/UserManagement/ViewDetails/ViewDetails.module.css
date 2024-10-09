@@ -118,6 +118,16 @@
     position: relative;
     left: 450px;
   }
+  .curren{
+    color: white;
+    margin-bottom: 1rem;
+    text-align: right;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    left: 450px;
+    background-color: rgba(128, 128, 128, 0.253);
+  }
   .detailsSection {
     /* width: 100%;
     background-color: darkgray; */
