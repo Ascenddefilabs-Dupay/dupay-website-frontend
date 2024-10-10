@@ -16,7 +16,8 @@
     color: #fff;
     padding: 10px;
     margin-top: 0px;
-    height:50px
+    height:50px;
+    font-family: Poppins;
   }
   .detail {
     /* text-align: center; Center text or inline elements like links */
@@ -32,6 +33,7 @@
     justify-content: space-around;
     margin-top: 20px;
     color: white;
+    font-family: Poppins;
   
   }
 
@@ -41,12 +43,22 @@
     color: white;
     font-weight: bold; /* Make the text bold */
     width:200px;
+    font-family: Poppins;
+  }
+  .detailLabels {
+    flex-basis: 40%; /* Adjust label width */
+    text-align: right;
+    color: white;
+    font-weight: bold; /* Make the text bold */
+    width:200px;
+    font-family: Poppins;
   }
   .customTextField input {
     display: flex;
     padding: 8px; /* Adjust padding to control height */
     font-size: 14px; /* Adjust font size */
     text-align: left;
+    font-family: Poppins;
   }
   
   .detailtext {
@@ -54,11 +66,13 @@
     text-align: left;
     /* color: white;  */
     height: 5px;
+    font-family: Poppins;
   }
   .detailValue {
     flex-basis: 60%; /* Adjust value width */
     text-align: left;
     /* color: white;  */
+    font-family: Poppins;
     
   }
   .button {
@@ -67,6 +81,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     width: 150px;
+    font-family: Poppins;
   }
   .profileCard {
     /* display: flex;
@@ -75,10 +90,11 @@
     display: flex;
     margin-top: 20px;
     width: 70%;
-    background-color: rgba(128, 128, 128, 0.253);
+    background-color:#222531;
     border-radius: 8px;
     color:white;
     height: 400px;
+    font-family: Poppins;
   }
   .statusCircle {
     position: absolute;
@@ -98,7 +114,8 @@
     flex-direction: column;
     padding: 10px;
     align-items: center; /* Center the content horizontally */
-    background-color: rgba(128, 128, 128, 0.253);
+    font-family: Poppins;
+    background-color: #222531;
   }
   .header {
     color: white;
@@ -108,6 +125,7 @@
     justify-content: end;
     position: relative;
     left: 400px;
+    font-family: Poppins;
   }
   .currency{
     color: white;
@@ -117,6 +135,7 @@
     justify-content: end;
     position: relative;
     left: 450px;
+    font-family: Poppins;
   }
   .curren{
     color: white;
@@ -126,33 +145,42 @@
     justify-content: end;
     position: relative;
     left: 450px;
-    background-color: rgba(128, 128, 128, 0.253);
+    background-color: #222531;
+    font-family: Poppins;
   }
   .detailsSection {
     /* width: 100%;
     background-color: darkgray; */
     width: 70%;
     padding: 20px;
-    background-color:  rgba(128, 128, 128, 0.253);
+    background-color:  #222531;
     display: grid;
     grid-template-columns: 1fr ; /* Two columns with different widths */
     gap: 10px; /* Space between columns */
-
+    font-family: Poppins;
   }
   
   .detailRow {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    font-family: Poppins;
     
   }
-   
+  .detailRows {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    height: 10px;
+    font-family: Poppins;
+  }
   .profileImage {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 1px;
+    font-family: Poppins;
   }
   .profilePlaceholder {
     width: 150px;
@@ -163,6 +191,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+    font-family: Poppins;
   }
   
   .initial {

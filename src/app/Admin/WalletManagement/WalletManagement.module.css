@@ -30,7 +30,7 @@
     padding: 16px;
     text-align: center;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    background-color:  rgba(128, 128, 128, 0.253);
+    background-color:  #222531;
     border-radius: 8px;
     color:white;
     font-family: Poppins;
@@ -64,7 +64,7 @@
 }
 
 .tableContainer {
-  background-color: rgba(128, 128, 128, 0.253);
+  background-color: #222531;
   border-radius: 8px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
@@ -83,74 +83,8 @@
 .tableContainer::-webkit-scrollbar-thumb {
   background: transparent; /* Optional: Hide scrollbar thumb */
 }
-.loaderContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5); 
-  backdrop-filter: blur(10px) saturate(180%);
-  -webkit-backdrop-filter: blur(10px) saturate(180%);
-  z-index: 2;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 30px rgba(53, 28, 28, 0.5);
-}
-
-
-.loader {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(45deg, #ff007b, #007bff); 
-  animation: spin 1s linear infinite;
-  transform: rotate(45deg); 
-  position: relative;
-  z-index: 3;
-  box-shadow: 0 0 20px rgba(255, 0, 123, 0.7), 0 0 20px rgba(0, 123, 255, 0.7); 
-  border-radius: 12%; 
-}
-
-
-.loader::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  background: rgba(255, 0, 123, 0.3); 
-  border-radius: 15%;
-  animation: pulse 1.5s infinite ease-in-out;
-  z-index: -1;
-}
-
-
-@keyframes spin {
-  0% { transform: rotate(45deg); }
-  100% { transform: rotate(405deg); }
-}
-
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
   .tableContainer {
-    background-color:  rgba(128, 128, 128, 0.253);
+    background-color:  #222531;
     border-radius: 8px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
@@ -179,7 +113,7 @@
   }
   
   .tableRow {
-    background-color:  rgba(128, 128, 128, 0.253);
+    background-color:  #222531;
     border-radius: 8px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
