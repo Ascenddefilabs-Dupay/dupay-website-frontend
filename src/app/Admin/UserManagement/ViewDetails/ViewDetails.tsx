@@ -4,6 +4,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Box, Typography, Card, CardContent, IconButton } from '@mui/material';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import axios, { AxiosError } from 'axios';
 import styles from './ViewDetails.module.css'; // Import the CSS module
 import Link from 'next/link';
@@ -51,8 +52,9 @@ const UserProfile: React.FC = () => {
   const userId = searchParams ? searchParams.get('user_id') : null;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showLoader, setShowLoader] = useState<boolean>(true);
-  const [balance, setBalance] = useState<number | null>(null);
-  const [currencyType, setCurrencyType] = useState<string | null>(null);
+  // const [balance, setBalance] = useState<number | null>(null);
+  // const [currencyType, setCurrencyType] = useState<string | null>(null);
+  const [balances, setBalances] = useState<Balance[]>([]);
   const [showBalanceOnly, setShowBalanceOnly] = useState<boolean>(false);
   const [walletId, setWalletId] = useState<string | null>(null);
   // const [userId, setUserId] = useState<string | null>(null);
@@ -137,44 +139,6 @@ const UserProfile: React.FC = () => {
       }
     }
   };
-  // interface ApiError {
-  //   response?: {
-  //     data: unknown;
-  //   };
-  //   message: string;
-  // }
-  // const handleFetchBalance = async () => {
-  //   if (!userId) {
-  //     console.error('User ID is missing');
-  //     return;
-  //   }
-
-  //   try {
-  //     const walletResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallets/${userId}/`);
-  //     const walletData = walletResponse.data;
-  //     const walletId = walletData?.fiat_wallet_id;
-
-  //     if (!walletId) {
-  //       alert('No wallet found for this user.');
-  //       return;
-  //     }
-
-  //     const balanceResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${walletId}/`);
-  //     const balanceData = balanceResponse.data.fiat_wallets[0];
-
-  //     if (balanceData?.balance !== undefined && balanceData?.currency_type !== undefined) {
-  //       setBalance(balanceData.balance);
-  //       setCurrencyType(balanceData.currency_type);
-  //       setShowBalanceOnly((prev) => !prev); // Toggle balance view
-  //     } else {
-  //       alert('No balance or currency type found for this wallet.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching balance:', error);
-  //   }
-  // };
-
-  // const currencySymbol = currencyType ? (currencySymbols[currencyType] || currencyType) : '';
   const handleFetchBalance = async () => {
     if (!userId) {
       console.error('User ID is missing');
@@ -196,35 +160,54 @@ const UserProfile: React.FC = () => {
       // Set the walletId in state
       setWalletId(fetchedWalletId);
 
-      // Fetch balance based on wallet ID
-      const balanceResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${fetchedWalletId}/`);
-      const balanceData = balanceResponse.data.fiat_wallets[0];
+      // Fetch all balances based on wallet ID
+      const balancesResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${fetchedWalletId}/`);
+      const balancesData = balancesResponse.data.fiat_wallets; // Assuming this returns an array of balances
 
-      if (balanceData?.balance !== undefined && balanceData?.currency_type !== undefined) {
-        setBalance(balanceData.balance);
-        setCurrencyType(balanceData.currency_type);
+      if (balancesData && balancesData.length > 0) {
+        setBalances(balancesData); // Set all balances
         setShowBalanceOnly((prev) => !prev); // Toggle balance view
       } else {
-        alert('No balance or currency type found for this wallet.');
+        alert('No balances found for this wallet.');
       }
     } catch (error) {
-      // Handle the error as an Axios error
-      const axiosError = error as AxiosError;
-  
-      // Handle 404 error specifically
-      if (axiosError.response) {
-        if (axiosError.response.status === 404) {
-          alert('No wallet found for this user. Please ensure the user ID is correct.');
-        } else {
-          console.error('Error fetching balance:', axiosError);
-          alert('An error occurred while fetching balance. Please try again.');
-        }
-      } else {
-        console.error('Error fetching balance:', axiosError);
-        alert('An error occurred. Please check your network connection and try again.');
-      }
+      console.error('Error fetching balance:', error);
+      alert('An error occurred while fetching balance. Please try again.');
     }
   };
+
+  // const handleFetchBalance = async () => {
+  //   if (!userId) {
+  //     console.error('User ID is missing');
+  //     alert('User ID is missing. Please check your user information.');
+  //     return;
+  //   }
+
+  //   try {
+  //     // Fetch wallet ID based on user ID
+  //     const walletResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallets/${userId}/`);
+  //     const walletData = walletResponse.data;
+  //     const fetchedWalletId = walletData?.fiat_wallet_id;
+
+  //     if (!fetchedWalletId) {
+  //       alert('No wallet found for this user.');
+  //       return;
+  //     }
+
+  //     // Set the walletId in state
+  //     setWalletId(fetchedWalletId);
+
+  //     // Fetch balance based on wallet ID
+  //     const balanceResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${fetchedWalletId}/`);
+  //     const balanceData = balanceResponse.data.fiat_wallets[0];
+
+  //     if (balanceData?.balance !== undefined && balanceData?.currency_type !== undefined) {
+  //       setBalance(balanceData.balance);
+  //       setCurrencyType(balanceData.currency_type);
+  //       setShowBalanceOnly((prev) => !prev); // Toggle balance view
+  //     } else {
+  //       alert('No balance or currency type found for this wallet.');
+  //     }
   //   } catch (error) {
   //     console.error('Error fetching balance:', error);
   //   }
@@ -236,43 +219,6 @@ const UserProfile: React.FC = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  const currencySymbol = currencyType ? (currencySymbols[currencyType] || currencyType) : '';
-  // const handleFetchBalance = async () => {
-  //   if (!userId) {
-  //     console.error('User ID is missing');
-  //     return;
-  //   }
-  
-  //   try {
-  //     const walletResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallets/${userId}/`);
-  //     console.log('Wallet response:', walletResponse); 
-  //     const walletData = walletResponse.data;
-  //     const walletId = walletData?.fiat_wallet_id;
-  
-  //     console.log('Wallet ID:', walletId); // Log the wallet ID
-  
-  //     if (!walletId) {
-  //       alert('No wallet found for this user.');
-  //       return;
-  //     }
-  
-  //     const balanceResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${walletId}/`);
-  //     console.log('Balance response:', balanceResponse);
-  
-  //     const balanceData = balanceResponse.data.fiat_wallets[0];
-  
-  //     if (balanceData?.balance !== undefined && balanceData?.currency_type !== undefined) {
-  //       setBalance(balanceData.balance);
-  //       setCurrencyType(balanceData.currency_type); // assuming currency_type is available in the API response
-  //     } else {
-  //       alert('No balance or currency type found for this wallet.');
-  //     }
-  //   } catch (error: unknown) {
-  //     const err = error as ApiError;
-  //     console.error('Error fetching balance:', err.response ? err.response.data : err.message);
-  //   }
-  // };
-  // const currencySymbol = currencyType ? (currencySymbols[currencyType] || currencyType) : '';
   
   const getStatusColor = (user_hold?: boolean, user_status?: string | boolean) => {
     console.log('user_hold:', user_hold, 'user_status:', user_status); // Debugging line
@@ -355,14 +301,30 @@ const UserProfile: React.FC = () => {
           <Typography  variant="h6" >{user?.user_email}</Typography>
         </Box>
         <CardContent className={styles.detailsSection}>
-          {showBalanceOnly ? (
-            <Box className={styles.detailRow}>
-              <Typography className={styles.detailLabel}>Balance: </Typography>
-              <Typography className={styles.detailLabel}>{currencyType}</Typography>
-              <Link href={`/Admin/WalletTransactions?wallet_id=${walletId}`} style={{ color: '#4A8EF3', textDecoration: 'underline', justifyContent:'center' ,marginLeft: '100px'}} className={styles.detailValue}>
-                {currencySymbol} {balance}
-              </Link>
-            </Box>
+        {showBalanceOnly ? (
+    <>
+      <Typography display="flex"   sx={{ mb: 1, fontSize: '1.2rem' }}>Balances </Typography>
+      {balances.map((item) => (
+        <Box key={item.currency_type} className={styles.detailRows} sx={{ mb: 0, p: 0 }}>
+          <Typography className={styles.detailLabel}>{item.currency_type}</Typography>
+          <Typography className={styles.detailValue}>{currencySymbols[item.currency_type] || item.currency_type} {item.balance}</Typography>
+          
+        </Box>
+        
+      ))}
+      <Link
+            href={`/Admin/WalletTransactions?wallet_id=${walletId}`}
+            style={{
+              color: '#4A8EF3',
+              textDecoration: 'underline',
+              justifyContent: 'center',
+              marginLeft: '100px',
+            }}
+            className={styles.detailValue}
+          >
+            View Transactions
+          </Link>
+    </>
           ) : (
             <>
               <Box className={styles.detailRow}>
