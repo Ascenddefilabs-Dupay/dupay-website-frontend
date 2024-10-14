@@ -125,7 +125,7 @@ const AdminDashboard: React.FC = () => {
   // Fetch user data and transaction data upon page load
   useEffect(() => {
     axios
-      .get('http://localhost:8000/usermanagementapi/profile/')
+      .get('https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/')
       .then((response) => {
         const users: UserData[] = response.data;
         setUserData(users);
@@ -134,7 +134,7 @@ const AdminDashboard: React.FC = () => {
       .catch((error) => console.error('Error fetching user data:', error));
 
     axios
-      .get('http://localhost:8000/usermanagementapi/transactions/')
+      .get('https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/transactions/')
       .then((response) => {
         const transactions: TransactionData[] = response.data;
         setTransactionData(transactions);
@@ -328,7 +328,7 @@ const AdminDashboard: React.FC = () => {
     const fetchRegistrationStats = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/usermanagementapi/user-registration-stats/"
+          "https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/user-registration-stats/"
         );
         const data = await response.json();
 

@@ -44,7 +44,7 @@ const Dashboard: React.FC = () => {
   // const [openDetails, setOpenDetails] = useState<number | null>(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/usermanagementapi/profile/')
+    axios.get('https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/')
       .then(response => {
         setUsers(response.data);
         setFilteredUsers(response.data);
@@ -85,7 +85,7 @@ const Dashboard: React.FC = () => {
 
   const handleDelete = async (userId: string) => {
     try {
-      const response = await axios.delete(`http://localhost:8000/usermanagementapi/profile/${userId}/`);
+      const response = await axios.delete(`https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/${userId}/`);
 
       if (response.status === 204 || response.status === 200) {
         setUsers(prevUsers => prevUsers.filter(user => user.user_id !== userId));

@@ -72,8 +72,8 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const usersResponse = await axios.get('http://localhost:8000/transactionmonitoringapi/profile/');
-        const transactionsResponse = await axios.get('http://localhost:8000/transactionmonitoringapi/transaction/');
+        const usersResponse = await axios.get('https://transactionmonitoring-255574993735.asia-south1.run.app/transactionmonitoringapi/profile/');
+        const transactionsResponse = await axios.get('https://transactionmonitoring-255574993735.asia-south1.run.app/transactionmonitoringapi/transaction/');
         setUsers(usersResponse.data);
         setTransactions(transactionsResponse.data);
         // Extract unique currencies from transactions
