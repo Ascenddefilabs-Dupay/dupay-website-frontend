@@ -62,58 +62,58 @@ const PriceAlerts: React.FC = () => {
         }
     };
 
-    const requestNotificationPermission = () => {
-        if ('Notification' in window && Notification.permission !== 'granted') {
-            Notification.requestPermission().then(permission => {
-                if (permission !== 'granted') {
-                    alert('Notification permissions are not granted. Please enable them in your browser settings.');
-                }
-            });
-        }
-    };
+    // const requestNotificationPermission = () => {
+    //     if ('Notification' in window && Notification.permission !== 'granted') {
+    //         Notification.requestPermission().then(permission => {
+    //             if (permission !== 'granted') {
+    //                 alert('Notification permissions are not granted. Please enable them in your browser settings.');
+    //             }
+    //         });
+    //     }
+    // };
 
     const API_BASE_URL = 'http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi';
 
-    const fetchPriceAlerts = async () => {
-        try {
-            const response = await axios.get(`${API_BASE_URL}/get-price-alerts-user-ids/`);
-            const userIds = response.data.user_ids;
+    // const fetchPriceAlerts = async () => {
+    //     try {
+    //         const response = await axios.get(`${API_BASE_URL}/get-price-alerts-user-ids/`);
+    //         const userIds = response.data.user_ids;
 
-            if (userIds && userIds.length > 0) {
-                setUserId(userIds[0]);  // Set the first user ID
-            } else {
-                alert('No users with price alerts enabled.');
-            }
-        } catch (error) {
-            console.error('Error fetching user IDs:', error);
-        }
-    };
+    //         if (userIds && userIds.length > 0) {
+    //             setUserId(userIds[0]);  // Set the first user ID
+    //         } else {
+    //             alert('No users with price alerts enabled.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching user IDs:', error);
+    //     }
+    // };
 
-    const pollPriceAlerts = async () => {
-        if (!userId) {
-            console.warn('User ID not set. Skipping pollPriceAlerts.');
-            return;
-        }
+    // const pollPriceAlerts = async () => {
+    //     if (!userId) {
+    //         console.warn('User ID not set. Skipping pollPriceAlerts.');
+    //         return;
+    //     }
 
-        try {
-            const response = await axios.post(`${API_BASE_URL}/create-price-alerts/`, {
-                user_id: userId,
-            });
-            const message = response.data.price_alerts_content;  // Dynamic content from the backend
-            if (message) {
-                const messageText = Array.isArray(message) ? message.join(', ') : message;
-                setPriceAlertMessage(messageText);
-                sendNotification(
-                    'Price Alerts',
-                    messageText,
-                    'https://res.cloudinary.com/dgfv6j82t/image/upload/v1727074312/DupayAnimation_iyxfli.png',
-                    'https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages'
-                );
-            }
-        } catch (error) {
-            console.error('Error triggering price alerts:', error);
-        }
-    };
+    //     try {
+    //         const response = await axios.post(`${API_BASE_URL}/create-price-alerts/`, {
+    //             user_id: userId,
+    //         });
+    //         const message = response.data.price_alerts_content;  // Dynamic content from the backend
+    //         if (message) {
+    //             const messageText = Array.isArray(message) ? message.join(', ') : message;
+    //             setPriceAlertMessage(messageText);
+    //             sendNotification(
+    //                 'Price Alerts',
+    //                 messageText,
+    //                 'https://res.cloudinary.com/dgfv6j82t/image/upload/v1727074312/DupayAnimation_iyxfli.png',
+    //                 'https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages'
+    //             );
+    //         }
+    //     } catch (error) {
+    //         console.error('Error triggering price alerts:', error);
+    //     }
+    // };
 
     const fetchCurrencies = async () => {
         try {
@@ -283,22 +283,22 @@ const PriceAlerts: React.FC = () => {
     };
 
     useEffect(() => {
-        requestNotificationPermission();
-        fetchPriceAlerts();
+        // requestNotificationPermission();
+        // fetchPriceAlerts();
         fetchCurrencies();
         fetchLatestPriceAlerts();
     }, []);
 
-    useEffect(() => {
-        if (!userId) return;
+    // useEffect(() => {
+    //     if (!userId) return;
 
-        const interval = setInterval(() => {
-            pollPriceAlerts();
-            fetchLatestPriceAlerts();
-        }, 60000); // 60 seconds
+    //     const interval = setInterval(() => {
+    //         pollPriceAlerts();
+    //         fetchLatestPriceAlerts();
+    //     }, 60000); // 60 seconds
 
-        return () => clearInterval(interval);
-    }, [userId]);
+    //     return () => clearInterval(interval);
+    // }, [userId]);
 
     return (
         <div className={styles.container}>
