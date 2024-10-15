@@ -54,7 +54,7 @@ const RegisterForm: React.FC = () => {
 
   const checkUserIdUnique = async (userId: string): Promise<boolean> => {
     try {
-      await axios.get(`http://localhost:8000/usermanagementapi/profile/${userId}/`);
+      await axios.get(`https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/${userId}/`);
       return false;
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 404) {
@@ -148,7 +148,7 @@ const RegisterForm: React.FC = () => {
 
       // Sending the form data to the backend API
       const response = await axios.post(
-        'http://localhost:8000/usermanagementapi/profile/',
+        'https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/',
         {
           user_id: newUserId,
           ...formData,

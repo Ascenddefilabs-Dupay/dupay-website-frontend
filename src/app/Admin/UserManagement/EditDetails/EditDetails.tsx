@@ -40,13 +40,13 @@ const UserProfile: React.FC = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.get<User>(`http://localhost:8000/usermanagementapi/profile/${userId}/`);
+      const response = await axios.get<User>(`https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/${userId}/`);
       setUserProfile(response.data);
       setEditableUser(response.data);
 
       // Process profile photo if it exists
       if (response.data.user_profile_photo) {
-        const baseURL = 'http://localhost:8000/profile_photos';
+        const baseURL = 'https://admin-user-management-255574993735.asia-south1.run.app/profile_photos';
         let imageUrl = '';
 
         const profilePhoto = response.data.user_profile_photo;
@@ -108,7 +108,7 @@ const UserProfile: React.FC = () => {
           // user_email: isInitialEdit ? editableUser.user_email : user?.user_email,
         };
 
-        await axios.patch(`http://localhost:8000/usermanagementapi/profile/${userId}/`, updatedUser);
+        await axios.patch(`https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/${userId}/`, updatedUser);
         alert('Changes saved successfully');
         
         // Once saved, mark that the user email, phone number, and dob should not be editable again

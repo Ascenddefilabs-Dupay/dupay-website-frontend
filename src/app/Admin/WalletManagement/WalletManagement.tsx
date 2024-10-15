@@ -173,7 +173,7 @@ const WalletManagement: React.FC = () => {
     const fetchWallets = async () => {
       try {
         const response = await fetch(
-          'http://localhost:8000/wallet_managementapi/profile/'
+          'https://admin-user-management-255574993735.asia-south1.run.app/wallet_managementapi/profile/'
         );
         const data: Wallet[] = await response.json();
         setWallets(data);

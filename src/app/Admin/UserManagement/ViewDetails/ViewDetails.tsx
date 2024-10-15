@@ -44,6 +44,12 @@ const currencySymbols: { [key: string]: string } = {
   CAD: 'C$',
   // Add more currency symbols as needed
 };
+type Balance = {
+  balance: number;  // Add balance if it's supposed to be a property
+  currency: string;
+  currency_type: string;
+  iconUrl?: string;
+};
 
 const UserProfile: React.FC = () => {
   const [user, setUserProfile] = useState<User | null>(null);
@@ -62,11 +68,11 @@ const UserProfile: React.FC = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.get<User>(`http://localhost:8000/usermanagementapi/profile/${userId}/`);
+      const response = await axios.get<User>(`https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/${userId}/`);
       setUserProfile(response.data);
 
       if (response.data.user_profile_photo) {
-        const baseURL = 'http://localhost:8000/profile_photos';
+        const baseURL = 'https://admin-user-management-255574993735.asia-south1.run.app/profile_photos';
         let imageUrl = '';
 
         const profilePhoto = response.data.user_profile_photo;
@@ -109,14 +115,14 @@ const UserProfile: React.FC = () => {
     }
 
     try {
-      console.log('Sending request to:', `http://localhost:8000/usermanagementapi/profile/${userId}/`);
+      console.log('Sending request to:', `https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/${userId}/`);
 
       const newUserHoldState = !user?.user_hold;
 
       console.log('Request data:', { user_hold: newUserHoldState });
 
       const response = await axios.patch(
-        `http://localhost:8000/usermanagementapi/profile/${userId}/`,
+        `https://admin-user-management-255574993735.asia-south1.run.app/usermanagementapi/profile/${userId}/`,
         { user_hold: newUserHoldState },
         { headers: { 'Content-Type': 'application/json' } }
       );
@@ -145,36 +151,98 @@ const UserProfile: React.FC = () => {
       alert('User ID is missing. Please check your user information.');
       return;
     }
-
+  
     try {
       // Fetch wallet ID based on user ID
-      const walletResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallets/${userId}/`);
+      const walletResponse = await axios.get(`https://admin-user-management-255574993735.asia-south1.run.app/transactionsapi/fiat_wallets/${userId}/`);
       const walletData = walletResponse.data;
       const fetchedWalletId = walletData?.fiat_wallet_id;
-
+  
       if (!fetchedWalletId) {
         alert('No wallet found for this user.');
         return;
       }
-
+  
       // Set the walletId in state
       setWalletId(fetchedWalletId);
-
+  
       // Fetch all balances based on wallet ID
-      const balancesResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${fetchedWalletId}/`);
-      const balancesData = balancesResponse.data.fiat_wallets; // Assuming this returns an array of balances
-
+      const balancesResponse = await axios.get(`https://admin-user-management-255574993735.asia-south1.run.app/transactionsapi/fiat_wallet/${fetchedWalletId}/`);
+      const balancesData: Balance[] = balancesResponse.data.fiat_wallets;
+  
       if (balancesData && balancesData.length > 0) {
-        setBalances(balancesData); // Set all balances
-        setShowBalanceOnly((prev) => !prev); // Toggle balance view
+        // Fetch icons for each currency type
+        const balancesWithIcons = await Promise.all(
+          balancesData.map(async (item: Balance) => {
+            console.log('Fetching icon for:', item.currency_type);
+            try {
+              // Fetch the icon for each currency type
+              const iconResponse = await axios.get(`https://admin-user-management-255574993735.asia-south1.run.app/transactionsapi/currency-icons/${item.currency_type}/`);
+              console.log('Icon Response:', iconResponse.data); // Debug log
+  
+              // Access the icon URL properly from the nested structure
+              // const iconUrl = iconResponse.data.currency_icons?.[0]?.icon || 'https://res.cloudinary.com/dgfv6j82t/image/upload/v1727948965/61103_ttcaan.png';
+              const iconData = iconResponse.data.currency_icons?.[0]?.icon;
+              const iconUrl = iconData
+                ? `https://res.cloudinary.com/dgfv6j82t/${iconData}` // Prepend Cloudinary URL
+                : 'https://res.cloudinary.com/dgfv6j82t/image/upload/v1727948965/61103_ttcaan.png'; // Default icon URL
+              console.log('Final Icon URL:', iconUrl); // Log the final icon URL
+              return { ...item, iconUrl };
+            } catch (iconError) {
+              console.error(`Error fetching icon for currency ${item.currency_type}:`, iconError);
+              return { ...item, iconUrl: '/path/to/default/icon.png' }; // Return default icon on error
+            }
+          })
+        );
+  
+        setBalances(balancesWithIcons);  // Set all balances with icons
+        setShowBalanceOnly((prev) => !prev);  // Toggle balance view
       } else {
         alert('No balances found for this wallet.');
       }
     } catch (error) {
       console.error('Error fetching balance:', error);
-      alert('An error occurred while fetching balance. Please try again.');
+      alert(' An error occurred while fetching balance there is no wallets based on user_id');
     }
   };
+  
+  
+  // const handleFetchBalance = async () => {
+  //   if (!userId) {
+  //     console.error('User ID is missing');
+  //     alert('User ID is missing. Please check your user information.');
+  //     return;
+  //   }
+
+  //   try {
+  //     // Fetch wallet ID based on user ID
+  //     const walletResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallets/${userId}/`);
+  //     const walletData = walletResponse.data;
+  //     const fetchedWalletId = walletData?.fiat_wallet_id;
+
+  //     if (!fetchedWalletId) {
+  //       alert('No wallet found for this user.');
+  //       return;
+  //     }
+
+  //     // Set the walletId in state
+  //     setWalletId(fetchedWalletId);
+
+  //     // Fetch all balances based on wallet ID
+  //     const balancesResponse = await axios.get(`http://127.0.0.1:8000/transactionsapi/fiat_wallet/${fetchedWalletId}/`);
+  //     const balancesData = balancesResponse.data.fiat_wallets; // Assuming this returns an array of balances
+
+  //     if (balancesData && balancesData.length > 0) {
+  //       setBalances(balancesData); // Set all balances
+  //       setShowBalanceOnly((prev) => !prev); // Toggle balance view
+  //     } else {
+  //       alert('No balances found for this wallet.');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching balance:', error);
+  //     alert('An error occurred while fetching balance. Please try again.');
+  //   }
+  // };
 
   // const handleFetchBalance = async () => {
   //   if (!userId) {
@@ -303,24 +371,101 @@ const UserProfile: React.FC = () => {
         <CardContent className={styles.detailsSection}>
         {showBalanceOnly ? (
     <>
-      <Typography display="flex"   sx={{ mb: 1, fontSize: '1.2rem' }}>Balances </Typography>
-      {balances.map((item) => (
+      <Typography className={styles.detailValues} sx={{ mb: 1, fontSize: '1.2rem' }}>Balances </Typography>
+      <ul className={styles.balanceList}>
+        {balances.map((item: Balance) => {
+          // Log the image URL for each item
+          console.log('Image URL:', item.iconUrl);
+
+          return (
+            <li key={item.currency_type} className={styles.balanceItem}>
+              <Box className={styles.detailRows} sx={{ mb: 0, p: 0 }}>
+                <Typography className={styles.detailLabelss} >
+                  {/* Render the currency icon on the left */}
+                  {item.iconUrl ? (
+                    <img 
+                      src={item.iconUrl}  // Use the iconUrl here
+                      alt={`icon `} 
+                      style={{ width: '35px', marginRight: '10px' }} 
+                      // onError={(e) => {
+                      //   console.error('Failed to load image:', e);
+                      //   const target = e.target as HTMLImageElement; // Type assertion
+                      //   target.src = '/path/to/default/icon.png'; // Fallback image on error
+                      // }} 
+                    />
+                  ) : (
+                    <span style={{ width: '20px', marginRight: '10px' }}></span>
+                  )}
+                </Typography>
+                <Typography className={styles.detailLabels} mb={2}>
+                  {item.currency_type}
+                </Typography>
+                <Typography className={styles.detailcurrency}>
+                  {currencySymbols[item.currency_type] || item.currency_type} {item.balance}
+                </Typography>
+              </Box>
+            </li>
+          );
+        })}
+      </ul>
+      {/* <ul className={styles.balanceList}>
+        {balances.map((item: Balance) => (
+          <li key={item.currency_type} className={styles.balanceItem}>
+            <Box className={styles.detailRows} sx={{ mb: 0, p: 0 }}>
+            <Typography className={styles.detailLabels} mb={2}>
+                {item.iconUrl ? (
+                  <img 
+                    src={item.iconUrl} 
+                    alt={`icon `} 
+                    style={{ width: '20px', marginRight: '10px' }} 
+                    onError={() => console.error('Failed to load image')}
+                  />
+                ) : (
+                  <span style={{ width: '20px', marginRight: '10px' }}></span>
+                )}
+              </Typography>
+              <Typography className={styles.detailLabels} mb={2}>
+                {item.currency_type}
+              </Typography>
+              <Typography className={styles.detailValue}>
+                {currencySymbols[item.currency_type] || item.currency_type} {item.balance}
+              </Typography>
+            </Box>
+          </li>
+        ))}
+      </ul> */}
+      {/* <ul className={styles.balanceList}>
+        {balances.map((item) => (
+          <li key={item.currency_type} className={styles.balanceItem}>
+            <Box className={styles.detailRows} sx={{ mb: 0, p: 0 }}>
+              <Typography className={styles.detailLabel}>
+                {item.currency_type}
+              </Typography>
+              <Typography className={styles.detailValue}>
+                {currencySymbols[item.currency_type] || item.currency_type} {item.balance}
+              </Typography>
+            </Box>
+          </li>
+        ))}
+      </ul> */}
+      {/* {balances.map((item) => (
         <Box key={item.currency_type} className={styles.detailRows} sx={{ mb: 0, p: 0 }}>
           <Typography className={styles.detailLabel}>{item.currency_type}</Typography>
           <Typography className={styles.detailValue}>{currencySymbols[item.currency_type] || item.currency_type} {item.balance}</Typography>
           
         </Box>
         
-      ))}
+      ))} */}
       <Link
             href={`/Admin/WalletTransactions?wallet_id=${walletId}`}
             style={{
               color: '#4A8EF3',
               textDecoration: 'underline',
+              marginTop: '0px',
               justifyContent: 'center',
               marginLeft: '100px',
             }}
-            className={styles.detailValue}
+            className={styles.detailView}
           >
             View Transactions
           </Link>

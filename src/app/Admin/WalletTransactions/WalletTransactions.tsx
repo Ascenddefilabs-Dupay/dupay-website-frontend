@@ -14,37 +14,37 @@ interface Transaction {
 
 const WalletTransactions: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  // const [loading, setLoading] = useState<boolean>(true);
+  // const [error, setError] = useState<string | null>(null);
   const searchParams = useSearchParams(); // Use useSearchParams to get search parameters
   const wallet_id = searchParams.get('wallet_id'); // Get wallet_id from search parameters
 
   useEffect(() => {
     // Ensure wallet_id is available
     if (wallet_id) {
-      axios.get(`http://localhost:8000/transactionsapi/transactions/${wallet_id}/`)
+      axios.get(`https://admin-user-management-255574993735.asia-south1.run.app/transactionsapi/transactions/${wallet_id}/`)
 
       // axios
       //   .get(`http://localhost:8000/transactionsapi/transactions/?wallet_id=${wallet_id}`)
         .then((response) => {
           setTransactions(response.data);
-          setLoading(false);
+          // setLoading(false);
         })
         .catch((err) => {
           console.error('Error fetching transactions:', err);
-          setError('Failed to load transactions');
-          setLoading(false);
+          // setError('Failed to load transactions');
+          // setLoading(false);
         });
     }
   }, [wallet_id]);
 
-  if (loading) {
-    return <p>Loading transactions...</p>;
-  }
+  // if (loading) {
+  //   return <p>Loading transactions...</p>;
+  // }
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+  // if (error) {
+  //   return <p>{error}</p>;
+  // }
 
   return (
     <div className={styles.container}>

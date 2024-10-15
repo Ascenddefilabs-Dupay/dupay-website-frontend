@@ -46,8 +46,16 @@
     font-family: Poppins;
   }
   .detailLabels {
-    flex-basis: 40%; /* Adjust label width */
-    text-align: right;
+    flex-basis: 20%; /* Adjust label width */
+    text-align: left;
+    color: white;
+    font-weight: bold; /* Make the text bold */
+    width:200px;
+    font-family: Poppins;
+  }
+  .detailLabels {
+    flex-basis: 20%; /* Adjust label width */
+    text-align: left;
     color: white;
     font-weight: bold; /* Make the text bold */
     width:200px;
@@ -75,6 +83,58 @@
     font-family: Poppins;
     
   }
+  .detailcurrency {
+    flex-basis: 60%; /* Adjust value width */
+    text-align: center;
+    /* color: white;  */
+    /* right:30px; */
+    font-family: Poppins;
+    
+  }
+  .detailView {
+    flex-basis: 60%; /* Adjust value width */
+    text-align: left;
+    /* color: white;  */
+    font-family: Poppins;
+    height: 100px;
+    /* bottom: 40px; */
+
+    
+  }
+  .detailValues {
+    flex-basis: 60%; /* Adjust value width */
+    /* left: 1000px; */
+    text-align: center;
+    /* color: white;  */
+    font-family: Poppins;
+    height: 2px;
+    width: 55%;
+    margin-top: 10px;
+    /* margin-bottom: ; */
+    
+  }
+  /* styles.module.css */
+.balanceList {
+  list-style-type: none;
+  padding-left: 0;
+  height: 100px;
+  /* bottom: 100px; */
+  
+}
+
+.balanceItem {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #222020;
+  background-color: #222531;
+  border-radius: 8px;
+  width:25vw;
+  color:#fff;
+}
+
   .button {
     /* background: linear-gradient(90deg, #007bff9f, #301c30); */
     background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
