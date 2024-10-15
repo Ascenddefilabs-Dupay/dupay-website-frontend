@@ -1,118 +1,4 @@
-// 'use client';
-
-// import { useState, useEffect } from 'react';
-// import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-// import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ActivePayload } from 'recharts';
-// import styles from './WalletManagement.module.css'; // Adjust the path as needed
-// import Link from 'next/link';
-
-// interface Wallet {
-//   wallet_id: string;
-//   currency_type: string;
-//   balance: number;
-// }
-
-// const WalletManagement: React.FC = () => {
-//   const [wallets, setWallets] = useState<Wallet[]>([]);
-//   const [filteredWallets, setFilteredWallets] = useState<Wallet[]>([]);
-//   const [currencyData, setCurrencyData] = useState<{ name: string; value: number }[]>([]);
-
-//   useEffect(() => {
-//     const fetchWallets = async () => {
-//       try {
-//         const response = await fetch('http://localhost:8000/wallet_managementapi/profile/');
-//         const data: Wallet[] = await response.json();
-//         setWallets(data);
-//         calculateCurrencyData(data);
-//       } catch (error) {
-//         console.error('Error fetching wallet data:', error);
-//       }
-//     };
-
-//     fetchWallets();
-//   }, []);
-
-//   const calculateCurrencyData = (wallets: Wallet[]) => {
-//     const currencyMap: { [key: string]: number } = {};
-    
-//     wallets.forEach(wallet => {
-//       if (currencyMap[wallet.currency_type]) {
-//         currencyMap[wallet.currency_type] += wallet.balance;
-//       } else {
-//         currencyMap[wallet.currency_type] = wallet.balance;
-//       }
-//     });
-
-//     const data = Object.entries(currencyMap).map(([name, value]) => ({ name, value }));
-//     setCurrencyData(data);
-//   };
-
-//   const handleCurrencyClick = async (data: ActivePayload[]) => {
-//     // Check if activePayload is defined and has items
-//     if (data && data.length > 0) {
-//       const currencyType = data[0].name; // Accessing the name of the clicked bar
-//       try {
-//         const response = await fetch(`http://localhost:8000/wallet_managementapi/profile/?currency_type=${currencyType}`);
-//         const filteredData: Wallet[] = await response.json();
-//         setFilteredWallets(filteredData);
-//       } catch (error) {
-//         console.error('Error fetching filtered wallet data:', error);
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className={styles.page}>
-//       <Typography variant="h4" className={styles.heading} gutterBottom>
-//         Monitors Balances
-//       </Typography>
-
-//       {/* Bar Chart for Currency Types */}
-//       <BarChart width={600} height={300} data={currencyData} onClick={(e) => handleCurrencyClick(e.activePayload)}>
-//         <XAxis dataKey="name" />
-//         <YAxis />
-//         <Tooltip />
-//         <CartesianGrid strokeDasharray="3 3" />
-//         <Bar dataKey="value" fill="#4A8EF3" />
-//       </BarChart>
-
-//       {/* Table for Wallets */}
-//       <TableContainer component={Paper} className={styles.tableContainer}>
-//         <Table>
-//           <TableHead>
-//             <TableRow>
-//               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}></TableCell>
-//               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Wallet ID</TableCell>
-//               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Currency Type</TableCell>
-//               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}>Balance</TableCell>
-//               <TableCell className={`${styles.tableCell} ${styles.tableHeaderCell}`}></TableCell>
-//             </TableRow>
-//           </TableHead>
-//           <TableBody>
-//             {(filteredWallets.length > 0 ? filteredWallets : wallets).map((wallet) => (
-//               <TableRow key={wallet.wallet_id} className={styles.tableRow}>
-//                 <TableCell className={styles.tableCell}></TableCell>
-//                 <TableCell className={styles.tableCell}>{wallet.wallet_id}</TableCell>
-//                 <TableCell className={styles.tableCell}>{wallet.currency_type}</TableCell>
-//                 <TableCell className={styles.tableCell}>{wallet.balance}</TableCell>
-//                 <TableCell className={styles.tableCell}>
-//                   <Link
-//                     href={`/Admin/WalletTransactions?wallet_id=${wallet.wallet_id}`}
-//                     style={{ color: '#4A8EF3', textDecoration: 'underline' }}
-//                   >
-//                     View more
-//                   </Link>
-//                 </TableCell>
-//               </TableRow>
-//             ))}
-//           </TableBody>
-//         </Table>
-//       </TableContainer>
-//     </div>
-//   );
-// };
-
-// export default WalletManagement;
+'use client';
 import { useState, useEffect } from 'react';
 import {
   Typography,
@@ -157,6 +43,7 @@ const WalletManagement: React.FC = () => {
   const [currencyData, setCurrencyData] = useState<CurrencyData[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const colors = [
     '#4A8EF3',
@@ -219,7 +106,13 @@ const WalletManagement: React.FC = () => {
     );
     setFilteredWallets(filtered);
   };
+  const onMouseEnter = (index: number) => {
+    setActiveIndex(index); // Set the active bar index on mouse enter
+  };
 
+  const onMouseLeave = () => {
+    setActiveIndex(null); // Reset the active bar index on mouse leave
+  };
   // Custom Tooltip component with props
   const CustomTooltip = ({
     active,
@@ -266,11 +159,19 @@ const WalletManagement: React.FC = () => {
         <YAxis
           label={{ value: 'Wallet Count', angle: -90, position: 'insideLeft' }}
         />
-        <Tooltip contentStyle={{ backgroundColor: '#333', color: 'white' }} content={<CustomTooltip active={true} payload={undefined} />} />
+        <Tooltip contentStyle={{ backgroundColor: '#333', color: 'white' }} content={<CustomTooltip active={true} payload={undefined} />} cursor={{ fill: 'none' }}/>
         <CartesianGrid strokeDasharray="3 3" />
         <Bar dataKey="count" barSize={50}>
           {currencyData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+            // <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+            <Cell
+              key={`cell-${index}`}
+              fill={colors[index % colors.length]}
+              stroke={activeIndex === index ? 'white' : 'none'} // Add white border when active
+              strokeWidth={activeIndex === index ? 2 : 1} // Increase border width on hover
+              onMouseEnter={() => onMouseEnter(index)}
+              onMouseLeave={onMouseLeave}
+            />
           ))}
         </Bar>
       </BarChart>

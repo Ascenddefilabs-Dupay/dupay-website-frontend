@@ -12,7 +12,6 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { IoFilter } from "react-icons/io5";
 import { GrStatusInfo } from "react-icons/gr";
 import { IoPersonAddSharp } from "react-icons/io5";
-import LottieAnimationLoading from '../../assets/LoadingAnimation';
 
 interface Users {
   user_id: string;
@@ -139,12 +138,6 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      {showLoader && (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' , backgroundColor: 'black'}}>
-        {/* Show the Lottie loading animation */}
-        <LottieAnimationLoading width="300px" height="300px" />
-      </div>
-      )}
           <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
           </Link>

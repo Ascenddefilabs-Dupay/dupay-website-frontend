@@ -112,6 +112,7 @@ const AdminDashboard: React.FC = () => {
   const [systemPerformanceData, setSystemPerformanceData] = useState<PieChartData[]>([]);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [filteredUserData, setFilteredUserData] = useState<PieChartData[]>([]);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [filters, setFilters] = useState({
     active: true,
     inactive: true,
@@ -394,6 +395,13 @@ const AdminDashboard: React.FC = () => {
       },
     },
   };
+  const onMouseEnter = (index: number) => {
+    setActiveIndex(index); // Set the active bar index on mouse enter
+  };
+
+  const onMouseLeave = () => {
+    setActiveIndex(null); // Reset the active bar index on mouse leave
+  };
 
   return (
     <div className={styles.container}>
@@ -638,7 +646,76 @@ const AdminDashboard: React.FC = () => {
         <IoFilter />
         </IconButton>
         </Box>
-        <BarChart width={500} height={260} data={categories.map((cat, idx) => ({ name: cat, Recieved: RecievedValues[idx], Transfer: transferValues[idx], Withdrawn: withdrawalValues[idx], Topup: TopupValues[idx] }))}>
+        <BarChart width={500} height={260} data={categories.map((cat, idx) => ({
+      name: cat,
+      Recieved: RecievedValues[idx],
+      Transfer: transferValues[idx],
+      Withdrawn: withdrawalValues[idx],
+      Topup: TopupValues[idx],
+    }))}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" stroke="white" tick={{ fill: 'white' }} />
+      <YAxis stroke="white" tick={{ fill: 'white' }} />
+      <RechartsTooltip contentStyle={{ backgroundColor: '#333', color: 'white' }} labelStyle={{ color: 'white' }} cursor={{ fill: 'none' }} />
+      <YAxis stroke="white" tick={{ fill: 'white' }} />
+      <RechartsLegend />
+      
+      {/* Bars with hover effect */}
+      <YAxis stroke="white" tick={{ fill: 'white' }} />
+      <RechartsBar dataKey="Recieved" fill="#0000FF">
+        {RecievedValues.map((entry, index) => (
+          <Cell 
+            key={`cell-${index}`} 
+            fill="#0000FF" 
+            stroke={activeIndex === index ? 'white' : 'none'} 
+            strokeWidth={activeIndex === index ? 2 : 0} 
+            onMouseEnter={() => onMouseEnter(index)}
+            onMouseLeave={onMouseLeave}
+          />
+        ))}
+      </RechartsBar>
+      
+      <RechartsBar dataKey="Transfer" fill="#82ca9d">
+        {transferValues.map((entry, index) => (
+          <Cell 
+            key={`cell-${index}`} 
+            fill="#82ca9d" 
+            stroke={activeIndex === index ? 'white' : 'none'} 
+            strokeWidth={activeIndex === index ? 2 : 0} 
+            onMouseEnter={() => onMouseEnter(index)}
+            onMouseLeave={onMouseLeave}
+          />
+        ))}
+      </RechartsBar>
+
+      <RechartsBar dataKey="Withdrawn" fill="#ffc658">
+        {withdrawalValues.map((entry, index) => (
+          <Cell 
+            key={`cell-${index}`} 
+            fill="#ffc658" 
+            stroke={activeIndex === index ? 'white' : 'none'} 
+            strokeWidth={activeIndex === index ? 2.5 : 0} 
+            onMouseEnter={() => onMouseEnter(index)}
+            onMouseLeave={onMouseLeave}
+          />
+        ))}
+      </RechartsBar>
+
+      <RechartsBar dataKey="Topup" fill="#8A2BE2">
+        {TopupValues.map((entry, index) => (
+          <Cell 
+            key={`cell-${index}`} 
+            fill="#8A2BE2" 
+            stroke={activeIndex === index ? 'white' : 'none'} 
+            strokeWidth={activeIndex === index ? 2 : 0} 
+            onMouseEnter={() => onMouseEnter(index)}
+            onMouseLeave={onMouseLeave}
+          />
+        ))}
+      </RechartsBar>
+
+    </BarChart>
+        {/* <BarChart width={500} height={260} data={categories.map((cat, idx) => ({ name: cat, Recieved: RecievedValues[idx], Transfer: transferValues[idx], Withdrawn: withdrawalValues[idx], Topup: TopupValues[idx] }))}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" 
           stroke="white"  // Set the X-axis line color to white
@@ -653,7 +730,7 @@ const AdminDashboard: React.FC = () => {
           <RechartsBar dataKey="Transfer" fill="#82ca9d" />
           <RechartsBar dataKey="Withdrawn" fill="#ffc658" />
           <RechartsBar dataKey="Topup" fill="#8A2BE2" />
-        </BarChart>
+        </BarChart> */}
       </Box>
       </Grid>
       <Grid item xs={12} md={6}>
