@@ -1,13 +1,13 @@
 import React from 'react';
 import Lottie from 'react-lottie';
-import animationData from './loading-dp1.json'; // Path to your JSON file
+import animationData from './splash-half.json'; // Path to your JSON file
 
 interface LottieAnimationProps {
   width?: string;
   height?: string;
 }
 
-const LottieAnimationLoading: React.FC<LottieAnimationProps> = ({ width = '250x', height = '250px' }) => {
+const LottieAnimationLoading: React.FC<LottieAnimationProps> = ({ width = '100%', height = '100%' }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true, // Animation will play automatically
