@@ -646,7 +646,7 @@ const AdminDashboard: React.FC = () => {
         <IoFilter />
         </IconButton>
         </Box>
-        <BarChart width={500} height={260} data={categories.map((cat, idx) => ({
+        <BarChart width={500} height={290} data={categories.map((cat, idx) => ({
       name: cat,
       Recieved: RecievedValues[idx],
       Transfer: transferValues[idx],
@@ -668,7 +668,7 @@ const AdminDashboard: React.FC = () => {
             key={`cell-${index}`} 
             fill="#0000FF" 
             stroke={activeIndex === index ? 'white' : 'none'} 
-            strokeWidth={activeIndex === index ? 2 : 0} 
+            strokeWidth={activeIndex === index ? 1 : 0} 
             onMouseEnter={() => onMouseEnter(index)}
             onMouseLeave={onMouseLeave}
           />
@@ -681,7 +681,7 @@ const AdminDashboard: React.FC = () => {
             key={`cell-${index}`} 
             fill="#82ca9d" 
             stroke={activeIndex === index ? 'white' : 'none'} 
-            strokeWidth={activeIndex === index ? 2 : 0} 
+            strokeWidth={activeIndex === index ? 1 : 0} 
             onMouseEnter={() => onMouseEnter(index)}
             onMouseLeave={onMouseLeave}
           />
@@ -694,7 +694,7 @@ const AdminDashboard: React.FC = () => {
             key={`cell-${index}`} 
             fill="#ffc658" 
             stroke={activeIndex === index ? 'white' : 'none'} 
-            strokeWidth={activeIndex === index ? 2.5 : 0} 
+            strokeWidth={activeIndex === index ? 1 : 0} 
             onMouseEnter={() => onMouseEnter(index)}
             onMouseLeave={onMouseLeave}
           />
@@ -707,7 +707,7 @@ const AdminDashboard: React.FC = () => {
             key={`cell-${index}`} 
             fill="#8A2BE2" 
             stroke={activeIndex === index ? 'white' : 'none'} 
-            strokeWidth={activeIndex === index ? 2 : 0} 
+            strokeWidth={activeIndex === index ? 1 : 0} 
             onMouseEnter={() => onMouseEnter(index)}
             onMouseLeave={onMouseLeave}
           />
@@ -803,9 +803,9 @@ const AdminDashboard: React.FC = () => {
             </div>
           </div>
           {graphType === "line" ? (
-            <Line data={chartData} options={options} />
+            <Line data={chartData} options={options} width={500} height={260}/>
           ) : (
-            <Bar data={chartData} options={options} />
+            <Bar data={chartData} options={options} width={500} height={260}/>
           )}
         </div>
         </Grid>

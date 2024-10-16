@@ -172,7 +172,8 @@
   font-family: Poppins;
   margin: 0 auto;
   /* justify-content: center; */
-  /* width:1200px; */
+  width: 1350px;
+  /* padding: 40px; */
   top: 150px;
   position: fixed;
 
@@ -257,20 +258,6 @@
   font-size: 14px;
 }
 
-.actionButton:hover {
-  background: linear-gradient(90deg, #007bff9f, #800080);
-}
-
-.viewDetailsLink {
-  color: rgb(12, 12, 129); /* Set the link color to blue */
-  text-decoration: none; /* Remove underline */
-  font-weight: bold; /* Optional: make it bold */
-  transition: color 0.3s; /* Add a smooth transition for hover effect */
-}
-
-.viewDetailsLink:hover {
-  color: rgb(19, 19, 167); /* Change color on hover */
-}
 
 .tableHeaderCell {
   font-weight: bold; /* Make the text bold */

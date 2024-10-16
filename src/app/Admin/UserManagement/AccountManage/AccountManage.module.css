@@ -6,6 +6,8 @@
   
   .statisticsContainer {
     margin-bottom: 16px;
+    /* width: 1340px; */
+    /* width: 1360px; */
   }
   .page {
     display: flex;
@@ -64,6 +66,7 @@
   overflow-y: auto; /* Allow vertical scrolling */
   scrollbar-width: none; /* Hide scrollbar for Firefox */
   -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  /* width: 1330px; */
 }
 
 .tableContainer::-webkit-scrollbar {
@@ -74,16 +77,6 @@
 .tableContainer::-webkit-scrollbar-thumb {
   background: transparent; /* Optional: Hide scrollbar thumb */
 }
-  .tableContainer {
-    background-color: #222531;
-    border-radius: 8px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-    color:white;
-    font-family: Poppins;
-    /* overflow-y: hidden; */
-    /* width:1200px; */
-  }
   .heading {
     color: white;
     margin-bottom: 1rem;
@@ -190,19 +183,6 @@
   .statusHold {
     color: orange;
     font-weight: bold;
-  }
-  /* Filter dropdown */
-.filterDropdown {
-    width: 140px;
-    height: 40px;
-    /* background: linear-gradient(90deg, #007bff9f, #800080); */
-    background: linear-gradient(to right, rgba(119, 6, 211, 1) 25%, rgba(243, 66, 235, 1) 100%);
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-family: Poppins;
-    border-radius: 5px;
-    /* height:10px; */
-
   }
   .profilePlaceholder {
     width: 40px;

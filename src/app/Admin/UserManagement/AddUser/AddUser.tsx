@@ -3,7 +3,7 @@
 import { useState , useEffect} from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
 import axios from 'axios';
-import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
+// import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 import styles from './AddUser.module.css'; // Importing CSS module
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -144,7 +144,7 @@ const RegisterForm: React.FC = () => {
 
     try {
       // Hash the password before sending it
-      const hashedPassword = bcrypt.hashSync(formData.user_password, 10);
+      // const hashedPassword = bcrypt.hashSync(formData.user_password, 10);
 
       // Sending the form data to the backend API
       const response = await axios.post(
@@ -152,7 +152,7 @@ const RegisterForm: React.FC = () => {
         {
           user_id: newUserId,
           ...formData,
-          user_password: hashedPassword, // Send hashed password
+          user_password: formData.user_password, // Send hashed password
         },
         {
           headers: {
