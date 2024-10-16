@@ -113,6 +113,8 @@ const AdminDashboard: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [filteredUserData, setFilteredUserData] = useState<PieChartData[]>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [name, setName] = useState<string>(''); 
+  const [userType, setUserType] = useState<string>(''); 
   const [filters, setFilters] = useState({
     active: true,
     inactive: true,
@@ -122,7 +124,23 @@ const AdminDashboard: React.FC = () => {
     success: true,
     failed: true,
   });
-
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get('user_first_name') || '';
+      const type = params.get('user_type') || '';
+      if (name) {
+        setName(name);
+      } else {
+        console.error("name not found.");
+      }
+      if (type) {
+        setUserType(type);
+      } else {
+        console.error("type not found");
+      }
+    }
+  }, []);
   // Fetch user data and transaction data upon page load
   useEffect(() => {
     axios
@@ -425,8 +443,8 @@ const AdminDashboard: React.FC = () => {
         <div className={styles.profileSection}>
           <FontAwesomeIcon icon={faUserCircle} className={styles.profileIcon} />
           <div className={styles.profileDetails}>
-            <span className={styles.profileName}>Vikram</span>
-            <span className={styles.profileRole}>Admin</span>
+            <span className={styles.profileName}>{name}</span>
+            <span className={styles.profileRole}>{userType}</span>
           </div>
         </div>
         {/* <FontAwesomeIcon

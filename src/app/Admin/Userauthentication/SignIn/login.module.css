@@ -1,0 +1,543 @@
+/* .container {
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden; 
+  
+} */
+
+@media (max-width: 760px) {
+  .container { 
+    height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;  
+  }
+
+  .main {
+    padding: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  background-color: #242429;
+  background-image: url('https://res.cloudinary.com/dgfv6j82t/image/upload/v1727325960/0beadfc1-104a-4d39-90dc-d34518823d07.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 30% 50%;
+  animation: moveBackground 0.5s ease-in-out forwards; 
+  }
+
+  @keyframes moveBackground {
+    0% {
+      background-position: 90% 40%;
+    }
+    100% {
+      background-position: 110% -20%; 
+    }
+  } 
+}
+.imageLogo{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.title {
+  font-family: SF Pro;
+  font-size: 26.43px;
+  font-weight: 700;
+  line-height: 11.74px;
+  text-align: center;
+  color: #ffffff;
+  margin: 5px;
+
+}
+
+.graphics{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #E34D67 0%, #7746F4 100%);
+
+}
+
+/* .main {
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  background-color: #242429;
+  background-image: url('https://res.cloudinary.com/dgfv6j82t/image/upload/v1727325960/0beadfc1-104a-4d39-90dc-d34518823d07.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 30% 50%;
+  animation: moveBackground 0.5s ease-in-out forwards; 
+}
+@keyframes moveBackground {
+  0% {
+    background-position: 90% 40%;
+  }
+  100% {
+    background-position: 110% -20%; 
+  }
+} */
+
+.card {
+  background-color: #17171a;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  /* margin-top: 70%; */
+  padding-bottom: 6rem;
+  width: 430px;
+  max-width: 100%;
+  overflow: hidden; 
+  height: 80vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px 20px 20px 20px;
+  margin: 0 auto;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  opacity: 1; /* Ensure the form is visible */
+  flex-grow: 1; /* Allow it to take available space */
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+  position: relative;
+  border-radius: 8px;
+  opacity: 1; 
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #888DAA;
+  font-family: Poppins;
+}
+.passwordWrapper {
+  position: relative;
+}
+.eyeIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color:#ffffff ;
+  width: 24px;
+  height: 24px;
+  /* top: 20px;
+  left: 307px; */
+  padding: 5px 3px 5px 3px;
+  gap: 0px;
+  opacity: 1;
+
+}
+
+.signupLink {
+  font-size: 0.89rem;
+  display: block;
+  margin-top: 10px;
+  color: purple;
+  text-align: center;
+  text-decoration: none;
+}
+
+.signupLink:hover {
+  text-decoration: underline;
+}
+
+.passwordInput {
+  width: 100%;
+  padding-right: 40px; /* Make space for the eye icon */
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  /* background: #17171A; */
+  border: 1px solid #2A2D3C;
+
+
+
+
+}
+.formGroup input {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 2px;
+  /* color: black; */
+  font-size: 0.75rem; /* Match input font size to label size */
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 24px;
+  text-align: left;
+  /* background: #17171A; */
+  border: 1px solid #2A2D3C;
+
+  border-radius: 8px;
+background-color: rgba(0, 0, 0, 0);
+border: 1px solid #2a2d3c;
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+
+
+}
+
+.formGroup input::placeholder {
+  color: #888DAA;
+  font-size: 0.75rem; /* Slightly smaller placeholder text */
+  font-family: Poppins;
+}
+.signInLinkWrapper {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.signInLink {
+  color: #800080;
+  text-decoration: none;
+  font-size:0.85rem;
+}
+
+.signInLink:hover {
+  text-decoration: underline;
+  color: white;
+  
+}
+.checkboxContainer {
+  display:flex;
+  align-items: center; 
+  justify-content: space-between;/* Align items vertically */
+  margin-bottom: 1rem;
+  font-size: 0.75rem; /* Smaller font size for checkbox and link */
+}
+
+.checkboxContainer label {
+  display: flex;
+  align-items: center; /* Align items vertically within the label */
+}
+
+.checkboxContainer input[type="checkbox"] {
+  margin-right: 0.2rem; /* Space between checkbox and label text */
+}
+
+.forgotPassword {
+  color: #888DAA;
+ text-decoration: none;
+  font-size: 0.75rem;
+
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+}
+
+.forgotPassword:hover {
+  text-decoration: underline;
+}
+
+.button {
+  padding: 0.65rem;
+  width: 100%;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  /* margin-bottom: 0.5rem; */
+  border-radius: 8px 8px 8px 8px;
+  opacity: 1;
+  background: linear-gradient(268.7deg, #ff4bf9, #a221ff);
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  /* line-height: 24px; */
+  text-align: center;
+
+
+}
+
+
+.container, .main, .form, .button, .title, .formGroup label, .formGroup input {
+  font-family:Poppins; 
+}
+
+/* .googleWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+} */
+
+@media (max-width: 768px) {
+  .main {
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    /* display: flex; 
+    justify-content: center;
+    align-items: center; */
+  }
+
+  .card {
+    position: relative;
+    top: 120px;
+    /* width: 430px;  */
+    width: 100vw;
+    height: 100vh; 
+    /* padding: 3rem;  */
+    margin: 0; 
+    border-radius: 0; 
+    box-shadow: none;
+    border-radius: 50px 50px;
+
+  }
+
+  .title {
+    font-size: 1.1rem; /* Adjust title font size for mobile */
+  }
+
+  .formGroup input {
+    font-size: 0.85rem; /* Increase input font size for better readability */
+  }
+
+  .button {
+    padding: 0.6rem; 
+    font-size: 0.75rem; 
+  }
+
+  .signupLink {
+    font-size: 0.75rem; /* Adjust signup link font size */
+  }
+}
+
+@media (max-width: 480px) {
+  /* .main {
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+  } */
+
+  /* .card {
+    width: 100%; 
+    height: 100vh; 
+    padding: 2.5rem; 
+    margin: 0; 
+    border-radius: 0;
+  } */
+
+  /* .title {
+    font-size: 1rem; 
+  }
+
+  .button {
+    padding: 0.6rem; 
+    font-size: 0.7rem; 
+  } */
+}
+.orContinueWith {
+  text-align: center;
+  margin: 10px ;
+  color: #ffffff; /* Adjust based on your design */
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  /* line-height: 24px; */
+}
+
+.account {
+  text-align: center;
+  margin: 10px 0;
+  color: #ffffff; /* Adjust based on your design */
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #5F97FF;
+}
+.googleSignIn {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 10px; */
+}
+
+.googleIcon {
+  width: 50px; /* Adjust the size */
+  height: auto;
+  cursor: pointer;
+}
+
+.otpGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Adjust spacing between the inputs */
+}
+
+.otpInput {
+  width: 40px; /* Adjust the width of the input */
+  height: 40px; /* Adjust the height for better line appearance */
+  border: none; /* Remove the border */
+  border-bottom: 2px solid black; /* Add a bottom border for the line effect */
+  font-size: 24px;
+  text-align: center;
+  outline: none; 
+  /* background-color: #f5f5f5; */
+}
+
+.otpInput:focus {
+  border-bottom: 2px solid white; /* Change the color when focused */
+}
+
+.customKeyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  /* margin-top: 15px; */
+  justify-items: center;
+}
+
+.keyboardButton {
+  border-radius: 52.32px;
+  background-color: #23262a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.3px 0px 0px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 20.57px;
+  color: #fff;
+  font-family: Roboto;
+  width: 30.1px;
+  height: 30.1px;
+  height: 100%;
+  flex: 1;
+  width: 100%;
+}
+.keyboardButton img{
+height: 27.3px;
+width: 27.3px;
+}
+.keyboardButton1 {
+  border-radius: 52.32px;
+  background-color: #4f6375;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.3px 0px 0px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 20.57px;
+  color: #fff;
+  font-family: Roboto;
+  width: 30.1px;
+  height: 30.1px;
+  height: 100%;
+  flex: 1;
+  width: 100%;
+}
+.keyboardButton2 {
+  border-radius: 52.32px;
+  background-color: #588ab9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.3px 0px 0px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 20.57px;
+  color: #fff;
+  font-family: Roboto;
+  width: 30.1px;
+  height: 30.1px;
+  height: 100%;
+  flex: 1;
+  width: 100%;
+}
+
+
+.keyboardButton:hover {
+  background-color: #e0e0e0;
+}
+.keyboardButton1:hover {
+  background-color: #e0e0e0;
+}
+.keyboardButton2:hover {
+  background-color: #e0e0e0;
+}
+.otpGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.otpInput {
+  width: 45px;
+  height: 45px;
+  font-size: 18px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.chevronButton{
+  margin-top: -10px;
+}
+/* Mobile responsive */
+
+
+
+
+.notification {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.formGroup button1{
+background-color: #f8d7da;;
+}
