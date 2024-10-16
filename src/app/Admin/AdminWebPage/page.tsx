@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import WebpageSingle from './Admin/AdminWebPage/AdminWebPage';
+import WebpageSingle from './AdminWebPage';
 
 const Webpage1: React.FC = () => {
   return (
