@@ -6,7 +6,6 @@
   height: 100vh;
   background-color: #121212;
   color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   overflow-y: hidden;
   font-family: 'Poppins', sans-serif;
 }
@@ -235,8 +234,10 @@ font-family: 'Poppins', sans-serif;
 }
 
 .chart-container {
-  max-width: 100px;
-  max-height: 100px;
+  /* max-width: 100px;
+  max-height: 100px; */
+  height: 230px;
+  width: 500px;
   margin: 0 auto;
   padding: 10px;
   border-radius: 10px;

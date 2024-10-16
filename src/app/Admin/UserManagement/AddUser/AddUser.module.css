@@ -78,9 +78,9 @@
     width: auto; /* Make the width auto to fit content */
     min-width: 60px;
     padding: 0.5rem 1rem; /* Adjust padding for a smaller appearance */
-    background-color: #fff;
+    background: linear-gradient(97.59deg, #e34d67, #7746f4);
     font-size: 0.875rem; /* Smaller font size */
-    color: black;
+    color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;

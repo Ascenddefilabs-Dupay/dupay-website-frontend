@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
 import axios from 'axios';
-import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
+// import bcrypt from 'bcryptjs'; // Import bcryptjs for password hashing
 import styles from './CreateAdmin.module.css'; // Importing CSS module
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -48,7 +48,7 @@ const RegisterForm: React.FC = () => {
 
   const checkUserIdUnique = async (userId: string): Promise<boolean> => {
     try {
-      const response = await axios.get(`https://admin-user-management-255574993735.asia-south1.run.app/createadminapi/AdminUser/${userId}/`);
+      const response = await axios.get(`http://localhost:8000/createadminapi/AdminUser/${userId}/`);
       console.log('Response:', response);
       return false; // User ID is not unique (exists)
     } catch (error) {
@@ -115,11 +115,10 @@ const RegisterForm: React.FC = () => {
 
     return !newErrors.missingFields && !newErrors.passwordMismatch && !newErrors.emailInvalid && !newErrors.phoneInvalid && !newErrors.nameInvalid && !newErrors.dobInvalid;
   };
-
- const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-
-  if (!validateForm()) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
+    // Validate the form
     if (!validateForm()) {
       if (errors.missingFields) {
         alert('Please fill all required details.');
@@ -141,54 +140,123 @@ const RegisterForm: React.FC = () => {
       }
       return;
     }
-
-  }
-
-  let isUniqueUserId = false;
-  let newUserId = userId;
-
-  while (!isUniqueUserId) {
-    isUniqueUserId = await checkUserIdUnique(newUserId);
-
-    if (!isUniqueUserId) {
-      userCount += 1;
-      newUserId = generateUserId(userCount);
-    }
-  }
-
-  try {
-    const hashedPassword = bcrypt.hashSync(formData.user_password, 10);
-
-    const response = await axios.post(
-      'https://admin-user-management-255574993735.asia-south1.run.app/createadminapi/AdminUser/',
-      {
-        user_id: newUserId,
-        ...formData,
-        user_password: hashedPassword,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+  
+    let isUniqueUserId = false;
+    let newUserId = userId;
+  
+    // Check if the user ID is unique
+    while (!isUniqueUserId) {
+      isUniqueUserId = await checkUserIdUnique(newUserId);
+  
+      if (!isUniqueUserId) {
+        userCount += 1;
+        newUserId = generateUserId(userCount);
       }
-    );
-    if (response.status === 200 || response.status === 201) {
-      toast.success('User added successfully!');
-      console.log('Form Data:', {
-        user_id: newUserId,
-        ...formData,
-      });
     }
-  } catch (error: unknown) {
-    if (axios.isAxiosError(error)) {
-      console.error('Axios error:', error.response?.data || error.message);
-      toast.error('An error occurred while adding the user. Please try again.');
-    } else {
-      console.error('Unknown error:', error);
-      toast.error('An unknown error occurred.');
+  
+    try {
+      // Send the plain-text password without hashing
+      const response = await axios.post(
+        'https://admin-user-management-255574993735.asia-south1.run.app/createadminapi/AdminUser/',
+        {
+          user_id: newUserId,
+          ...formData,
+          user_password: formData.user_password,  // Send plain password
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+      if (response.status === 200 || response.status === 201) {
+        toast.success('User added successfully!');
+      }
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error('Axios error:', error.response?.data || error.message);
+        toast.error('An error occurred while adding the user. Please try again.');
+      } else {
+        console.error('Unknown error:', error);
+        toast.error('An unknown error occurred.');
+      }
     }
-  }
-};
+  };
+  
+//  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+//   e.preventDefault();
+
+//   if (!validateForm()) {
+//     if (!validateForm()) {
+//       if (errors.missingFields) {
+//         alert('Please fill all required details.');
+//       }
+//       if (errors.passwordMismatch) {
+//         alert('Passwords do not match.');
+//       }
+//       if (errors.emailInvalid) {
+//         alert('Invalid email format.');
+//       }
+//       if (errors.phoneInvalid) {
+//         alert('Invalid phone number. Must be 10 digits.');
+//       }
+//       if (errors.nameInvalid) {
+//         alert('First name and last name cannot be empty.');
+//       }
+//       if (errors.dobInvalid) {
+//         alert('You must be at least 18 years old.');
+//       }
+//       return;
+//     }
+
+//   }
+
+//   let isUniqueUserId = false;
+//   let newUserId = userId;
+
+//   while (!isUniqueUserId) {
+//     isUniqueUserId = await checkUserIdUnique(newUserId);
+
+//     if (!isUniqueUserId) {
+//       userCount += 1;
+//       newUserId = generateUserId(userCount);
+//     }
+//   }
+
+//   try {
+//     const hashedPassword = bcrypt.hashSync(formData.user_password, 10);
+
+//     const response = await axios.post(
+//       'https://admin-user-management-255574993735.asia-south1.run.app/createadminapi/AdminUser/',
+//       {
+//         user_id: newUserId,
+//         ...formData,
+//         user_password: hashedPassword,
+//       },
+//       {
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//       }
+//     );
+//     if (response.status === 200 || response.status === 201) {
+//       toast.success('User added successfully!');
+//       console.log('Form Data:', {
+//         user_id: newUserId,
+//         ...formData,
+//       });
+//     }
+//   } catch (error: unknown) {
+//     if (axios.isAxiosError(error)) {
+//       console.error('Axios error:', error.response?.data || error.message);
+//       toast.error('An error occurred while adding the user. Please try again.');
+//     } else {
+//       console.error('Unknown error:', error);
+//       toast.error('An unknown error occurred.');
+//     }
+//   }
+// };
 useEffect(() => {
   const timer = setTimeout(() => {
     setShowLoader(false);
@@ -318,7 +386,7 @@ useEffect(() => {
         {/* gender */}
         <Box className={styles.field}>
           <Typography variant="body1" className={styles.label}>
-            gender: <span className={styles.required}>*</span>
+            Gender: <span className={styles.required}>*</span>
           </Typography>
           <select
             name="user_gender"
