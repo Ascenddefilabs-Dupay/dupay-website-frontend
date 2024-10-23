@@ -5,9 +5,53 @@
     align-items: center;
     background-color: black;
     padding: 1rem;
+    /* width:180vw; */
     height: 100vh;
   }
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: #121212;
+    color: white;
+    overflow-y: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
+  .sidebar, .mainContent {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
   
+  /* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+  .sidebar::-webkit-scrollbar, .mainContent::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+  .mainContent {
+    margin-left: 250px;
+    padding: 30px;
+    flex-grow: 1;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    font-size: 16px;
+    transition: margin-left 0.3s ease;
+    width: 84%;
+    /* height: 60%; */
+    height: 84vh;
+    font-family: 'Poppins', sans-serif;
+  }
+  .sidebarVisible ~ .mainContent {
+    margin-left: 250px;
+  }
+  
+  .mainContent h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-family: 'Poppins', sans-serif;
+  }
   .header {
     display: flex;
     justify-content: space-between;
@@ -148,13 +192,14 @@
     margin-top: 20px;
     width: 80%; */
     display: flex;
-    margin-top: 20px;
-    width: 70%;
+    margin-top: 10px;
+    width: 80%;
     background-color:#222531;
     border-radius: 8px;
     color:white;
     height: 400px;
     font-family: Poppins;
+    margin: 0px auto;
   }
   .statusCircle {
     position: absolute;
@@ -194,7 +239,8 @@
     display: flex;
     justify-content: end;
     position: relative;
-    left: 450px;
+    /* left: 200px; */
+    left:10px;
     font-family: Poppins;
   }
   .curren{
@@ -259,8 +305,18 @@
     font-weight: bold;
   }
   .heading {
-    color: white;
-    margin-bottom: 1rem;
+    /* color: white;
+    margin-bottom: 1rem; */
+    display: flex;
+    justify-content: flex-end; /* Centers the content horizontally */
+    align-items: center;
+    color: #fff;
+    padding: 10px;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    margin: 0px auto;
+    font-family: Poppins;
   }
   .loaderContainer {
     position: absolute;

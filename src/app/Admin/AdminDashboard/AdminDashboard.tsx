@@ -423,7 +423,7 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      {/* <div className={styles.header}>
         <div className={styles.headerLeft}>
           <FontAwesomeIcon
             icon={faBars}
@@ -447,11 +447,6 @@ const AdminDashboard: React.FC = () => {
             <span className={styles.profileRole}>{userType}</span>
           </div>
         </div>
-        {/* <FontAwesomeIcon
-          icon={faBars}
-          className={styles.menuIcon}
-          onClick={toggleSidebar}
-        /> */}
       </div>
 
       <div className={`${styles.sidebar} ${menuVisible ? styles.sidebarVisible : ""}`}>
@@ -461,10 +456,6 @@ const AdminDashboard: React.FC = () => {
               <FontAwesomeIcon icon={faChartBar} className={styles.navIcon} />
               <Link href="/Admin/AdminDashboard">Dashboard</Link>
             </li>
-            {/* <li>
-              <FontAwesomeIcon icon={faChartLine} className={styles.navIcon} />
-              <Link href="/Admin/UserManagement/ReportAnalysis">Report Analysis</Link>
-            </li> */}
             <li>
               <FontAwesomeIcon icon={faUserFriends} className={styles.navIcon} />
               <Link href="/Admin/UserManagement/AccountManage">User Management</Link>
@@ -511,7 +502,7 @@ const AdminDashboard: React.FC = () => {
             </li>
           </ul>
         </nav>
-      </div>
+      </div> */}
 
       <div className={styles.mainContent}>
       <Menu

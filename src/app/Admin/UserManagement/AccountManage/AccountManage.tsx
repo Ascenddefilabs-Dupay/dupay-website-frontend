@@ -137,7 +137,8 @@ const Dashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.page}>
+    <div className={styles.container}>
+      <div className={styles.mainContent}>
           <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
           </Link>
@@ -145,6 +146,7 @@ const Dashboard: React.FC = () => {
       <Typography variant="h4" className={styles.heading} gutterBottom>
         Account Management
       </Typography>
+      <IconButton>
       <Link href="/Admin/UserManagement/AddUser">
       <IconButton
           className={styles.currency}
@@ -166,6 +168,7 @@ const Dashboard: React.FC = () => {
           onClick={(e) => setUserTypeMenuAnchor(e.currentTarget)}
         >
           <IoFilter />
+        </IconButton>
         </IconButton>
         <Menu
           anchorEl={statusMenuAnchor}
@@ -277,6 +280,7 @@ const Dashboard: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
     </div>
   );
 };

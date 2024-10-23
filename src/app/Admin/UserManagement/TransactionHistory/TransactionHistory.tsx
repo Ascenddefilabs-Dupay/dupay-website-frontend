@@ -23,8 +23,8 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 import axios from 'axios';
 import styles from './TransactionHistory.module.css'; // Import the CSS module
 import { SelectChangeEvent } from '@mui/material';
-import Link from 'next/link';
-import { FaArrowLeft } from 'react-icons/fa';
+// import Link from 'next/link';
+// import { FaArrowLeft } from 'react-icons/fa';
 import { FaRegCalendar } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
 // User and Transaction interfaces
@@ -225,20 +225,24 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={styles.page}>
-                <Link href="/Admin/AdminDashboard">
+    // <div className={styles.page}>
+    <div className={styles.container}>
+      <div className={styles.mainContent}>
+                {/* <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
-          </Link>
+          </Link> */}
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-      <Typography variant="h4" className={styles.heading} gutterBottom>
+      <Typography className={styles.heading} gutterBottom>
         Transaction Monitoring
       </Typography>
+      <IconButton>
         <IconButton
         title='Filter'
           onClick={handleClick}
           className={styles.header}
         >
           <IoFilter />
+        </IconButton>
         </IconButton>
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} PaperProps={{
             style: {
@@ -389,6 +393,7 @@ const Dashboard = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
     </div>
   );
 };

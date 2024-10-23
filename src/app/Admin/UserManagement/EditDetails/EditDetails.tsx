@@ -137,7 +137,9 @@ const UserProfile: React.FC = () => {
 
 
   return (
-    <div className={styles.page}>
+    // <div className={styles.page}>
+    <div className={styles.container}>
+      <div className={styles.mainContent}>
       <Link onClick={handleBack} href={`/Admin/UserManagement/ViewDetails?user_id=${user?.user_id}`}>
           <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
       </Link>
@@ -242,6 +244,7 @@ const UserProfile: React.FC = () => {
           </Box>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 };

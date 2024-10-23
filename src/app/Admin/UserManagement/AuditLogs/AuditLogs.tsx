@@ -19,8 +19,8 @@ import {
 import axios from 'axios';
 import styles from './AuditLogs.module.css'; 
 import { FaRegCalendar } from "react-icons/fa";
-import Link from 'next/link';
-import { FaArrowLeft } from 'react-icons/fa';
+// import Link from 'next/link';
+// import { FaArrowLeft } from 'react-icons/fa';
 import { IoFilter } from "react-icons/io5";
 
 interface WalletAdminActions {
@@ -100,20 +100,23 @@ const Dashboard = () => {
 
 
   return (
-    <div className={styles.page}>
-             <Link href="/Admin/AdminDashboard">
+    // <div className={styles.page}>
+      <div className={styles.mainContent}>
+             {/* <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
-          </Link>
+          </Link> */}
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
         
-        <Typography variant="h4" className={styles.heading} gutterBottom style={{ flexGrow: 1 }}>
+        <Typography  className={styles.heading} gutterBottom >
           Audit Logs
         </Typography>
+        <IconButton>
         <IconButton
           onClick={() => setShowDateFields(!showDateFields)}
           className={styles.header}
         >
           <IoFilter />
+        </IconButton>
         </IconButton>
       </Box>
       {showDateFields && (
@@ -218,7 +221,8 @@ const Dashboard = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+      </div>
+    // </div>
   );
 };
 
