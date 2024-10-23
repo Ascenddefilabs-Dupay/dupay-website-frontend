@@ -19,6 +19,49 @@
     margin:'0 auto';
     height: 100vh;
   }
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: #121212;
+    color: white;
+    overflow-y: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
+  .sidebar, .mainContent {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  /* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+  .sidebar::-webkit-scrollbar, .mainContent::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+  .mainContent {
+    margin-left: 250px;
+    padding: 30px;
+    flex-grow: 1;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    font-size: 16px;
+    transition: margin-left 0.3s ease;
+    width: 81%;
+    height: 70%;
+    font-family: 'Poppins', sans-serif;
+  }
+  .sidebarVisible ~ .mainContent {
+    margin-left: 250px;
+  }
+  
+  .mainContent h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-family: 'Poppins', sans-serif;
+  }
   .statisticBox {
     padding: 16px;
     text-align: center;
@@ -80,6 +123,7 @@
   .heading {
     color: white;
     margin-bottom: 1rem;
+    /* left:40px; */
     font-family: Poppins;
   }
   /* AccountManage.module.css */
@@ -207,7 +251,8 @@
     display: flex;
     justify-content: end;
     position: relative;
-    left: 490px;
+    /* left: 490px; */
+    left:40px;
     font-family: Poppins;
   }
   .currency{
@@ -217,11 +262,12 @@
     display: flex;
     justify-content: end;
     position: relative;
-    left: 430px;
+    left: 10px;
     font-family: Poppins;
   }
   .heading {
     color: white;
     margin-bottom: 1rem;
     font-family: Poppins;
+    margin: 0px auto;
   }

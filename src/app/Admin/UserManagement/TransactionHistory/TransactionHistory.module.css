@@ -1,9 +1,51 @@
-.container {
+/* .container {
   padding: 16px;
   background-color: black;
-  margin: 0 auto; /* Remove quotes */
+  margin: 0 auto; 
+} */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #121212;
+  color: white;
+  overflow-y: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar, .mainContent {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+.sidebar::-webkit-scrollbar, .mainContent::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+.mainContent {
+  margin-left: 250px;
+  padding: 30px;
+  flex-grow: 1;
+  background-color: #121212;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  font-size: 16px;
+  transition: margin-left 0.3s ease;
+  width: 81%;
+  height: 70%;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebarVisible ~ .mainContent {
+  margin-left: 250px;
+}
+
+.mainContent h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  font-family: 'Poppins', sans-serif;
+}
 .statisticsContainer {
   margin-bottom: 16px;
 }
@@ -57,6 +99,7 @@
   width: 200px;
   height: 60px;
   left: 265px;
+  top:100px;
   color: white;
   background-color: #222531;
   font-family: Poppins;
@@ -132,7 +175,7 @@
   color: white;
   font-family: Poppins;
   left:480px;
-  top: 90px;
+  top: 185px;
   position: fixed;
 }
 .head {
@@ -153,7 +196,8 @@
   display: flex;
   justify-content: end;
   position: relative;
-  left: 460px;
+  /* left: 460px; */
+  left:10px;
 }
 .currency{
   color: white;
@@ -172,21 +216,31 @@
   font-family: Poppins;
   margin: 0 auto;
   /* justify-content: center; */
-  width: 1350px;
+  width: 1050px;
   /* padding: 40px; */
-  top: 150px;
+  top: 250px;
   position: fixed;
 
 }
 
 .heading {
-  color: white;
+  /* color: white;
   margin-bottom: 1rem;
+  font-family: Poppins; */
+  display: flex;
+  justify-content: flex-end; /* Centers the content horizontally */
+  align-items: center;
+  color: #fff;
+  padding: 10px;
+  font-size: 30px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  margin: 0px auto;
   font-family: Poppins;
 }
 
 .tableCell {
-  max-width: 150px; /* Set your desired width */
+  /* max-width: 150px;  */
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: Poppins;
@@ -305,7 +359,7 @@
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   color: white;
-  max-height: 600px;
+  max-height: 500px;
   font-family: Poppins;
   overflow-y: auto; /* Allow vertical scrolling */
   scrollbar-width: none; /* Hide scrollbar for Firefox */

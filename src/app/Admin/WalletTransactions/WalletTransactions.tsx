@@ -48,6 +48,7 @@ const WalletTransactions: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.mainContent}>
       <h1 className={styles.header}>Transaction History</h1>
 
       {/* Table header */}
@@ -72,6 +73,7 @@ const WalletTransactions: React.FC = () => {
           <h1 className={styles.header}>No transactions found for this wallet.</h1>
         )}
       </ul>
+      </div>
     </div>
     // <div className={styles.container}>
     //   <h1 className={styles.header}>Transaction History</h1>

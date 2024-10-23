@@ -142,7 +142,9 @@ const WalletManagement: React.FC = () => {
   };
 
   return (
-    <div className={styles.page}>
+    // <div className={styles.page}>
+    <div className={styles.container}>
+      <div className={styles.mainContent}>
       <Typography variant="h4" className={styles.heading} gutterBottom>
         Monitor Wallet Count by Currency Type
       </Typography>
@@ -154,6 +156,7 @@ const WalletManagement: React.FC = () => {
         data={currencyData}
         onClick={(e) => handleCurrencyClick(e.activePayload as TooltipPayload[])}
         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        className={styles.heading}
       >
         <XAxis dataKey="name" />
         <YAxis
@@ -220,6 +223,7 @@ const WalletManagement: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
     </div>
   );
 };

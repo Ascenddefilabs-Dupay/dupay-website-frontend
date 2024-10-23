@@ -266,11 +266,13 @@ useEffect(() => {
 }, []);
 
   return (
-    <div className={styles.page}>
+    // <div className={styles.page}>
+    <div className={styles.container}>
+      <div className={styles.mainContent}>
              <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
           </Link>
-      <Typography variant="h4" className={styles.heading} gutterBottom>
+      <Typography  className={styles.heading} gutterBottom>
         Add Admin
       </Typography>
       <Box component="form" onSubmit={handleSubmit} className={styles.form}>
@@ -455,6 +457,7 @@ useEffect(() => {
         transition={Slide}             // Slide transition for the toast
       />
       </Box>
+      </div>
     </div>
   );
 };

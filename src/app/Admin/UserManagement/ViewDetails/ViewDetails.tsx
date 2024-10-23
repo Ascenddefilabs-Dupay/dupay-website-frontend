@@ -8,7 +8,7 @@ import { Box, Typography, Card, CardContent, IconButton } from '@mui/material';
 import axios, { AxiosError } from 'axios';
 import styles from './ViewDetails.module.css'; // Import the CSS module
 import Link from 'next/link';
-import { FaArrowLeft } from 'react-icons/fa';
+// import { FaArrowLeft } from 'react-icons/fa';
 import { MdOutlineNoAccounts } from "react-icons/md";
 import { FaCoins } from "react-icons/fa";
 import { FaMoneyCheckAlt } from "react-icons/fa";
@@ -304,14 +304,17 @@ const UserProfile: React.FC = () => {
   };
 
   return (
-    <div className={styles.page}>
-      <Link href="/Admin/UserManagement/AccountManage">
+    // <div className={styles.page}>
+    // <div className={styles.container}>
+      <div className={styles.mainContent}>
+      {/* <Link href="/Admin/UserManagement/AccountManage">
           <FaArrowLeft  style={{position: 'relative' ,right:'650px', color: 'white'}} />
-      </Link>
+      </Link> */}
       <Box display="flex" justifyContent="space-between"  mb={4}>
-      <Typography variant="h4" className={styles.heading} gutterBottom>
+      <Typography  className={styles.heading} gutterBottom>
         Profile Details
       </Typography>
+      <IconButton>
       <IconButton
           className={styles.currency}
           title="Freeze" 
@@ -332,6 +335,7 @@ const UserProfile: React.FC = () => {
           onClick={handleFetchBalance}
         >
           <FaCoins />
+        </IconButton>
         </IconButton>
         </Box>
       {/* Header Section */}
@@ -536,7 +540,8 @@ const UserProfile: React.FC = () => {
       )}
         </CardContent> */}
       </Card>
-    </div>
+      </div>
+    // </div>
   );
 };
 
