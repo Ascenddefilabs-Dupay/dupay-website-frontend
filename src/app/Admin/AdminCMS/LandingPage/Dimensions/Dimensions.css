@@ -1,0 +1,249 @@
+/* ContentManagement.css */
+/* total background color = #242429
+    font name= "Poppins" */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: #17171A;
+}
+
+.content-management {
+  /* display: flex;
+    justify-content: center; */
+  width: 30%;
+  margin: 0 auto;
+}
+
+.menu {
+  display: grid;
+  row-gap: 30px;
+  align-items: center;
+  justify-items: center;
+}
+
+.heading {
+  font-size: 40px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-item {
+  background: #E2F0FF;
+  color: #000000;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #0056b3;
+}
+
+/* buttons */
+/* From Uiverse.io by Akshdeep74644 */
+.extext {
+  margin-left: 10px;
+  color: #888DAA;
+  font-size: 15px;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-top: 40px;
+  background-color: #2A2D3C;
+}
+
+.input-group1 {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.input {
+  border: 1px solid Gray;
+  border-radius: 8px;
+  background: none;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 100%;
+}
+
+.user-label {
+  position: absolute;
+  left: 15px;
+  color: #888DAA;
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: 350ms;
+}
+
+.input:focus,
+input:valid {
+  outline: none;
+  --angle: 0deg;
+  /* border-bottom: 1px solid;
+  border-image: #ffffff; */
+  animation: 3s rotate9234 linear infinite;
+}
+
+@keyframes rotate9234 {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.input:focus~label,
+input:valid~label {
+  transform: translatey(-145%) scale(1);
+  /* background-color: #e8e8e8; */
+  /* padding: 0 .2em; */
+  color: #ffffff;
+}
+
+/* radio button */
+/* From Uiverse.io by adamgiebl */
+.cyberpunk-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #2A2D3C;
+  border-radius: 5px;
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cyberpunk-checkbox:before {
+  content: "";
+  background-color: green;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cyberpunk-checkbox:checked:before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cyberpunk-checkbox-label {
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+/* dropdown */
+/* From Uiverse.io by 3bdel3ziz-T */
+
+.select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0px 20px 0px;
+}
+
+label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.styled-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #242429;
+  border: 1px solid #2A2D3C;
+  padding: 10px;
+  padding-right: 40px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iNiIgdmlld0JveD0iMCAwIDExIDYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMUw1LjUgNUwxMCAxIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.styled-select:focus {
+  border-color: #888DAA;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.styled-select option {
+  padding: 10px;
+  background-color: #242429;
+  color: white;
+}
+
+/* submit-button css */
+.submit-button {
+  background: #E2F0FF;
+  color: #000000;
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.close-button {
+  background: #E2F0FF;
+  color: #000000;
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: red;
+}
