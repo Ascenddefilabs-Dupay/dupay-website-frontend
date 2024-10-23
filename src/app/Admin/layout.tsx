@@ -14,9 +14,9 @@ const Bottomnavbar: React.FC<BottomnavbarProps> = ({ children, showBottomNav = t
         <header>
             <NavSidebar />
         </header>
-        <aside className="sidebar">
+        {/* <aside className="sidebar">
          <Sidebar />
-       </aside>
+       </aside> */}
       {children}
       {showBottomNav && ( // Conditionally render BottomNavBar if showBottomNav is true
         <footer>
