@@ -72,7 +72,7 @@ const PriceAlerts: React.FC = () => {
     //     }
     // };
 
-    const API_BASE_URL = 'http://localhost:8000/pricealertsapi';
+    const API_BASE_URL = 'http://notificationservice-ind-255574993735.asia-south1.run.app/pricealertsapi';
 
     // const fetchPriceAlerts = async () => {
     //     try {
