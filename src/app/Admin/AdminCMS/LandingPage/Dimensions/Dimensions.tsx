@@ -1,14 +1,76 @@
 // Dimensions.tsx
 "use client"
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Dimensions.css';
 
+interface Account {
+  account_id: number;
+  account_type: string;
+}
+interface Assets {
+  asset_id: number;
+  asset_name: string;
+}
+interface Denominations {
+  denomination_id: number;
+  denomination_name: string;
+}
+
 const Dimensions: React.FC = () => {
+  const [accounts, setAccounts] = useState<Account[]>([]);
+  const [assets, setAssets] = useState<Assets[]>([]);
+  const [Denomination, setDenomination] = useState<Denominations[]>([]);
   const [activeButton, setActiveButton] = useState<string | null>(null);
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName === activeButton ? null : buttonName);
   };
   const selectRef = useRef<HTMLSelectElement>(null);
+
+  // to fetch account id
+  useEffect(() => {
+    if (activeButton === 'Assets') {
+      console.log('this is an Assets');
+      const fetchAccounts = async () => {
+        try {
+          const response = await fetch('http://127.0.0.1:8000/admintransactionprocessingapi/account_names/');
+          const data: Account[] = await response.json();
+          setAccounts(data);
+
+        } catch (error) {
+          console.error('Error fetching accounts:', error);
+        }
+      };
+      fetchAccounts();
+    } else if (activeButton === 'Denomination') {
+      console.log('this is an Denomination');
+      const fetchAssets = async () => {
+        try {
+          const response = await fetch('http://127.0.0.1:8000/admintransactionprocessingapi/asset_names/');
+          const data: Assets[] = await response.json();
+          setAssets(data);
+
+        } catch (error) {
+          console.error('Error fetching accounts:', error);
+        }
+      };
+      fetchAssets();
+
+    } else if (activeButton === 'Address') {
+      console.log('this is an Address');
+      const fetchAssets = async () => {
+        try {
+          const response = await fetch('http://127.0.0.1:8000/admintransactionprocessingapi/denomination_names/');
+          const data: Denominations[] = await response.json();
+          setDenomination(data);
+
+        } catch (error) {
+          console.error('Error fetching accounts:', error);
+        }
+      };
+      fetchAssets();
+
+    }
+  }, [activeButton]);
 
   //Account Type form data
   const handleSubmitAccounts = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -54,13 +116,18 @@ const Dimensions: React.FC = () => {
     const formData = new FormData(event.target as HTMLFormElement);
     const asset_name = formData.get('assetName') as string;
     const description = formData.get('assetDescription') as string;
+    const account_id = selectRef.current?.value;
+
+    console.log(account_id);
     console.log({
       assetType: asset_name,
       assetDescription: description,
+      account_id: account_id,
     });
     const data = {
       asset_name: asset_name,
       description: description,
+      account_id: account_id,
     };
 
     try {
@@ -86,35 +153,91 @@ const Dimensions: React.FC = () => {
   };
 
   //Denomination type form data
-  const handleSubmitDenomination = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitDenomination = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
-    const fullName1 = formData.get('denominationName') as string;
-    const fullName2 = formData.get('denominationSymbole') as string;
+    const denomination_name = formData.get('denominationName') as string;
+    const symbol = formData.get('denominationSymbole') as string;
+    const asset_id = selectRef.current?.value;
     console.log({
-      denominationName: fullName1,
-      denominationSymbole: fullName2,
+      denomination_name: denomination_name,
+      symbol: symbol,
+      asset_id: asset_id,
     });
+    const data = {
+      denomination_name: denomination_name,
+      symbol: symbol,
+      asset_id: asset_id,
+    };
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/admintransactionprocessingapi/DupayDenomination/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit assets');
+      }
+      // history.go(0);
+
+      const result = await response.json();
+      console.log('Response of asset storage:', result);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   //Address type form data
-  const handleSubmitAddress = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitAddress = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
-    const fullName1 = formData.get('addressName') as string;
+    const addressName = formData.get('addressName') as string;
     const isDefaultAddress = (event.target as HTMLFormElement).querySelector('.cyberpunk-checkbox') as HTMLInputElement;
-    const isDefault = isDefaultAddress.checked;
+    const default_flag = isDefaultAddress.checked;
+    const denomination_id = selectRef.current?.value;
     console.log({
-      AddressName: fullName1,
-      DefaultAddress: isDefault,
+      addressName: addressName,
+      isDefaultAddress: default_flag,
+      denomination_id: denomination_id,
     });
+    const data = {
+      address_name: addressName,
+      default_flag: default_flag,
+      denomination_id: denomination_id,
+    };
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/admintransactionprocessingapi/DupayAddress/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit assets');
+      }
+      // history.go(0);
+
+      const result = await response.json();
+      console.log('Response of asset storage:', result);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   //Phases type form data
   const handleSubmitPhases = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const phase_name = selectRef.current?.value;
-    console.log(phase_name);
+    const formData = new FormData(event.target as HTMLFormElement);
+    const phase_name = formData.get('phase_name') as string;
 
     const data = {
       phase_name: phase_name,
@@ -205,6 +328,16 @@ const Dimensions: React.FC = () => {
                   <label className="user-label">Asset Description</label>
                 </div>
                 <label className='extext'>ex:- 'A brief description of the asset'....</label>
+                <div className="select-container">
+                  <label htmlFor="options">Select Accounts:</label>
+                  <select id="options" className="styled-select" ref={selectRef}>
+                    {accounts.map((account) => (
+                      <option key={account.account_id} value={account.account_id}>
+                        {account.account_type}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <button
                   type="submit"
                   className='submit-button'
@@ -229,6 +362,16 @@ const Dimensions: React.FC = () => {
                   <label className="user-label">Denomination Symbole</label>
                 </div>
                 <label className='extext'>ex:- '$'','₿',.....</label>
+                <div className="select-container">
+                  <label htmlFor="options">Select Assets:</label>
+                  <select id="options" className="styled-select" ref={selectRef}>
+                    {assets.map((account) => (
+                      <option key={account.asset_id} value={account.asset_id}>
+                        {account.asset_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <button
                   type="submit"
                   className='submit-button'
@@ -253,6 +396,16 @@ const Dimensions: React.FC = () => {
                     <input type="checkbox" className="cyberpunk-checkbox" />
                     The Default Address For The Denomination.</label>
                 </div>
+                <div className="select-container">
+                  <label htmlFor="options">Select Assets:</label>
+                  <select id="options" className="styled-select" ref={selectRef}>
+                    {Denomination.map((account) => (
+                      <option key={account.denomination_id} value={account.denomination_id}>
+                        {account.denomination_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <button
                   type="submit"
                   className='submit-button'
@@ -267,14 +420,11 @@ const Dimensions: React.FC = () => {
             <div>
               <button className="menu-item" onClick={() => setActiveButton(null)}>Phases</button>
               <form onSubmit={handleSubmitPhases}>
-                <div className="select-container">
-                  <label htmlFor="options">Select The Status Phase Of The Balance:</label>
-                  <select id="options" className="styled-select" ref={selectRef}>
-                    <option value="committed">Committed</option>
-                    <option value="Pending Incoming">Pending Incoming</option>
-                    <option value="Pending Outgoing">Pending Outgoing</option>
-                  </select>
+                <div className="input-group">
+                  <input className="input" autoComplete="on" name="phase_name" type="text" required />
+                  <label className="user-label">Phase Name</label>
                 </div>
+                <label className='extext'>ex:- 'committed','pending_incoming','pending_outgoing'.....</label>
                 <button
                   type="submit"
                   className='submit-button'
