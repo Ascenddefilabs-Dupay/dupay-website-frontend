@@ -30,7 +30,7 @@ body {
 
 .heading {
   font-size: 40px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   margin-top: 20px;
   display: flex;
   justify-content: center;
@@ -52,6 +52,9 @@ body {
 
 .menu-item:hover {
   background-color: #0056b3;
+}
+.menu-item.active {
+  background-color: #0056b3 !important;
 }
 
 /* buttons */
@@ -217,7 +220,7 @@ label {
   color: #000000;
   width: 100%;
   padding: 10px;
-  margin: 20px 0;
+  margin: 15px 0;
   border: none;
   cursor: pointer;
   font-size: 16px;
@@ -235,7 +238,7 @@ label {
   color: #000000;
   width: 100%;
   padding: 10px;
-  margin: 20px 0;
+  margin: 15px 0;
   border: none;
   cursor: pointer;
   font-size: 16px;
