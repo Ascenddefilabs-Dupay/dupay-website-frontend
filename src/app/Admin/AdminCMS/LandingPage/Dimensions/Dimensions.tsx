@@ -4,16 +4,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Dimensions.css';
 
 interface Account {
-  account_id: number;
-  account_type: string;
+  duc_account_id: number;
+  duc_account_type: string;
 }
 interface Assets {
-  asset_id: number;
-  asset_name: string;
+  duc_asset_id: number;
+  duc_asset_name: string;
 }
 interface Denominations {
-  denomination_id: number;
-  denomination_name: string;
+  duc_denomination_id: number;
+  duc_denomination_name: string;
 }
 
 const Dimensions: React.FC = () => {
@@ -78,14 +78,14 @@ const Dimensions: React.FC = () => {
     const formData = new FormData(event.target as HTMLFormElement);
     const account_type = formData.get('accountType') as string;
     const account_name = formData.get('accountName') as string;
-    console.log({
-      accountType: account_type,
-      accountName: account_name,
-    });
+    // console.log({
+    //   accountType: account_type,
+    //   accountName: account_name,
+    // });
 
     const data = {
-      account_type: account_type,
-      account_name: account_name,
+      duc_account_type: account_type,
+      duc_account_name: account_name,
     };
 
     try {
@@ -100,10 +100,11 @@ const Dimensions: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to submit accounts');
       }
+      setActiveButton(null);
       // history.go(0);
 
-      const result = await response.json();
-      console.log('Response of account storage:', result);
+      // const result = await response.json();
+      // console.log('Response of account storage:', result);
 
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -118,16 +119,16 @@ const Dimensions: React.FC = () => {
     const description = formData.get('assetDescription') as string;
     const account_id = selectRef.current?.value;
 
-    console.log(account_id);
-    console.log({
-      assetType: asset_name,
-      assetDescription: description,
-      account_id: account_id,
-    });
+    // console.log(account_id);
+    // console.log({
+    //   assetType: asset_name,
+    //   assetDescription: description,
+    //   account_id: account_id,
+    // });
     const data = {
-      asset_name: asset_name,
-      description: description,
-      account_id: account_id,
+      duc_asset_name: asset_name,
+      duc_description: description,
+      duc_account_id: account_id,
     };
 
     try {
@@ -142,10 +143,11 @@ const Dimensions: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to submit assets');
       }
+      setActiveButton(null);
       // history.go(0);
 
-      const result = await response.json();
-      console.log('Response of asset storage:', result);
+      // const result = await response.json();
+      // console.log('Response of asset storage:', result);
 
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -159,15 +161,15 @@ const Dimensions: React.FC = () => {
     const denomination_name = formData.get('denominationName') as string;
     const symbol = formData.get('denominationSymbole') as string;
     const asset_id = selectRef.current?.value;
-    console.log({
-      denomination_name: denomination_name,
-      symbol: symbol,
-      asset_id: asset_id,
-    });
+    // console.log({
+    //   denomination_name: denomination_name,
+    //   symbol: symbol,
+    //   asset_id: asset_id,
+    // });
     const data = {
-      denomination_name: denomination_name,
-      symbol: symbol,
-      asset_id: asset_id,
+      duc_denomination_name: denomination_name,
+      duc_symbol: symbol,
+      duc_asset_id: asset_id,
     };
 
     try {
@@ -182,10 +184,11 @@ const Dimensions: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to submit assets');
       }
+      setActiveButton(null);
       // history.go(0);
 
-      const result = await response.json();
-      console.log('Response of asset storage:', result);
+      // const result = await response.json();
+      // console.log('Response of asset storage:', result);
 
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -200,15 +203,15 @@ const Dimensions: React.FC = () => {
     const isDefaultAddress = (event.target as HTMLFormElement).querySelector('.cyberpunk-checkbox') as HTMLInputElement;
     const default_flag = isDefaultAddress.checked;
     const denomination_id = selectRef.current?.value;
-    console.log({
-      addressName: addressName,
-      isDefaultAddress: default_flag,
-      denomination_id: denomination_id,
-    });
+    // console.log({
+    //   addressName: addressName,
+    //   isDefaultAddress: default_flag,
+    //   denomination_id: denomination_id,
+    // });
     const data = {
-      address_name: addressName,
-      default_flag: default_flag,
-      denomination_id: denomination_id,
+      duc_address_name: addressName,
+      duc_default_flag: default_flag,
+      duc_denomination_id: denomination_id,
     };
 
     try {
@@ -223,10 +226,11 @@ const Dimensions: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to submit assets');
       }
+      setActiveButton(null);
       // history.go(0);
 
-      const result = await response.json();
-      console.log('Response of asset storage:', result);
+      // const result = await response.json();
+      // console.log('Response of asset storage:', result);
 
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -255,10 +259,11 @@ const Dimensions: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to submit Phases');
       }
+      setActiveButton(null);
       // history.go(0);
 
-      const result = await response.json();
-      console.log('Response of Phases storage:', result);
+      // const result = await response.json();
+      // console.log('Response of Phases storage:', result);
 
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -332,8 +337,8 @@ const Dimensions: React.FC = () => {
                   <label htmlFor="options">Select Accounts:</label>
                   <select id="options" className="styled-select" ref={selectRef}>
                     {accounts.map((account) => (
-                      <option key={account.account_id} value={account.account_id}>
-                        {account.account_type}
+                      <option key={account.duc_account_id} value={account.duc_account_id}>
+                        {account.duc_account_type}
                       </option>
                     ))}
                   </select>
@@ -366,8 +371,8 @@ const Dimensions: React.FC = () => {
                   <label htmlFor="options">Select Assets:</label>
                   <select id="options" className="styled-select" ref={selectRef}>
                     {assets.map((account) => (
-                      <option key={account.asset_id} value={account.asset_id}>
-                        {account.asset_name}
+                      <option key={account.duc_asset_id} value={account.duc_asset_id}>
+                        {account.duc_asset_name}
                       </option>
                     ))}
                   </select>
@@ -400,8 +405,8 @@ const Dimensions: React.FC = () => {
                   <label htmlFor="options">Select Assets:</label>
                   <select id="options" className="styled-select" ref={selectRef}>
                     {Denomination.map((account) => (
-                      <option key={account.denomination_id} value={account.denomination_id}>
-                        {account.denomination_name}
+                      <option key={account.duc_denomination_id} value={account.duc_denomination_id}>
+                        {account.duc_denomination_name}
                       </option>
                     ))}
                   </select>
