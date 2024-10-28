@@ -15,11 +15,23 @@
     align-items: center;
     padding: 10px;
     padding-left: 4px;
-    background-color: #1a1a1a;
+    /* background-color:#333; */
+    /* background: linear-gradient(to right, #3f1164, #9047aa, #312c33, #502b4e ,rgb(40, 32, 34)); */
+    background: linear-gradient(to right,#1d0431,  rgb(43, 33, 38));
     position: relative;
     z-index: 2;
+    height: 60px;
+    width:100%;
   }
-  
+  .logo {
+    height: 60px; /* Adjust this size to fit your logo */
+    position: relative;
+    width: auto;
+    left:70px;
+    /* margin-left: auto; */
+    top:20px;
+    
+  }
   .headerLeft {
     display: flex;
     align-items: center;
@@ -63,8 +75,70 @@
     font-size: 14px;
     color: gray;
   }
-  
   .sidebar {
+    position: absolute; /* Allows overlap with content */
+    top: 80px; /* Adjust this based on your layout */
+    left: 0;
+    width: 200px; 
+    background-color:  transparent;
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow:  transparent;
+    z-index: 10; /* Ensure it is above other elements */
+    padding: 10px;
+    transition: opacity 0.3s ease-in-out;
+  display: flex;
+  /* justify-content: center; */
+  margin-left: 4%;
+  width: max-content;
+  }
+  
+  .sidebarVisible {
+    display: block; /* Show the sidebar when visible */
+  }
+  
+  .nav {
+    background-color: #0088FE;
+    display: inline;
+    flex-direction: column;
+  }
+  
+  .nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav ul li {
+    margin-bottom: 10px;
+    transition: opacity 0.3s ease-in-out;
+    display: flex; /* Use flexbox to align items */
+  align-items: center;
+  }
+  .nav ul li:hover .navText {
+    display: inline; /* Show the text on hover */
+  }
+  
+  .navIcon1 {
+    margin-right: 8px; /* Space between the icon and the label */
+  }
+  
+  .navLabel {
+    font-size: 16px; /* Adjust font size as needed */
+    color: #000; /* Set the desired text color */
+  }
+  .navText{
+    position: relative;
+    display: none;
+    margin-left: 60px;
+    top: -30px;
+  }
+  .navText1{
+    position: relative;
+    display: none;
+    margin-left: 60px;
+    top: -30px;
+  }
+  /* .sidebar {
     width: 250px;
     background-color: #1a1a1a;
     height: calc(100vh - 80px);
@@ -76,7 +150,7 @@
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
     transition: left 0.3s ease;
   }
-  
+   */
   .sidebarVisible {
     left: 0;
   }
@@ -96,14 +170,54 @@
   }
   
   .nav ul li:hover {
-    background-color: #333;
+    background-color: transparent;
   }
   
   .navIcon {
-    margin-right: 10px;
+    /* margin-right: 10px; */
     color: white;
+    /* left:70px; */
+    align-items: center; 
+    display: flex;
+  width: 100%; /* Allow icons to stretch the full width of the sidebar */
+  padding: 5px 10px; /* Padding around icons */
+  cursor: pointer;
   }
-  
+  .navIcon1{
+    /* margin-right: 10px; */
+    color: white;
+    /* left:70px; */
+    align-items: center; 
+    display: flex;
+  /* width: 100%;  */
+  padding: 5px 10px; /* Padding around icons */
+  height: 40px;
+  cursor: pointer;
+  }
+  .navIcon3{
+    /* margin-right: 10px; */
+    color: white;
+    /* left:70px; */
+    align-items: center; 
+    display: flex;
+    position: fixed;
+  /* width: 100%;  */
+  background-color: transparent;
+  padding: 5px 10px; /* Padding around icons */
+  height: 40px;
+  cursor: pointer;
+  }
+  .navIcon2{
+    /* margin-right: 10px; */
+    color: white;
+    /* left:70px; */
+    align-items: center; 
+    display: flex;
+  /* width: 100%; */
+  padding: 5px 10px; /* Padding around icons */
+  height: 30px;
+  cursor: pointer;
+  }
   .mainContent {
     margin-left: 250px;
     padding: 30px;

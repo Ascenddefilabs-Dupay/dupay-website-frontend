@@ -38,17 +38,43 @@
   .sidebar::-webkit-scrollbar, .mainContent::-webkit-scrollbar {
     display: none; /* Chrome, Safari, and Opera */
   }
+  .shapeIcon {
+    position: absolute;
+    /* top: -96px;
+    left: 1096px; */
+    top:-15px;
+    right: -10px;
+    z-index: 1;
+    /* margin-top: -96px; */
+    width: 200px;
+    /* z-index: 10; */
+    height: 400px;
+    display: flex;
+    object-fit: contain;
+    }
+    .shapeIcon1 {
+      position: fixed; /* Change from absolute to fixed */
+      bottom: 0; /* Position it at the bottom */
+      left: 0; /* Align it to the left */
+      z-index: 1;
+      width: 200px;
+      height: 518px;
+      display: flex;
+      object-fit: contain;
+    }
   .mainContent {
-    margin-left: 250px;
+    margin-left: 100px;
+    margin:0 auto;
     padding: 30px;
     flex-grow: 1;
-    background-color: #121212;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     overflow-y: hidden;
     font-size: 16px;
+    z-index:2;
     transition: margin-left 0.3s ease;
-    width: 81%;
+    width: 80%;
     height: 70%;
     font-family: 'Poppins', sans-serif;
   }
@@ -262,7 +288,8 @@
     display: flex;
     justify-content: end;
     position: relative;
-    left: 10px;
+    /* left: 10px; */
+    right:60px;
     font-family: Poppins;
   }
   .heading {
