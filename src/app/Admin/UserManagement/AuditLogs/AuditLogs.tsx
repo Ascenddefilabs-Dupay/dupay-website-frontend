@@ -101,6 +101,9 @@ const Dashboard = () => {
 
   return (
     // <div className={styles.page}>
+    <div className={styles.container}>
+      <img className={styles.shapeIcon} alt="" src="https://res.cloudinary.com/dgfv6j82t/image/upload/v1730087391/_Shape_1_pdomat.svg" />
+      <img className={styles.shapeIcon1} alt="" src="https://res.cloudinary.com/dgfv6j82t/image/upload/v1730087391/LooperGroup_1_fw9n9g.svg" />
       <div className={styles.mainContent}>
              {/* <Link href="/Admin/AdminDashboard">
           <FaArrowLeft  style={{position: 'relative' ,right:'630px', color: 'white'}} />
@@ -222,7 +225,7 @@ const Dashboard = () => {
         </Table>
       </TableContainer>
       </div>
-    // </div>
+    </div>
   );
 };
 

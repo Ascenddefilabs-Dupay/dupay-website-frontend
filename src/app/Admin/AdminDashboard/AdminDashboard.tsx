@@ -423,6 +423,8 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <img className={styles.shapeIcon} alt="" src="https://res.cloudinary.com/dgfv6j82t/image/upload/v1730087391/_Shape_1_pdomat.svg" />
+      <img className={styles.shapeIcon1} alt="" src="https://res.cloudinary.com/dgfv6j82t/image/upload/v1730087391/LooperGroup_1_fw9n9g.svg" />
       {/* <div className={styles.header}>
         <div className={styles.headerLeft}>
           <FontAwesomeIcon

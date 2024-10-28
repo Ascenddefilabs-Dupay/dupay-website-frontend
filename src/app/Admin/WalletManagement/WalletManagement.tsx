@@ -144,6 +144,8 @@ const WalletManagement: React.FC = () => {
   return (
     // <div className={styles.page}>
     <div className={styles.container}>
+      <img className={styles.shapeIcon} alt="" src="https://res.cloudinary.com/dgfv6j82t/image/upload/v1730087391/_Shape_1_pdomat.svg" />
+      <img className={styles.shapeIcon1} alt="" src="https://res.cloudinary.com/dgfv6j82t/image/upload/v1730087391/LooperGroup_1_fw9n9g.svg" />
       <div className={styles.mainContent}>
       <Typography variant="h4" className={styles.heading} gutterBottom>
         Monitor Wallet Count by Currency Type
