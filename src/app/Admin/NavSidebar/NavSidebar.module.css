@@ -24,13 +24,22 @@
     width:100%;
   }
   .logo {
-    height: 60px; /* Adjust this size to fit your logo */
+    height: 80px; /* Adjust this size to fit your logo */
     position: relative;
     width: auto;
-    left:70px;
+    left:55px;
     /* margin-left: auto; */
     top:20px;
     
+  }
+  .logoSmall {
+    height: 60px; /* Small size when menu is active */
+    width: auto;
+  }
+  
+  .logoLarge {
+    height: 80px; /* Large size when menu is inactive */
+    width: auto;
   }
   .headerLeft {
     display: flex;
@@ -39,15 +48,11 @@
   left: 0;
   }
   
-  .logo {
+  /* .logo {
     font-weight: bold;
-    /* color: white; */
-    /* background: linear-gradient(180deg, #ff89c2 100%, #f65ba4 50%, #bd46f4 );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
     font-size: 40px;
     margin-left: 5px;
-  }
+  } */
   
   .profileSection {
     display: flex;
@@ -75,15 +80,25 @@
     font-size: 14px;
     color: gray;
   }
+  .fixedItem {
+    background-color: #4a90e2; /* Distinct color for fixed item */
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+  }
+  .navIconContainer:hover .navIcon2,
+.navIconContainer:hover .navText {
+  transform: none; /* No transform on hover */
+}
   .sidebar {
-    position: absolute; /* Allows overlap with content */
-    top: 80px; /* Adjust this based on your layout */
+    position: absolute; 
+    top: 80px; 
     left: 0;
     width: 200px; 
     background-color:  transparent;
-    border-radius: 8px; /* Optional: Add rounded corners */
+    border-radius: 8px; 
     box-shadow:  transparent;
-    z-index: 10; /* Ensure it is above other elements */
+    z-index: 10; 
     padding: 10px;
     transition: opacity 0.3s ease-in-out;
   display: flex;
@@ -97,7 +112,7 @@
   }
   
   .nav {
-    background-color: #0088FE;
+    /* background-color: #0088FE; */
     display: inline;
     flex-direction: column;
   }
@@ -126,17 +141,61 @@
     font-size: 16px; /* Adjust font size as needed */
     color: #000; /* Set the desired text color */
   }
+  .navIconContainer {
+    width: 50px; /* Set the desired size of the circle */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#E34D67,#7746F4);
+    border-radius: 50%; /* Makes the background circular */
+  }
+  .navIconContainer1 {
+    position: fixed;
+    width: 50px; /* Set the desired size of the circle */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#E34D67,#7746F4);
+    border-radius: 50%; /* Makes the background circular */
+  }
   .navText{
     position: relative;
     display: none;
+    /* height: 5px; */
     margin-left: 60px;
     top: -30px;
+    background: linear-gradient(135deg,#E34D67,#7746F4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
   }
   .navText1{
     position: relative;
     display: none;
     margin-left: 60px;
     top: -30px;
+    background: linear-gradient(135deg, #E34D67,#7746F4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  }
+  .navLink {
+    display: flex;
+    align-items: center; /* Centers items vertically */
+    gap: -2px; /* Adjust the space between the icon and text */
+  }
+  .iconWrapper {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    width: 40px; /* Set a fixed size for the circle */
+    height: 40px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899); /* Gradient background */
+    border-radius: 50%; /* Makes it circular */
   }
   /* .sidebar {
     width: 250px;
@@ -179,7 +238,7 @@
     /* left:70px; */
     align-items: center; 
     display: flex;
-  width: 100%; /* Allow icons to stretch the full width of the sidebar */
+  /* width: 100%;  */
   padding: 5px 10px; /* Padding around icons */
   cursor: pointer;
   }
@@ -200,11 +259,14 @@
     /* left:70px; */
     align-items: center; 
     display: flex;
-    position: fixed;
+    /* position: fixed; */
   /* width: 100%;  */
   background-color: transparent;
-  padding: 5px 10px; /* Padding around icons */
-  height: 40px;
+  padding: 5px 0px; /* Padding around icons */
+  height: 50px;
+  margin-left:10px;
+  /* margin-bottom: 40px; */
+  padding-bottom: 15px;
   cursor: pointer;
   }
   .navIcon2{
@@ -215,7 +277,7 @@
     display: flex;
   /* width: 100%; */
   padding: 5px 10px; /* Padding around icons */
-  height: 30px;
+  height: 40px;
   cursor: pointer;
   }
   .mainContent {
@@ -430,10 +492,6 @@
     .metricIcons {
       display: flex;
       gap: 10px;
-    }
-    .logo {
-      font-size: 30px;
-      margin-left: -20px;
     }
     .header {
       padding: 1px;
