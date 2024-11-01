@@ -3,42 +3,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Avenir+Next:wght@500&display=swap');
 .shapeIcon {
     position: absolute;
-    top: -96px;
-    left: 1096px;
-    /* top:0; */
-    /* right: 0; */
-    /* z-index: 1000; */
-    /* margin-top: -96px; */
-    width: 399px;
-    /* z-index: 10; */
-    height: 475.1px;
-    display: flex;
+    top: -6vh; 
+    left: 65vw; 
+    width: 50vw;
+    height: 50vh;
     object-fit: contain;
-    }
-    .webpageSingleChild {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: #222531;
-    /* width: 1440px; */
-    height: 90px;
+}
+.webpageSingleChild {
     overflow: hidden;
     opacity: 0.9;
-    }
-    .webpageSingleItem {
     position: absolute;
-    top: 723px;
-    left: 0px;
+    top: 0;
+    left: 0;
     background-color: #222531;
-    width: 1440px;
+    width: 100vw;
+    height: 11.5vh;
+    opacity: 0.9;
+}
+.webpageSingleItem {
+    position: absolute;
+    overflow: hidden;
+    top: 50vh;
+    left: 0;
+    background-color: #222531;
+    width: 100vw;
     height: 1px;
-    overflow: hidden;
     opacity: 0.9;
-    }
+}
 
 .button1 {
-    padding: 6px 14px;
     background: linear-gradient(97.59deg, #E34D67 29.66%, #7746F4 70.15%);
     color: white ;
     border: none;
@@ -47,6 +40,8 @@
     cursor: pointer;
     outline: none;
     transition: background-color 0.3s ease;
+    padding: 0.8vh 0.8vw;
+    /* font-size: 1vw; */
 }
 .buttons{
     background: linear-gradient(91.26deg, #70a2ff, #f76e64);
@@ -64,64 +59,49 @@
 }
 .homeAboutContact {
     position: absolute;
-    top: 33px;
-    left: 750px;
-    line-height: 24px;
+    top: 1vh;
+    left: 63vw;
     white-space: pre-wrap;
-    }
-    .groupIcon {
+    font-size: 1.2vw;
+    flex-wrap: nowrap;
+    min-width: 900px;
+}
+   
+.homeAboutContactParent {
     position: absolute;
-    height: 1193.44%;
-    width: 149.82%;
-    top: -67.78%;
-    right: 46.09%;
-    bottom: -1025.67%;
-    left: -95.91%;
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
-    }
-    .homeAboutContactParent {
-    position: absolute;
-    top: 0px;
-    left: 170px;
-    width: 1100px;
-    height: 90px;
-    overflow: hidden;
-    text-align: center;
-    font-size: 16px;
-    display: flex; /* Enable flexbox */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; 
-    }
+    top: 3vh;
+    width: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
 
 .dupayLogoIcon {
-    width: 51px;
-    position: relative;
-    height: 51px;
+    width: 3.8vw;       
+    height: 3.8vw;     
+    min-width: 30px;  /* Ensures a minimum size for very small screens */
+    min-height:30px;
+    max-width: 50px;
+    max-height: 50px;
+    
 }
 .dupay {
-    position: relative;
     line-height: 11.74px;
+    font-size: 26.43px; /* Font size relative to viewport width */
+    min-font-size: 26.43px; /* Minimum font size to prevent being too small */
 }
 .dupayLogoParent {
-    /* position: absolute;
-  top: 20px;
-  left: 50px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px; */
     position: absolute;
-    top: 20px;
-    left: 170px;
+    top: 3vh;
+    left: 12vw;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     gap: 12px;
     text-align: center;
-    font-size: 26.43px;
     font-family: ''SF Pro Display', sans-serif';
 }
 .buySell {
@@ -138,11 +118,13 @@
     color: #d9d9d9;
 }
 .title {
-    width: 693px;
     position: relative;
-    line-height: 56px;
+    /* line-height: 56px; */
     font-weight: 300;
     display: inline-block;
+    width: 40vw;
+    font-size: 2.7vw;
+    line-height: 6.5vh;
 }
 .title1 {
     align-self: stretch;
@@ -156,7 +138,9 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    font-size: 19px;
+    /* font-size: 19px; */
+    font-size: 1.3vw;
+    line-height: 6vh;
 }
 .titleParent {
     align-self: stretch;
@@ -171,8 +155,48 @@
     position: relative;
     height: 41.6px;
 }
+.textoIcon {
+    width: 127.1px;
+    position: relative;
+    height: 41.5px;
+}
+.logoParent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.frameWrapper {
+    width: 260px;
+    background-color: #222531;
+    height: 75px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.logoIcon1 {
+    width: 35px;
+    position: relative;
+    height: 39.1px;
+}
 
 
+
+
+.frameGroup {
+    width: 688px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 48px;
+}
 .device14pmIcon {
     width: 258px;
     position: relative;
@@ -180,49 +204,29 @@
 }
 .frameParent {
     position: absolute;
-  top: 130px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1050px;
-  /* width: 80%;  */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  object-fit: contain;
-    /* position: absolute;
-    top: 130px;
-    left: 195px;
-    width: 1050px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start; */
-    gap: 104px;
+    justify-content: space-between;
+    object-fit: contain;
+    top: 17vh;
+    width: 73vw;
 }
+
+
 .webpageSingle {
-    /* width: 100%;
     position: relative;
     background-color: #17171a;
-    height: 100vh;
-    overflow: hidden;
     text-align: left;
-    font-size: 40px;
     color: #fff;
     font-family:  'Poppins', sans-serif;
-    transition: filter 0.3s ease; */
     width: 100%;
-  position: relative;
-  background-color: #17171a;
-  height: 100vh;
-  overflow: hidden;
-  text-align: left;
-  font-size: 40px;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  transition: filter 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    height: 100vh;
+    font-size: 3vh;
+    transition: filter 0.3s ease;
+    /* overflow-y: auto; */
+    overflow-x: hidden;
 }
 @media (max-width: 768px) {
     .webpageSingle {
@@ -263,21 +267,15 @@
   
     
   }
-  @media (max-width: 768px) {
-    .shapeIcon {
-       width: 200px;
-       height: 240px;
-       top: -48px;
-       left: 548px;
+  @media (max-width: 1024px) {
+
+    .webpageSingle {
+        height: 140vh;
     }
-    .button1 {
-        padding: 8px 16px;
-        font-size: 14px;
-     }
-     .title {
-        font-size: 3vw; /* Instead of 40px */
-     }
- }
+
+    
+}
+
 
 
   .blurred {
@@ -286,28 +284,22 @@
   }
   
   .overlay {
-    /* position: fixed;
-    top: 10px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; */
-
-
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;  /* Viewport width */
+    height: 100vh; /* Viewport height */
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 999; 
-  }
+    z-index: 999;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+  .overlay::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+}
 
   
 

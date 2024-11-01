@@ -1,16 +1,3 @@
-/* .container {
-  height: 100vh;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden; 
-  
-} */
 
 @media (max-width: 760px) {
   .container { 
@@ -57,8 +44,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  /* justify-content: center; */
+  /* margin-bottom: 20px; */
+
+  max-width: 100%; 
+  display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
 }
 .title {
   font-family: SF Pro;
@@ -79,49 +71,22 @@
 
 }
 
-/* .main {
-  padding: 0;
-  width: 100%;
-  max-width: 100%;
-  height: 100vh;
+
+.card {
+  width: 430px; /* Adapt to screen width */
+  max-width: auto; 
+  padding: 2vh 2vw; /* Viewport-based padding for consistent spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px 20px 20px 20px;
+  background-color: #17171a;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 50px;
-  padding-top: 50px;
-  background-color: #242429;
-  background-image: url('https://res.cloudinary.com/dgfv6j82t/image/upload/v1727325960/0beadfc1-104a-4d39-90dc-d34518823d07.png');
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: 30% 50%;
-  animation: moveBackground 0.5s ease-in-out forwards; 
-}
-@keyframes moveBackground {
-  0% {
-    background-position: 90% 40%;
-  }
-  100% {
-    background-position: 110% -20%; 
-  }
-} */
-
-.card {
-  background-color: #17171a;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 3rem;
-  /* margin-top: 70%; */
   padding-bottom: 6rem;
-  width: 430px;
-  max-width: 100%;
-  overflow: hidden; 
-  height: 80vh; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 20px 20px 20px 20px;
-  margin: 0 auto;
 }
+
 
 
 .form {
@@ -298,22 +263,11 @@ align-items: flex-start;
   font-family:Poppins; 
 }
 
-/* .googleWrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  background-color: white;
-  border-radius: 2px;
-} */
-
 @media (max-width: 768px) {
   .main {
     padding: 0;
     width: 100%;
     height: 100vh;
-    /* display: flex; 
-    justify-content: center;
-    align-items: center; */
   }
 
   .card {
@@ -348,33 +302,6 @@ align-items: flex-start;
   }
 }
 
-@media (max-width: 480px) {
-  /* .main {
-    padding: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-  } */
-
-  /* .card {
-    width: 100%; 
-    height: 100vh; 
-    padding: 2.5rem; 
-    margin: 0; 
-    border-radius: 0;
-  } */
-
-  /* .title {
-    font-size: 1rem; 
-  }
-
-  .button {
-    padding: 0.6rem; 
-    font-size: 0.7rem; 
-  } */
-}
 .orContinueWith {
   text-align: center;
   margin: 10px ;
